@@ -45,9 +45,9 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-
+        
         renderGrid(window);
-
+        
         sf::sleep(sf::milliseconds(100));
     }
 
