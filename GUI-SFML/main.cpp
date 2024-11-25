@@ -4,8 +4,8 @@
 #include <cstdlib>
 
 const int cellSize = 10;
-const int gridWidth = 80;
-const int gridHeight = 80;
+const int gridWidth = 10;
+const int gridHeight = 10;
 
 std::vector<std::vector<int>> grid(gridWidth, std::vector<int>(gridHeight));
 
