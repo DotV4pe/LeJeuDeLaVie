@@ -3,7 +3,7 @@
 #include <ctime>
 #include <cstdlib>
 
-const int cellSize = 10;
+const int cellSize = 50;
 const int gridWidth = 10;
 const int gridHeight = 10;
 
@@ -34,8 +34,21 @@ void renderGrid(sf::RenderWindow &window) {
     window.display();
 }
 
+void calculGrid() {
+    std::srand(std::time(0));
+    for (int x = 0; x < gridWidth; ++x) {
+        for (int y = 0; y < gridHeight; ++y) {
+            if (grid[x][y] == 0){
+                grid[x][y] = 1;
+            } else {
+                grid[x][y] = 0;
+            }
+        }
+    }
+}
+
 int main() {
-    sf::RenderWindow window(sf::VideoMode(gridWidth * cellSize, gridHeight * cellSize), "Game of Life");
+    sf::RenderWindow window(sf::VideoMode(gridWidth * cellSize, gridHeight * cellSize), "Le Jeu de la Vie");
     
     initializeGrid();
 
@@ -47,7 +60,7 @@ int main() {
         }
         
         renderGrid(window);
-        
+        calculGrid();
         sf::sleep(sf::milliseconds(100));
     }
 
