@@ -41,7 +41,7 @@ void calculgrille() {
     for (int x = 0; x < grilleLongueur; ++x) {
         for (int y = 0; y < grilleHauteur; ++y) {
             if (grille[x][y] == 0){
-                grille[x][y] = 1;
+                grille[x][y] = rand() % 5;
             } else {
                 grille[x][y] = 0;
             }
