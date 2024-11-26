@@ -3,17 +3,19 @@
 #include <ctime>
 #include <cstdlib>
 
+using namespace std;
+
 const int cellSize = 50;
 const int grilleLongueur = 10;
 const int grilleHauteur = 10;
 
-std::vector<std::vector<int>> grille(grilleLongueur, std::vector<int>(grilleHauteur));
+vector<vector<int>> grille(grilleLongueur, vector<int>(grilleHauteur));
 
 void initializegrille() {
-    std::srand(std::time(0));
+    srand(time(0));
     for (int x = 0; x < grilleLongueur; ++x) {
         for (int y = 0; y < grilleHauteur; ++y) {
-            grille[x][y] = std::rand() % 2;  // Randomly initialize cells as alive or dead
+            grille[x][y] = rand() % 2;  // Randomly initialize cells as alive or dead
         }
     }
 }
@@ -35,7 +37,7 @@ void rendergrille(sf::RenderWindow &window) {
 }
 
 void calculgrille() {
-    std::srand(std::time(0));
+    srand(time(0));
     for (int x = 0; x < grilleLongueur; ++x) {
         for (int y = 0; y < grilleHauteur; ++y) {
             if (grille[x][y] == 0){
