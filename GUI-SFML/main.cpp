@@ -7,14 +7,12 @@
 
 using namespace std;
 
-
-
 vector<vector<int>> grille(grilleLongueur, vector<int>(grilleHauteur));
 
-void initializegrille() {
+void initializegrille(Grille gr) {
     srand(time(0));
-    for (int x = 0; x < grilleLongueur; ++x) {
-        for (int y = 0; y < grilleHauteur; ++y) {
+    for (int x = 0; x < gr.getLongueur(); ++x) {
+        for (int y = 0; y < gr.getHauteur; ++y) {
             grille[x][y] = rand() % 2;  // Randomly initialize cells as alive or dead
         }
     }
@@ -50,7 +48,9 @@ void calculgrille() {
 }
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(grilleLongueur * cellSize, grilleHauteur * cellSize), "Le Jeu de la Vie");
+    Grille g(10,50,50);
+
+    sf::RenderWindow window(sf::VideoMode(g.getLongueur() * g.getTaille(), g.getHauteur() * g.getTaille()), "Le Jeu de la Vie");
     
     initializegrille();
 
