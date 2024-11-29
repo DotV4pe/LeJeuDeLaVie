@@ -107,3 +107,19 @@ void Grille::imprimerConsole() const {
         std::cout << std::endl;
     }
 }
+
+void Grille::imprimerFichier(const std::string& nom_fichier) const{
+    std::ofstream file(nom_fichier);
+    if (!file){
+        std::cout << "Erreur - Impossible d'ouvrir le fichier en écriture : " + nom_fichier << std::endl;
+    }
+
+    file << grilleHauteur << " " << grilleLongueur << std::endl;
+
+        for (int y = 0; y < grilleHauteur; ++y) {
+        for (int x = 0; x < grilleLongueur; ++x) {
+            file << (grille[x][y].getVie() ? "1 " : "0 ");
+        }
+        file << std::endl;
+    }
+}

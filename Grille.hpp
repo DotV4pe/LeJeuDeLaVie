@@ -25,6 +25,7 @@ public:
     void calculGrille();
     void initializegrille();
     void imprimerConsole() const;
+    void imprimerFichier(const std::string &nom_fichier) const;
 };
 
 #endif

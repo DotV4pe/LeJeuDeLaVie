@@ -43,6 +43,10 @@ int main() {
         g.majGrille(window);
         //g.calculGrille();
         g.imprimerConsole();
+        string nom_sortie;
+        cout << "Entrez le chemin du fichier de sortie : ";
+        cin >> nom_sortie;
+        g.imprimerFichier(nom_sortie);
         sf::sleep(sf::milliseconds(500));
     }
 
