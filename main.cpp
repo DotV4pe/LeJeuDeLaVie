@@ -25,7 +25,7 @@ int main() {
     int hauteur,longueur, taille;
     monFlux >> longueur;
     monFlux >> hauteur;
-    taille = 75;
+    taille = 25;
 
     Grille g(taille,longueur,hauteur);
 
@@ -41,8 +41,8 @@ int main() {
         }
         
         g.majGrille(window);
-        //g.calculGrille();
-        g.imprimerConsole();
+        g.calculGrille();
+        // g.imprimerConsole();
         sf::sleep(sf::milliseconds(500));
     }
 
