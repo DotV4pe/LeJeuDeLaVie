@@ -36,7 +36,6 @@ void Grille::calculGrille() {
             if (tgrille[x][y].getVie() == false){
                 if (tgrille[x-1 % grilleLongueur][y-1 % grilleHauteur].getVie() == true){
                     compteur++;
-                    std::cout << "Done" << std::endl;
                 } if (tgrille[x-1 % grilleLongueur][y].getVie() == true){
                     compteur++;
                 } if (tgrille[x-1 % grilleLongueur][y+1 % grilleHauteur].getVie() == true){
@@ -80,7 +79,7 @@ void Grille::calculGrille() {
                 } else {
                     grille[x][y].setVie(false);
                 }
-            } std::cout << compteur << std::endl;
+            }
         }
     }
 }
@@ -100,3 +99,11 @@ void Grille::initializegrille() {
     }
 }
 
+void Grille::imprimerConsole() const {
+    for (int y = 0; y < grilleHauteur; ++y) {
+        for (int x = 0; x < grilleLongueur; ++x) {
+            std::cout << (grille[x][y].getVie() ? "1 " : "0 ");
+        }
+        std::cout << std::endl;
+    }
+}

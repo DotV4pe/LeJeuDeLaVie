@@ -7,7 +7,7 @@ private:
 public:
     Cellule(bool viv);
     ~Cellule();
-    bool getVie();
+    bool getVie() const;
     void setVie(bool viv);
 };
 

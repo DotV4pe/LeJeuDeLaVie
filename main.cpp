@@ -41,7 +41,8 @@ int main() {
         }
         
         g.majGrille(window);
-        g.calculGrille();
+        //g.calculGrille();
+        g.imprimerConsole();
         sf::sleep(sf::milliseconds(500));
     }
 

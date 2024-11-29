@@ -24,6 +24,7 @@ public:
     void majGrille(sf::RenderWindow &window);
     void calculGrille();
     void initializegrille();
+    void imprimerConsole() const;
 };
 
 #endif
