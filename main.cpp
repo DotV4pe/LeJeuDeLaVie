@@ -38,7 +38,7 @@ int main() {
         
         g.renderGrille(window);
         g.calculGrille();
-        sf::sleep(sf::milliseconds(100));
+        sf::sleep(sf::milliseconds(500));
     }
 
     return 0;

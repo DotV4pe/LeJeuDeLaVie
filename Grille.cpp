@@ -1,9 +1,7 @@
 #include "Grille.hpp"
 
 Grille::Grille(int taille, int longueur, int haut) 
-    : cellSize(taille), grilleLongueur(longueur), grilleHauteur(haut), grille(grilleHauteur, std::vector<int>(grilleLongueur, 0))
-{
-}
+    : cellSize(taille), grilleLongueur(longueur), grilleHauteur(haut), grille(grilleHauteur, std::vector<int>(grilleLongueur, 0)) {}
 
 
 Grille::~Grille() {}
