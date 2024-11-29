@@ -1,6 +1,5 @@
 #include <ctime>
 #include <cstdlib>
-#include <fstream>
 #include <filesystem>
 
 #include "Grille.hpp"
@@ -27,7 +26,7 @@ int main() {
     Grille g(taille,longueur,hauteur);
 
     sf::RenderWindow window(sf::VideoMode(g.getLongueur() * g.getTaille(), g.getHauteur() * g.getTaille()), "Le Jeu de la Vie");
-    
+    monFlux.close();
     g.initializegrille();
 
     while (window.isOpen()) {

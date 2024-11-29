@@ -44,10 +44,10 @@ void Grille::calculGrille() {
 }
 
 void Grille::initializegrille() {
-    srand(time(0));
+    std::ifstream monFlux("data.txt");
     for (int x = 0; x < getLongueur(); ++x) {
         for (int y = 0; y < getHauteur(); ++y) {
-            grille[x][y] = rand() % 2;  // Randomly initialize cells as alive or dead
+            monFlux >> grille[x][y];  // Randomly initialize cells as alive or dead
         }
     }
 }
