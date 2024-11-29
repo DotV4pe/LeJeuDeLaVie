@@ -4,10 +4,12 @@
 class Grille
 {
 private:
-    /* data */
+    const int cellSize;
+    const int grilleLongueur;
+    const int grilleHauteur;
 public:
-    Grille(/* args */);
-    ~Grille();
+    Grille(int taille, int longueur, int haut);
+    virtual ~Grille();
 };
 
 #endif

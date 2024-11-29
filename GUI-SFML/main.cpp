@@ -3,11 +3,11 @@
 #include <ctime>
 #include <cstdlib>
 
+#include "Grille.cpp"
+
 using namespace std;
 
-const int cellSize = 50;
-const int grilleLongueur = 10;
-const int grilleHauteur = 10;
+
 
 vector<vector<int>> grille(grilleLongueur, vector<int>(grilleHauteur));
 
