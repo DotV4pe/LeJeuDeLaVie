@@ -19,7 +19,7 @@ public:
     int getTaille();
     int getLongueur();
     int getHauteur();
-    void renderGrille(sf::RenderWindow &window);
+    void majGrille(sf::RenderWindow &window);
     void calculGrille();
     void initializegrille();
 };

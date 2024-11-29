@@ -7,7 +7,11 @@
 using namespace std;
 
 int main() {
-    ifstream monFlux("data.txt");  //Ouverture d'un fichier en lecture
+    string chemin;
+    cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
+    cin >> chemin;
+    cout << endl;
+    ifstream monFlux(chemin);  //Ouverture d'un fichier en lecture
 
     if(monFlux)
     {
@@ -36,7 +40,7 @@ int main() {
                 window.close();
         }
         
-        g.renderGrille(window);
+        g.majGrille(window);
         g.calculGrille();
         sf::sleep(sf::milliseconds(500));
     }
