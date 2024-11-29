@@ -6,13 +6,15 @@
 #include <fstream>
 #include <SFML/Graphics.hpp>
 
+#include "Cellule.hpp"
+
 class Grille
 {
 private:
     const int cellSize;
     const int grilleLongueur;
     const int grilleHauteur;
-    std::vector<std::vector<int>> grille;
+    std::vector<std::vector<Cellule>> grille;
 public:
     Grille(int taille, int longueur, int haut);
     virtual ~Grille();
