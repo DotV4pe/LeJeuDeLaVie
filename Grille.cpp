@@ -41,13 +41,13 @@ void Grille::calculGrille() {
                     int nx = (x + dx + grilleLongueur) % grilleLongueur;
                     int ny = (y + dy + grilleHauteur) % grilleHauteur;
 
-                    if (tgrille[nx][ny].getVie()) {
+                    if (tgrille[nx][ny].getVie() == true) {
                         compteur++;
                     }
                 }
             }
 
-            if (tgrille[x][y].getVie()) {
+            if (tgrille[x][y].getVie() == true) {
                 grille[x][y].setVie(compteur == 2 || compteur == 3);
             } else {
                 grille[x][y].setVie(compteur == 3);

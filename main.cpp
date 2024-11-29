@@ -43,7 +43,7 @@ int main() {
         g.majGrille(window);
         g.calculGrille();
         // g.imprimerConsole();
-        sf::sleep(sf::milliseconds(500));
+        sf::sleep(sf::milliseconds(5000));
     }
 
     return 0;
