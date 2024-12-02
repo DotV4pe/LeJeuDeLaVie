@@ -24,8 +24,8 @@ int main() {
     }
 
     int hauteur,longueur, taille;
-    monFlux >> longueur;
     monFlux >> hauteur;
+    monFlux >> longueur;
     taille = 25;
 
     Grille g(taille,longueur,hauteur);
