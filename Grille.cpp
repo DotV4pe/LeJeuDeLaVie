@@ -19,6 +19,11 @@ void Grille::majGrille(sf::RenderWindow &window) {
         for (int y = 0; y < nbLigne; y++) {
             if (grille[x][y].estVivant() == true) {
                 cell.setPosition(x * cellSize, y * cellSize);
+                if (grille[x][y].estVivant()) {
+                    cell.setFillColor(sf::Color(255, 192, 203));
+                } else if (!grille[x][y].estVivant()) {
+                    cell.setFillColor(sf::Color(200,200,200)); 
+                }
                 window.draw(cell);
             }
         }
@@ -46,12 +51,7 @@ void Grille::calculGrille() {
                     }
                 }
             }
-
-            if (tgrille[x][y].estVivant() == true) {
-                grille[x][y].setVie(compteur == 2 || compteur == 3);
-            } else {
-                grille[x][y].setVie(compteur == 3);
-            }
+            grille[x][y].update(compteur);
         }
     }
 }
@@ -62,7 +62,7 @@ void Grille::initializegrille(std::string chemin) {
     for (int y = 0; y < get_nbLigne(); ++y) {
         for (int x = 0; x < get_nbColonne(); ++x) {
             if (!(monFlux >> temp)) {
-                std::cerr << "Erreur: Lecture échouée à la position (" << x << ", " << y << ")." << std::endl;
+                std::cout << "Erreur: Lecture échouée à la position (" << x << ", " << y << ")." << std::endl;
                 return;
             }
             // Initialiser la cellule en fonction de la valeur lue

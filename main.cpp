@@ -6,7 +6,7 @@ int main() {
     string chemin;
     cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
     // cin >> chemin;
-    chemin="data.txt";
+    chemin="test.txt";
     cout << endl;
     ifstream monFlux(chemin);  //Ouverture d'un fichier en lecture
 
@@ -21,7 +21,7 @@ int main() {
 
     int hauteur,longueur, taille;
     monFlux >> hauteur >> longueur;
-    taille = 50;
+    taille = 20;
 
     Grille g(taille,longueur,hauteur);
 
