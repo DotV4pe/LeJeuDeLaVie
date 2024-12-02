@@ -30,7 +30,7 @@ int main() {
 
     Grille g(taille,longueur,hauteur);
 
-    sf::RenderWindow window(sf::VideoMode(g.getLongueur() * g.getTaille(), g.getHauteur() * g.getTaille()), "Le Jeu de la Vie");
+    sf::RenderWindow window(sf::VideoMode(g.get_nbColonne() * g.getTaille(), g.get_nbLigne() * g.getTaille()), "Le Jeu de la Vie");
     monFlux.close();
     g.initializegrille(chemin);
 
@@ -44,7 +44,11 @@ int main() {
         g.imprimerConsole();
         g.majGrille(window);
         g.calculGrille();
-        sf::sleep(sf::milliseconds(200));
+        string nom_sortie;
+        cout << "Entrez le chemin du fichier de sortie : ";
+        cin >> nom_sortie;
+        g.imprimerFichier(nom_sortie);
+        sf::sleep(sf::milliseconds(500));
     }
 
     return 0;

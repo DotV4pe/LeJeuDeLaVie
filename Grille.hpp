@@ -12,19 +12,20 @@ class Grille
 {
 private:
     const int cellSize;
-    const int grilleLongueur;
-    const int grilleHauteur;
+    const int nbColonne;
+    const int nbLigne;
     std::vector<std::vector<Cellule>> grille;
 public:
-    Grille(int taille, int longueur, int haut);
+    Grille(int taille, int hauteur, int largeur);
     virtual ~Grille();
     int getTaille();
-    int getLongueur();
-    int getHauteur();
+    int get_nbColonne();
+    int get_nbLigne();
     void majGrille(sf::RenderWindow &window);
     void calculGrille();
     void initializegrille(std::string chemin);
     void imprimerConsole() const;
+    void imprimerFichier(const std::string &nom_fichier) const;
 };
 
 #endif
