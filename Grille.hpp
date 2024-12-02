@@ -23,7 +23,7 @@ public:
     int getHauteur();
     void majGrille(sf::RenderWindow &window);
     void calculGrille();
-    void initializegrille();
+    void initializegrille(std::string chemin);
     void imprimerConsole() const;
 };
 

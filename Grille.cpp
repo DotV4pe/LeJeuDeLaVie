@@ -1,7 +1,7 @@
 #include "Grille.hpp"
 
 Grille::Grille(int taille, int longueur, int haut) 
-    : cellSize(taille), grilleLongueur(longueur), grilleHauteur(haut), grille(grilleHauteur, std::vector<Cellule>(grilleLongueur, 0)) {}
+    : cellSize(taille), grilleLongueur(longueur), grilleHauteur(haut), grille(grilleLongueur, std::vector<Cellule>(grilleHauteur, 0)) {}
 
 
 Grille::~Grille() {}
@@ -27,68 +27,41 @@ void Grille::majGrille(sf::RenderWindow &window) {
 }
 
 void Grille::calculGrille() {
-    int compteur = 0;
-    std::vector<std::vector<Cellule>> tgrille(grilleHauteur, std::vector<Cellule>(grilleLongueur, 0));
+    std::vector<std::vector<Cellule>> tgrille;
     tgrille = grille;
-    for (int x = 0; x < grilleLongueur; ++x) {
-        for (int y = 0; y < grilleHauteur; ++y) {
-            compteur = 0;
-            if (tgrille[x][y].getVie() == false){
-                if (tgrille[x-1 % grilleLongueur][y-1 % grilleHauteur].getVie() == true){
-                    compteur++;
-                } if (tgrille[x-1 % grilleLongueur][y].getVie() == true){
-                    compteur++;
-                } if (tgrille[x-1 % grilleLongueur][y+1 % grilleHauteur].getVie() == true){
-                    compteur++;
-                } if (tgrille[x][y-1 % grilleHauteur].getVie() == true){
-                    compteur++;
-                } if (tgrille[x][y+1 % grilleHauteur].getVie() == true){
-                    compteur++;
-                } if (tgrille[x+1 % grilleLongueur][y-1 % grilleHauteur].getVie() == true){
-                    compteur++;
-                } if (tgrille[x+1 % grilleLongueur][y].getVie() == true){
-                    compteur++;
-                } if (tgrille[x+1 % grilleLongueur][y+1 % grilleHauteur].getVie() == true){
-                    compteur++;
-                } if (compteur == 3) {
-                    grille[x][y].setVie(true);
-                } else {
-                    grille[x][y].setVie(false);
+
+    for (int x = 0; x < grilleLongueur; x++) {
+        for (int y = 0; y < grilleHauteur; y++) {
+            int compteur = 0;
+
+            for (int dx = -1; dx <= 1; dx++) {
+                for (int dy = -1; dy <= 1; dy++) {
+                    if (dx == 0 && dy == 0) continue;
+                    
+                    int nx = (x + dx + grilleLongueur) % grilleLongueur;
+                    int ny = (y + dy + grilleHauteur) % grilleHauteur;
+
+                    if (tgrille[nx][ny].getVie() == true) {
+                        compteur++;
+                    }
                 }
             }
-            
-            else if (tgrille[x][y].getVie() == true){
-                if (tgrille[x-1 % grilleLongueur][y-1 % grilleHauteur].getVie() == true){
-                    compteur++;
-                } if (tgrille[x-1 % grilleLongueur][y].getVie() == true){
-                    compteur++;
-                } if (tgrille[x-1 % grilleLongueur][y+1 % grilleHauteur].getVie() == true){
-                    compteur++;
-                } if (tgrille[x][y-1 % grilleHauteur].getVie() == true){
-                    compteur++;
-                } if (tgrille[x][y+1 % grilleHauteur].getVie() == true){
-                    compteur++;
-                }  if (tgrille[x+1 % grilleLongueur][y-1 % grilleHauteur].getVie() == true){
-                    compteur++;
-                }  if (tgrille[x+1 % grilleLongueur][y].getVie() == true){
-                    compteur++;
-                }  if (tgrille[x+1 % grilleLongueur][y+1 % grilleHauteur].getVie() == true){
-                    compteur++;
-                } if (compteur == 2 || compteur == 3) {
-                    grille[x][y].setVie(true);
-                } else {
-                    grille[x][y].setVie(false);
-                }
+
+            if (tgrille[x][y].getVie() == true) {
+                grille[x][y].setVie(compteur == 2 || compteur == 3);
+            } else {
+                grille[x][y].setVie(compteur == 3);
             }
         }
     }
 }
 
-void Grille::initializegrille() {
-    int temp;
-    std::ifstream monFlux("data.txt");
-    for (int x = 0; x < getLongueur(); ++x) {
-        for (int y = 0; y < getHauteur(); ++y) {
+
+void Grille::initializegrille(std::string chemin) {
+    std::ifstream monFlux(chemin);
+    for (int x = 0; x < getLongueur(); x++) {
+        for (int y = 0; y < getHauteur(); y++) {
+            int temp;
             monFlux >> temp;
             if (temp==0){
                 grille[x][y] = Cellule(false);
@@ -100,6 +73,7 @@ void Grille::initializegrille() {
 }
 
 void Grille::imprimerConsole() const {
+    std::cout << "Grille : " << std::endl;
     for (int y = 0; y < grilleHauteur; ++y) {
         for (int x = 0; x < grilleLongueur; ++x) {
             std::cout << (grille[x][y].getVie() ? "1 " : "0 ");

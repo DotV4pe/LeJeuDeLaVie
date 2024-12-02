@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 class Cellule
 {
 private:
@@ -10,5 +12,3 @@ public:
     bool getVie() const;
     void setVie(bool viv);
 };
-
-
