@@ -41,10 +41,10 @@ int main() {
                 window.close();
         }
         
+        g.imprimerConsole();
         g.majGrille(window);
         g.calculGrille();
-        // g.imprimerConsole();
-        sf::sleep(sf::milliseconds(5000));
+        sf::sleep(sf::milliseconds(200));
     }
 
     return 0;
