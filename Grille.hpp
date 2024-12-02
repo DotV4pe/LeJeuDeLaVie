@@ -2,7 +2,7 @@
 #define GRILLE_H
 
 #include <vector>
-#include <iostream>
+#include <string>
 #include <fstream>
 #include <SFML/Graphics.hpp>
 

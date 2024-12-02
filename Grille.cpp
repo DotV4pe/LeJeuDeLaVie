@@ -1,7 +1,7 @@
 #include "Grille.hpp"
 
-Grille::Grille(int taille, int hauteur, int largeur) 
-    : cellSize(taille), nbColonne(largeur), nbLigne(hauteur), grille(nbLigne, std::vector<Cellule>(nbColonne, 0)) {}
+Grille::Grille(int taille, int largeur, int hauteur) 
+    : cellSize(taille), nbColonne(largeur), nbLigne(hauteur), grille(nbColonne, std::vector<Cellule>(nbLigne, 0)) {}
 
 
 Grille::~Grille() {}
@@ -57,25 +57,26 @@ void Grille::calculGrille() {
 }
 
 void Grille::initializegrille(std::string chemin) {
-    int temp;
     std::ifstream monFlux(chemin);
-    for (int x = 0; x < get_nbColonne(); ++x) {
-        for (int y = 0; y < get_nbLigne(); ++y) {
-            monFlux >> temp;
-            if (temp==0){
-                grille[x][y] = Cellule(false);
-            } else if (temp==1) {
-                grille[x][y] = Cellule(true);
+    int temp;
+    for (int y = 0; y < get_nbLigne(); ++y) {
+        for (int x = 0; x < get_nbColonne(); ++x) {
+            if (!(monFlux >> temp)) {
+                std::cerr << "Erreur: Lecture échouée à la position (" << x << ", " << y << ")." << std::endl;
+                return;
             }
+            // Initialiser la cellule en fonction de la valeur lue
+            grille[x][y] = Cellule(temp == 1);
         }
     }
+    monFlux.close();
 }
 
 void Grille::imprimerConsole() const {
     std::cout << "Grille : " << std::endl;
-    for (int y = 0; y < nbLigne; ++y) {
-        for (int x = 0; x < nbColonne; ++x) {
-            std::cout << (grille[x][y].estVivant() ? "1 " : "0 ");
+    for (int x = 0; x < nbLigne; ++x) {
+        for (int y = 0; y < nbColonne; ++y) {
+            std::cout << (grille[y][x].estVivant() ? "1 " : "0 ");
         }
         std::cout << std::endl;
     }
@@ -90,9 +91,9 @@ void Grille::imprimerFichier(const std::string& nom_fichier) const{
     file << nbLigne << " " << nbColonne << std::endl;
 
         for (int y = 0; y < nbLigne; ++y) {
-        for (int x = 0; x < nbColonne; ++x) {
-            file << (grille[x][y].estVivant() ? "1 " : "0 ");
-        }
+            for (int x = 0; x < nbColonne; ++x) {
+                file << (grille[x][y].estVivant() ? "1 " : "0 ");
+            }
         file << std::endl;
     }
 }

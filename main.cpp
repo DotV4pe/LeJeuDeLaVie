@@ -10,7 +10,7 @@ int main() {
     string chemin;
     cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
     // cin >> chemin;
-    chemin="test.txt";
+    chemin="data.txt";
     cout << endl;
     ifstream monFlux(chemin);  //Ouverture d'un fichier en lecture
 
@@ -24,8 +24,7 @@ int main() {
     }
 
     int hauteur,longueur, taille;
-    monFlux >> hauteur;
-    monFlux >> longueur;
+    monFlux >> hauteur >> longueur;
     taille = 50;
 
     Grille g(taille,longueur,hauteur);
@@ -47,7 +46,7 @@ int main() {
         string nom_sortie;
         // cout << "Entrez le chemin du fichier de sortie : ";
         // cin >> nom_sortie;
-        g.imprimerFichier(nom_sortie);
+        // g.imprimerFichier(nom_sortie);
         sf::sleep(sf::milliseconds(500));
     }
 
