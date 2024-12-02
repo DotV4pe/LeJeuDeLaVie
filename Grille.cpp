@@ -1,7 +1,7 @@
 #include "Grille.hpp"
 
 Grille::Grille(int taille, int longueur, int haut) 
-    : cellSize(taille), grilleLongueur(longueur), grilleHauteur(haut), grille(grilleHauteur, std::vector<Cellule>(grilleLongueur, 0)) {}
+    : cellSize(taille), grilleLongueur(longueur), grilleHauteur(haut), grille(grilleLongueur, std::vector<Cellule>(grilleHauteur, 0)) {}
 
 
 Grille::~Grille() {}
@@ -58,10 +58,10 @@ void Grille::calculGrille() {
 
 
 void Grille::initializegrille(std::string chemin) {
-    int temp;
     std::ifstream monFlux(chemin);
-    for (int x = 0; x < getLongueur(); ++x) {
-        for (int y = 0; y < getHauteur(); ++y) {
+    for (int x = 0; x < getLongueur(); x++) {
+        for (int y = 0; y < getHauteur(); y++) {
+            int temp;
             monFlux >> temp;
             if (temp==0){
                 grille[x][y] = Cellule(false);
