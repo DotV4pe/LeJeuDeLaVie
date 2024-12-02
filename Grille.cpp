@@ -57,9 +57,9 @@ void Grille::calculGrille() {
 }
 
 
-void Grille::initializegrille() {
+void Grille::initializegrille(std::string chemin) {
     int temp;
-    std::ifstream monFlux("data.txt");
+    std::ifstream monFlux(chemin);
     for (int x = 0; x < getLongueur(); ++x) {
         for (int y = 0; y < getHauteur(); ++y) {
             monFlux >> temp;

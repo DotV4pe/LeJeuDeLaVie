@@ -9,7 +9,8 @@ using namespace std;
 int main() {
     string chemin;
     cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
-    cin >> chemin;
+    // cin >> chemin;
+    chemin="data.txt";
     cout << endl;
     ifstream monFlux(chemin);  //Ouverture d'un fichier en lecture
 
@@ -31,7 +32,7 @@ int main() {
 
     sf::RenderWindow window(sf::VideoMode(g.getLongueur() * g.getTaille(), g.getHauteur() * g.getTaille()), "Le Jeu de la Vie");
     monFlux.close();
-    g.initializegrille();
+    g.initializegrille(chemin);
 
     while (window.isOpen()) {
         sf::Event event;
