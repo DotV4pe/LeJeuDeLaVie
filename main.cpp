@@ -1,34 +1,35 @@
 #include "Grille.hpp"
 #include <iostream>
-#include <limits>
+
+using namespace std;
 
 int main() {
     int mode; // voir si ce n'est pas mieux de faire une classe avec enum ?
-    std::cout << "Choisissez le mode :\n";
-    std::cout << "1. Terminal\n";
-    std::cout << "2. Graphique\n";
-    std::cout << "Votre choix : ";
-    std::cin >> mode;
+    cout << "Choisissez le mode :\n";
+    cout << "1. Terminal\n";
+    cout << "2. Graphique\n";
+    cout << "Votre choix : ";
+    cin >> mode;
 
     if (mode != 1 && mode != 2) {
-        std::cout << "Choix invalide. Mode par défaut : Terminal\n";
+        cout << "Choix invalide. Mode par défaut : Terminal\n";
         mode = 1;
     }
 
-    std::string chemin;
-    std::cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
-    std::cin >> chemin;
+    string chemin;
+    cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
+    cin >> chemin;
 
     int iterations = 0;
     if (mode == 1){
-        std::cout << "Nombre de cycles du jeu de la vie : ";
-        std::cin >> iterations;
+        cout << "Nombre de cycles du jeu de la vie : ";
+        cin >> iterations;
     }
 
     // ouverture du fichier initial
-    std::ifstream monFlux(chemin);
+    ifstream monFlux(chemin);
     if (!monFlux) {
-        std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
+        cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << endl;
         return 1;
     }
 
@@ -60,7 +61,7 @@ int main() {
         // Mode Terminal
         for (int cycle = 0; cycle < iterations; ++cycle) {
             // Fichier de sortie pour chaque cycle
-            std::string nom_sortie = "Cycles/cycle_" + std::to_string(cycle) + ".txt";
+            string nom_sortie = "Cycles/cycle_" + to_string(cycle) + ".txt";
             g.imprimerFichier(nom_sortie);
 
             g.imprimerConsole();
