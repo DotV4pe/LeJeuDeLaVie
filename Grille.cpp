@@ -1,7 +1,7 @@
 #include "Grille.hpp"
 
-Grille::Grille(int taille, int longueur, int haut) 
-    : cellSize(taille), nbColonne(longueur), nbLigne(haut), grille(nbLigne, std::vector<Cellule>(nbColonne, 0)) {}
+Grille::Grille(int taille, int hauteur, int largeur) 
+    : cellSize(taille), nbColonne(largeur/cellSize), nbLigne(hauteur/cellSize), grille(nbLigne, std::vector<Cellule>(nbColonne, 0)) {}
 
 
 Grille::~Grille() {}
@@ -17,7 +17,7 @@ void Grille::majGrille(sf::RenderWindow &window) {
     sf::RectangleShape cell(sf::Vector2f(cellSize - 1.0f, cellSize - 1.0f));
     for (int x = 0; x < nbColonne; x++) {
         for (int y = 0; y < nbLigne; y++) {
-            if (grille[x][y].getVie() == true) {
+            if (grille[x][y].estVivant() == true) {
                 cell.setPosition(x * cellSize, y * cellSize);
                 window.draw(cell);
             }
@@ -33,22 +33,22 @@ void Grille::calculGrille() {
     for (int x = 0; x < nbColonne; ++x) {
         for (int y = 0; y < nbLigne; ++y) {
             compteur = 0;
-            if (tgrille[x][y].getVie() == false){
-                if (tgrille[x-1 % nbColonne][y-1 % nbLigne].getVie() == true){
+            if (tgrille[x][y].estVivant() == false){
+                if (tgrille[x-1 % nbColonne][y-1 % nbLigne].estVivant() == true){
                     compteur++;
-                } if (tgrille[x-1 % nbColonne][y].getVie() == true){
+                } if (tgrille[x-1 % nbColonne][y].estVivant() == true){
                     compteur++;
-                } if (tgrille[x-1 % nbColonne][y+1 % nbLigne].getVie() == true){
+                } if (tgrille[x-1 % nbColonne][y+1 % nbLigne].estVivant() == true){
                     compteur++;
-                } if (tgrille[x][y-1 % nbLigne].getVie() == true){
+                } if (tgrille[x][y-1 % nbLigne].estVivant() == true){
                     compteur++;
-                } if (tgrille[x][y+1 % nbLigne].getVie() == true){
+                } if (tgrille[x][y+1 % nbLigne].estVivant() == true){
                     compteur++;
-                } if (tgrille[x+1 % nbColonne][y-1 % nbLigne].getVie() == true){
+                } if (tgrille[x+1 % nbColonne][y-1 % nbLigne].estVivant() == true){
                     compteur++;
-                } if (tgrille[x+1 % nbColonne][y].getVie() == true){
+                } if (tgrille[x+1 % nbColonne][y].estVivant() == true){
                     compteur++;
-                } if (tgrille[x+1 % nbColonne][y+1 % nbLigne].getVie() == true){
+                } if (tgrille[x+1 % nbColonne][y+1 % nbLigne].estVivant() == true){
                     compteur++;
                 } if (compteur == 3) {
                     grille[x][y].setVie(true);
@@ -57,22 +57,22 @@ void Grille::calculGrille() {
                 }
             }
             
-            else if (tgrille[x][y].getVie() == true){
-                if (tgrille[x-1 % nbColonne][y-1 % nbLigne].getVie() == true){
+            else if (tgrille[x][y].estVivant() == true){
+                if (tgrille[x-1 % nbColonne][y-1 % nbLigne].estVivant() == true){
                     compteur++;
-                } if (tgrille[x-1 % nbColonne][y].getVie() == true){
+                } if (tgrille[x-1 % nbColonne][y].estVivant() == true){
                     compteur++;
-                } if (tgrille[x-1 % nbColonne][y+1 % nbLigne].getVie() == true){
+                } if (tgrille[x-1 % nbColonne][y+1 % nbLigne].estVivant() == true){
                     compteur++;
-                } if (tgrille[x][y-1 % nbLigne].getVie() == true){
+                } if (tgrille[x][y-1 % nbLigne].estVivant() == true){
                     compteur++;
-                } if (tgrille[x][y+1 % nbLigne].getVie() == true){
+                } if (tgrille[x][y+1 % nbLigne].estVivant() == true){
                     compteur++;
-                }  if (tgrille[x+1 % nbColonne][y-1 % nbLigne].getVie() == true){
+                }  if (tgrille[x+1 % nbColonne][y-1 % nbLigne].estVivant() == true){
                     compteur++;
-                }  if (tgrille[x+1 % nbColonne][y].getVie() == true){
+                }  if (tgrille[x+1 % nbColonne][y].estVivant() == true){
                     compteur++;
-                }  if (tgrille[x+1 % nbColonne][y+1 % nbLigne].getVie() == true){
+                }  if (tgrille[x+1 % nbColonne][y+1 % nbLigne].estVivant() == true){
                     compteur++;
                 } if (compteur == 2 || compteur == 3) {
                     grille[x][y].setVie(true);
@@ -102,7 +102,7 @@ void Grille::initializegrille() {
 void Grille::imprimerConsole() const {
     for (int y = 0; y < nbLigne; ++y) {
         for (int x = 0; x < nbColonne; ++x) {
-            std::cout << (grille[x][y].getVie() ? "1 " : "0 ");
+            std::cout << (grille[x][y].estVivant() ? "1 " : "0 ");
         }
         std::cout << std::endl;
     }
@@ -118,7 +118,7 @@ void Grille::imprimerFichier(const std::string& nom_fichier) const{
 
         for (int y = 0; y < nbLigne; ++y) {
         for (int x = 0; x < nbColonne; ++x) {
-            file << (grille[x][y].getVie() ? "1 " : "0 ");
+            file << (grille[x][y].estVivant() ? "1 " : "0 ");
         }
         file << std::endl;
     }

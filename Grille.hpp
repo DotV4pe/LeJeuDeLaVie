@@ -16,7 +16,7 @@ private:
     const int nbLigne;
     std::vector<std::vector<Cellule>> grille;
 public:
-    Grille(int taille, int longueur, int haut);
+    Grille(int taille, int hauteur, int largeur);
     virtual ~Grille();
     int getTaille();
     int get_nbColonne();
