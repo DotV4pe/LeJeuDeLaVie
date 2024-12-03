@@ -6,7 +6,7 @@
 #include <fstream>
 #include <SFML/Graphics.hpp>
 
-#include "Cellule.hpp"
+#include "../Cellule/Cellule.hpp"
 
 class Grille
 {

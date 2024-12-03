@@ -1,5 +1,5 @@
-#include "GrilleTerm.hpp"
-#include "GrilleGraph.hpp"
+#include "./Grilles/GrilleTerm.hpp"
+#include "./Grilles/GrilleGraph.hpp"
 #include <filesystem>
 
 using namespace std;
