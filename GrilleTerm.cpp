@@ -22,14 +22,12 @@ void GrilleTerm::initializegrille(std::string chemin) {
     int temp, hauteur, longueur, taille = 20;
     std::cout << "Nombre de cycles du jeu de la vie : ";
     std::cin >> iterations;
-    std::cout << "Done";
     // ouverture du fichier initial
     std::ifstream monFlux(chemin);
     if (!monFlux) {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
         return;
     }
-    std::cout << "Done";
     monFlux >> hauteur >> longueur;
     set_nbColonne(longueur);
     set_nbLigne(hauteur);
