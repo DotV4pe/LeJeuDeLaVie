@@ -1,6 +1,6 @@
 #include "GrilleTerm.hpp"
 #include "GrilleGraph.hpp"
-#include <iostream>
+#include <filesystem>
 
 using namespace std;
 
@@ -15,6 +15,15 @@ int affichageMenu(){
 }
 
 int main() {
+    string cheminDossier = "./Cycles/";
+    for (const auto& fichier : filesystem::directory_iterator(cheminDossier)) { // Parcours tout les éléments
+        if (filesystem::is_regular_file(fichier.path())) { // .path() : Récupère le chemin complet || is_regular_file() : Vérifie si cet élément est un fichier.
+            filesystem::remove(fichier.path()); // Supprime le fichier
+            cout << "Fichier supprimé : " << fichier.path() << endl;
+        }
+    }
+    cout << "Tous les fichiers du dossier ont été supprimés." << endl;
+    
     int mode = affichageMenu();
 
     Grille *g;
