@@ -10,6 +10,8 @@ int Grille::get_nbColonne() const { return nbColonne; }
 
 int Grille::get_nbLigne() const { return nbLigne; }
 
+void Grille::setGrille(std::vector<std::vector<Cellule>> g) { grille = g; }
+
 void Grille::setTaille(int t) { cellSize = t; }
 
 void Grille::set_nbColonne(int nbC) { nbColonne = nbC; }

@@ -7,8 +7,8 @@ GrilleGraph::~GrilleGraph() {}
 void GrilleGraph::affichage(sf::RenderWindow &window) const {
     window.clear();
     sf::RectangleShape cell(sf::Vector2f(getTaille() - 1.0f, getTaille() - 1.0f));
-    for (int x = 0; x < get_nbColonne(); x++) {
-        for (int y = 0; y < get_nbLigne(); y++) {
+    for (int x = 0; x < get_nbColonne(); ++x) {
+        for (int y = 0; y < get_nbLigne(); ++y) {
             if (grille[x][y].estVivant() == true) {
                 cell.setPosition(x * getTaille(), y * getTaille());
                 if (grille[x][y].estVivant()) {
@@ -25,8 +25,7 @@ void GrilleGraph::affichage(sf::RenderWindow &window) const {
 
 void GrilleGraph::affichage() const {}
 
-void GrilleGraph::initializegrille(std::string chemin) {
-    
+void GrilleGraph::initializegrille(std::string chemin) {    
     int temp, hauteur, longueur, taille = 20;
     
     // ouverture du fichier initial
@@ -40,9 +39,11 @@ void GrilleGraph::initializegrille(std::string chemin) {
     }
 
     monFlux >> hauteur >> longueur;
-    set_nbColonne(hauteur);
-    set_nbLigne(longueur);
+    set_nbColonne(longueur);
+    set_nbLigne(hauteur);
     setTaille(taille);
+    std::vector<std::vector<Cellule>> x(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(false)));
+    setGrille(x);
 
     for (int y = 0; y < get_nbLigne(); ++y) {
         for (int x = 0; x < get_nbColonne(); ++x) {
