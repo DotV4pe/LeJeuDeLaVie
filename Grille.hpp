@@ -30,7 +30,6 @@ public:
     virtual void initializegrille(std::string chemin) = 0;
     virtual void affichage() const = 0;
     virtual void affichage(sf::RenderWindow &window) const = 0;
-    virtual void imprimerFichier(const std::string &nom_fichier) const;
     virtual void run() = 0;
 };
 

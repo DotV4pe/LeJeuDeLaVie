@@ -60,3 +60,19 @@ void GrilleTerm::run() {
         calculGrille();
     }
 }
+
+void GrilleTerm::imprimerFichier(const std::string& nom_fichier) const{
+    std::ofstream file(nom_fichier);
+    if (!file){
+        std::cout << "Erreur - Impossible d'ouvrir le fichier en écriture : " + nom_fichier << std::endl;
+    }
+
+    file << get_nbLigne() << " " << get_nbColonne() << std::endl;
+
+        for (int y = 0; y < get_nbLigne(); ++y) {
+            for (int x = 0; x < get_nbColonne(); ++x) {
+                file << (grille[x][y].estVivant() ? "1 " : "0 ");
+            }
+        file << std::endl;
+    }
+}

@@ -41,19 +41,3 @@ void Grille::calculGrille() {
         }
     }
 }
-
-void Grille::imprimerFichier(const std::string& nom_fichier) const{
-    std::ofstream file(nom_fichier);
-    if (!file){
-        std::cout << "Erreur - Impossible d'ouvrir le fichier en écriture : " + nom_fichier << std::endl;
-    }
-
-    file << nbLigne << " " << nbColonne << std::endl;
-
-        for (int y = 0; y < nbLigne; ++y) {
-            for (int x = 0; x < nbColonne; ++x) {
-                file << (grille[x][y].estVivant() ? "1 " : "0 ");
-            }
-        file << std::endl;
-    }
-}
