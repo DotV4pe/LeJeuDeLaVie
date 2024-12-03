@@ -11,21 +11,27 @@
 class Grille
 {
 private:
-    const int cellSize;
-    const int nbColonne;
-    const int nbLigne;
+    int cellSize;
+    int nbColonne;
+    int nbLigne;
+protected:
     std::vector<std::vector<Cellule>> grille;
 public:
-    Grille(int taille, int hauteur, int largeur);
+    Grille();
     virtual ~Grille();
-    int getTaille();
-    int get_nbColonne();
-    int get_nbLigne();
-    void majGrille(sf::RenderWindow &window);
-    void calculGrille();
-    void initializegrille(std::string chemin);
-    void imprimerConsole() const;
-    void imprimerFichier(const std::string &nom_fichier) const;
+    virtual int getTaille() const ;
+    virtual int get_nbColonne() const ;
+    virtual int get_nbLigne() const ;
+    virtual void setGrille(std::vector<std::vector<Cellule>> g);
+    virtual void setTaille(int t);
+    virtual void set_nbColonne(int nbC);
+    virtual void set_nbLigne(int nbL);
+    virtual void calculGrille();
+    virtual void initializegrille(std::string chemin) = 0;
+    virtual void affichage() const = 0;
+    virtual void affichage(sf::RenderWindow &window) const = 0;
+    virtual void imprimerFichier(const std::string &nom_fichier) const;
+    virtual void run() = 0;
 };
 
 #endif
