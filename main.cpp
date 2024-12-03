@@ -1,48 +1,47 @@
-#include "Grille.hpp"
+#include "GrilleTerm.hpp"
+#include "GrilleGraph.hpp"
 #include <iostream>
 
 using namespace std;
 
-int main() {
-    int mode; // voir si ce n'est pas mieux de faire une classe avec enum ?
+int affichageMenu(){
+    int m; // voir si ce n'est pas mieux de faire une classe avec enum ?
     cout << "Choisissez le mode :\n";
     cout << "1. Terminal\n";
     cout << "2. Graphique\n";
     cout << "Votre choix : ";
-    cin >> mode;
+    cin >> m;
+    return m;
+}
 
-    if (mode != 1 && mode != 2) {
+int main() {
+    int mode = affichageMenu();
+
+    Grille *g;
+
+    if (mode==1){
+        g = new GrilleTerm();
+    } else if (mode==2)
+    {
+        g = new GrilleGraph();
+    } else {
         cout << "Choix invalide. Mode par défaut : Terminal\n";
         mode = 1;
+        g = new GrilleTerm();
     }
-
-    string chemin;
-    cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
-    cin >> chemin;
-
-    int iterations = 0;
-    if (mode == 1){
-        cout << "Nombre de cycles du jeu de la vie : ";
-        cin >> iterations;
-    }
-
-    // ouverture du fichier initial
-    ifstream monFlux(chemin);
-    if (!monFlux) {
-        cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << endl;
-        return 1;
-    }
+    
 
     int hauteur, longueur;
     monFlux >> hauteur >> longueur;
     int taille = 20;
-    Grille g(taille, longueur, hauteur);
+    
     
     monFlux.close();
-    g.initializegrille(chemin);
 
     if (mode == 2) {
-        sf::RenderWindow window(sf::VideoMode(g.get_nbColonne() * g.getTaille(), g.get_nbLigne() * g.getTaille()), "Le Jeu de la Vie");
+        g = new GrilleGraph(taille,hauteur,longueur);
+        g->initializegrille(chemin);
+        sf::RenderWindow window(sf::VideoMode(g->get_nbColonne() * g->getTaille(), g->get_nbLigne() * g->getTaille()), "Le Jeu de la Vie");
         
         while (window.isOpen()) {
             sf::Event event;
@@ -50,22 +49,24 @@ int main() {
                 if (event.type == sf::Event::Closed)
                     window.close();
             }
-           
-            g.majGrille(window);
-            g.calculGrille();
+        
+            g->affichage(window);
+            g->calculGrille();
             
             sf::sleep(sf::milliseconds(500));
         }
     } 
-    else{
+    else {
+        g = new GrilleTerm(taille,hauteur,longueur);
+        g->initializegrille(chemin);
         // Mode Terminal
         for (int cycle = 0; cycle < iterations; ++cycle) {
             // Fichier de sortie pour chaque cycle
             string nom_sortie = "Cycles/cycle_" + to_string(cycle) + ".txt";
-            g.imprimerFichier(nom_sortie);
+            g->imprimerFichier(nom_sortie);
 
-            g.imprimerConsole();
-            g.calculGrille();
+            g->affichage();
+            g->calculGrille();
         }
     }
 
