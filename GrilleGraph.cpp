@@ -1,6 +1,6 @@
 #include "GrilleGraph.hpp"
 
-GrilleGraph::GrilleGraph() : Grille() {}
+GrilleGraph::GrilleGraph() {}
 
 GrilleGraph::~GrilleGraph() {}
 
@@ -25,18 +25,18 @@ void GrilleGraph::affichage(sf::RenderWindow &window) const {
 
 void GrilleGraph::affichage() const {}
 
-void GrilleGraph::initializegrille() {
-    std::string chemin;
-    std::cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
-    std::cin >> chemin;
-
+void GrilleGraph::initializegrille(std::string chemin) {
+    
     int temp, hauteur, longueur, taille = 20;
-
+    
     // ouverture du fichier initial
+    
     std::ifstream monFlux(chemin);
     if (!monFlux) {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
         return;
+    } else {
+        std::cout << "Ouverture Done" ;
     }
 
     monFlux >> hauteur >> longueur;

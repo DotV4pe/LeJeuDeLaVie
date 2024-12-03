@@ -19,6 +19,10 @@ int main() {
 
     Grille *g;
 
+    string chemin;
+    cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
+    cin >> chemin;
+
     if (mode==1){
         g = new GrilleTerm();
     } else if (mode==2)
@@ -30,7 +34,7 @@ int main() {
         g = new GrilleTerm();
     }
 
-    g->initializegrille();
+    g->initializegrille(chemin);
     g->run();
     return 0;
 }
