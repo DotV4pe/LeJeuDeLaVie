@@ -3,5 +3,6 @@
 Commande compilation : g++ main.cpp && ./a.out
 
 
-DotV4pe - lb_sioul : Louis
-lilixnp : Lilian
+DotV4pe - lb_sioul : **Louis**
+
+lilixnp : **Lilian**
