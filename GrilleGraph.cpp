@@ -1,6 +1,6 @@
 #include "GrilleGraph.hpp"
 
-GrilleGraph::GrilleGraph(int taille, int hauteur, int largeur) : Grille() {}
+GrilleGraph::GrilleGraph() : Grille() {}
 
 GrilleGraph::~GrilleGraph() {}
 
@@ -30,9 +30,7 @@ void GrilleGraph::initializegrille() {
     std::cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
     std::cin >> chemin;
 
-    int iterations = 0,temp;
-    std::cout << "Nombre de cycles du jeu de la vie : ";
-    std::cin >> iterations;
+    int temp, hauteur, longueur, taille = 20;
 
     // ouverture du fichier initial
     std::ifstream monFlux(chemin);
@@ -40,6 +38,11 @@ void GrilleGraph::initializegrille() {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
         return;
     }
+
+    monFlux >> hauteur >> longueur;
+    set_nbColonne(hauteur);
+    set_nbLigne(longueur);
+    setTaille(taille);
 
     for (int y = 0; y < get_nbLigne(); ++y) {
         for (int x = 0; x < get_nbColonne(); ++x) {
@@ -52,4 +55,20 @@ void GrilleGraph::initializegrille() {
         }
     }
     monFlux.close();
+}
+
+void GrilleGraph::run() {
+    sf::RenderWindow window(sf::VideoMode(get_nbColonne() * getTaille(), get_nbLigne() * getTaille()), "Le Jeu de la Vie");
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        
+        affichage(window);
+        calculGrille();
+            
+        sf::sleep(sf::milliseconds(500));
+    }
 }

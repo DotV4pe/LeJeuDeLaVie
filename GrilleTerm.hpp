@@ -3,12 +3,13 @@
 class GrilleTerm : public Grille
 {
 private:
-    /* data */
+    int iterations;
 public:
-    GrilleTerm(int taille, int hauteur, int largeur);
+    GrilleTerm();
     ~GrilleTerm();
     virtual void affichage() const override;
     virtual void affichage(sf::RenderWindow &window) const override;
     virtual void initializegrille() override;
+    virtual void run() override;
 };
 

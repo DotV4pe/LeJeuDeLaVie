@@ -1,6 +1,6 @@
 #include "Grille.hpp"
 
-Grille::Grille() : cellSize(0), nbColonne(0), nbLigne(0) {}
+Grille::Grille() {}
 
 Grille::~Grille() {}
 
@@ -10,9 +10,14 @@ int Grille::get_nbColonne() const { return nbColonne; }
 
 int Grille::get_nbLigne() const { return nbLigne; }
 
+void Grille::setTaille(int t) { cellSize = t; }
+
+void Grille::set_nbColonne(int nbC) { nbColonne = nbC; }
+
+void Grille::set_nbLigne(int nbL) { nbLigne = nbL; }
+
 void Grille::calculGrille() {
-    std::vector<std::vector<Cellule>> tgrille;
-    tgrille = grille;
+    std::vector<std::vector<Cellule>> tgrille = grille;
 
     for (int x = 0; x < nbColonne; ++x) {
         for (int y = 0; y < nbLigne; ++y) {

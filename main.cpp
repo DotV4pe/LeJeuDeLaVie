@@ -29,46 +29,8 @@ int main() {
         mode = 1;
         g = new GrilleTerm();
     }
-    
 
-    int hauteur, longueur;
-    monFlux >> hauteur >> longueur;
-    int taille = 20;
-    
-    
-    monFlux.close();
-
-    if (mode == 2) {
-        g = new GrilleGraph(taille,hauteur,longueur);
-        g->initializegrille(chemin);
-        sf::RenderWindow window(sf::VideoMode(g->get_nbColonne() * g->getTaille(), g->get_nbLigne() * g->getTaille()), "Le Jeu de la Vie");
-        
-        while (window.isOpen()) {
-            sf::Event event;
-            while (window.pollEvent(event)) {
-                if (event.type == sf::Event::Closed)
-                    window.close();
-            }
-        
-            g->affichage(window);
-            g->calculGrille();
-            
-            sf::sleep(sf::milliseconds(500));
-        }
-    } 
-    else {
-        g = new GrilleTerm(taille,hauteur,longueur);
-        g->initializegrille(chemin);
-        // Mode Terminal
-        for (int cycle = 0; cycle < iterations; ++cycle) {
-            // Fichier de sortie pour chaque cycle
-            string nom_sortie = "Cycles/cycle_" + to_string(cycle) + ".txt";
-            g->imprimerFichier(nom_sortie);
-
-            g->affichage();
-            g->calculGrille();
-        }
-    }
-
+    g->initializegrille();
+    g->run();
     return 0;
 }

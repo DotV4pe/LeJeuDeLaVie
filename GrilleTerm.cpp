@@ -1,6 +1,6 @@
 #include "GrilleTerm.hpp"
 
-GrilleTerm::GrilleTerm(int taille, int hauteur, int largeur) : Grille(taille, hauteur, largeur) {}
+GrilleTerm::GrilleTerm() : Grille() {}
 
 GrilleTerm::~GrilleTerm() {}
 
@@ -21,16 +21,21 @@ void GrilleTerm::initializegrille() {
     std::cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
     std::cin >> chemin;
 
-    int iterations = 0,temp;
+    int temp, hauteur, longueur, taille = 20;
     std::cout << "Nombre de cycles du jeu de la vie : ";
     std::cin >> iterations;
 
     // ouverture du fichier initial
     std::ifstream monFlux(chemin);
     if (!monFlux) {
-        std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << endl;
+        std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
         return;
     }
+
+    monFlux >> hauteur >> longueur;
+    set_nbColonne(hauteur);
+    set_nbLigne(longueur);
+    setTaille(taille);
 
     for (int y = 0; y < get_nbLigne(); ++y) {
         for (int x = 0; x < get_nbColonne(); ++x) {
@@ -43,4 +48,14 @@ void GrilleTerm::initializegrille() {
         }
     }
     monFlux.close();
+}
+
+void GrilleTerm::run() {
+    for (int cycle = 0; cycle < iterations; ++cycle) {
+        // Fichier de sortie pour chaque cycle
+        std::string nom_sortie = "Cycles/cycle_" + std::to_string(cycle) + ".txt";
+        imprimerFichier(nom_sortie);
+        affichage();
+        calculGrille();
+    }
 }

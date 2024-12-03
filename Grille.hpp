@@ -11,9 +11,9 @@
 class Grille
 {
 private:
-    const int cellSize;
-    const int nbColonne;
-    const int nbLigne;
+    int cellSize;
+    int nbColonne;
+    int nbLigne;
 protected:
     std::vector<std::vector<Cellule>> grille;
 public:
@@ -22,11 +22,15 @@ public:
     virtual int getTaille() const ;
     virtual int get_nbColonne() const ;
     virtual int get_nbLigne() const ;
+    virtual void setTaille(int t);
+    virtual void set_nbColonne(int nbC);
+    virtual void set_nbLigne(int nbL);
     virtual void calculGrille();
     virtual void initializegrille() = 0;
     virtual void affichage() const = 0;
     virtual void affichage(sf::RenderWindow &window) const = 0;
     virtual void imprimerFichier(const std::string &nom_fichier) const;
+    virtual void run() = 0;
 };
 
 #endif
