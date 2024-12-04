@@ -1,5 +1,7 @@
 #include "./Grilles/GrilleTerm.hpp"
 #include "./Grilles/GrilleGraph.hpp"
+#include "./Affichage/Console.hpp"
+#include "./Affichage/Graphique.hpp"
 #include <filesystem>
 
 using namespace std;
@@ -15,35 +17,32 @@ int affichageMenu(){
     return m;
 }
 
-int main() {
-    string cheminDossier = "./Cycles/", chemin;
-    for (const auto& fichier : filesystem::directory_iterator(cheminDossier)) { // Parcours tout les éléments
-        if (filesystem::is_regular_file(fichier.path())) { // .path() : Récupère le chemin complet || is_regular_file() : Vérifie si cet élément est un fichier.
-            filesystem::remove(fichier.path()); // Supprime le fichier
-        }
-    }
-    cout << "Tous les fichiers du dossier ont été supprimés." << endl;
-    
+int main() {    
+    string chemin;
     int mode = affichageMenu();
 
     Grille *g;
+    JeuDeLaVie *jeu;
 
     if (mode==1){
         g = new GrilleTerm();
+        jeu = new Console();
     } else if (mode==2)
     {
         g = new GrilleGraph();
+        jeu = new Graphique();
     } else if (mode == 0) {
         exit(0);
     } else {
         cout << "Choix invalide. Mode par défaut : Terminal" << endl;
         g = new GrilleTerm();
+        jeu = new Console();
     }
 
     cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
     cin >> chemin;
 
     g->initializegrille(chemin);
-    g->run();
+    jeu->run(g);
     return 0;
 }

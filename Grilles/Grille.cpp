@@ -10,6 +10,8 @@ int Grille::get_nbColonne() const { return nbColonne; }
 
 int Grille::get_nbLigne() const { return nbLigne; }
 
+int Grille::getValeur(int x, int y) const { return grille[x][y].estVivant(); }
+
 void Grille::setGrille(std::vector<std::vector<Cellule>> g) { grille = g; }
 
 void Grille::setTaille(int t) { cellSize = t; }
@@ -18,7 +20,7 @@ void Grille::set_nbColonne(int nbC) { nbColonne = nbC; }
 
 void Grille::set_nbLigne(int nbL) { nbLigne = nbL; }
 
-void Grille::calculGrille() {
+std::vector<std::vector<Cellule>> Grille::calculGrille() {
     std::vector<std::vector<Cellule>> tgrille = grille;
 
     for (int x = 0; x < nbColonne; ++x) {
@@ -40,4 +42,5 @@ void Grille::calculGrille() {
             grille[x][y].update(compteur);
         }
     }
+    return grille;
 }
