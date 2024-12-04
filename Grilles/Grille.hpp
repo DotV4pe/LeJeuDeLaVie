@@ -27,7 +27,7 @@ public:
     virtual void setTaille(int t);
     virtual void set_nbColonne(int nbC);
     virtual void set_nbLigne(int nbL);
-    virtual std::vector<std::vector<Cellule>> calculGrille();
+    virtual void calculGrille();
     virtual void initializegrille(std::string chemin) = 0;
 };
 

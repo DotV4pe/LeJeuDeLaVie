@@ -2,7 +2,6 @@
 #include "./Grilles/GrilleGraph.hpp"
 #include "./Affichage/Console.hpp"
 #include "./Affichage/Graphique.hpp"
-#include <filesystem>
 
 using namespace std;
 

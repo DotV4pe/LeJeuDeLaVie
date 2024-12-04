@@ -19,7 +19,7 @@ void JeuDeLaVie::affichage(Grille *g, sf::RenderWindow &window) {
                 cell.setFillColor(sf::Color(255,0,0)); 
             }
             window.draw(cell);
-        }
+        } std::cout << std::endl;
     }
     window.display();
 }
@@ -29,13 +29,13 @@ void JeuDeLaVie::affichage(Grille *g) {
     std::cout << "Grille : " << std::endl;
     for (int x = 0; x < g->get_nbLigne(); ++x) {
         for (int y = 0; y < g->get_nbColonne(); ++y) {
-            if (g->getValeur(x,y) == 0) {
+            if (g->getValeur(y,x) == 0) {
                 txt = "0 ";
-            } else if (g->getValeur(x,y) == 1) {
+            } else if (g->getValeur(y,x) == 1) {
                 txt = "1 ";
-            } else if (g->getValeur(x,y) == 2) {
+            } else if (g->getValeur(y,x) == 2) {
                 txt = "2 ";
-            }
+            } std::cout << txt;
         }
         std::cout << std::endl;
     }

@@ -20,7 +20,7 @@ void Grille::set_nbColonne(int nbC) { nbColonne = nbC; }
 
 void Grille::set_nbLigne(int nbL) { nbLigne = nbL; }
 
-std::vector<std::vector<Cellule>> Grille::calculGrille() {
+void Grille::calculGrille() {
     std::vector<std::vector<Cellule>> tgrille = grille;
 
     for (int x = 0; x < nbColonne; ++x) {
@@ -42,5 +42,4 @@ std::vector<std::vector<Cellule>> Grille::calculGrille() {
             grille[x][y].update(compteur);
         }
     }
-    return grille;
 }
