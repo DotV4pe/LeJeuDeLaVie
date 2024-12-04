@@ -7,5 +7,3 @@ public:
     ~GrilleGraph();
     virtual void initializegrille(std::string chemin) override;
 };
-
-

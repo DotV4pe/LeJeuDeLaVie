@@ -10,4 +10,3 @@ public:
     virtual void initializegrille(std::string chemin) override;
     void imprimerFichier(const std::string& nom_fichier) const;
 };
-

@@ -19,7 +19,7 @@ void JeuDeLaVie::affichage(Grille *g, sf::RenderWindow &window) {
                 cell.setFillColor(sf::Color(255,0,0)); 
             }
             window.draw(cell);
-        } std::cout << std::endl;
+        }
     }
     window.display();
 }
