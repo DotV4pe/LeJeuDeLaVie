@@ -11,12 +11,12 @@ void JeuDeLaVie::affichage(Grille *g, sf::RenderWindow &window) {
         for (int y = 0; y < g->get_nbLigne(); ++y) {
             cell.setPosition(x * g->getTaille(), y * g->getTaille());
             if (g->getValeur(x,y) == 1) {
-                cell.setFillColor(sf::Color(255, 192, 203));
+                cell.setFillColor(sf::Color(166,77,121));
             }
             else if (g->getValeur(x,y) == 0) {
-                cell.setFillColor(sf::Color(0,0,0)); 
+                cell.setFillColor(sf::Color(26,26,29)); 
             } else if (g->getValeur(x,y) == 2) {
-                cell.setFillColor(sf::Color(255,0,0)); 
+                cell.setFillColor(sf::Color(106,30,85)); 
             }
             window.draw(cell);
         }

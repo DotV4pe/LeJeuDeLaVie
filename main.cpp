@@ -23,7 +23,7 @@ string getChemin(){
     return "./Matrices/" + c + ".txt";
 }
 
-int main() {    
+int main() {
     string chemin;
     int mode = affichageMenu();
 
