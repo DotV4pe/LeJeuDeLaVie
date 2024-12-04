@@ -22,7 +22,7 @@ void Console::run(Grille *g) {
         // Fichier de sortie pour chaque cycle
         std::string nom_sortie = "Cycles/cycle_" + std::to_string(cycle) + ".txt";
         s->sauvegarder(g, nom_sortie);
-        affichage(g);
+        affichage(g, cycle);
         g->calculGrille();
     }
 }

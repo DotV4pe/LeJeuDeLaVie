@@ -24,9 +24,9 @@ void JeuDeLaVie::affichage(Grille *g, sf::RenderWindow &window) {
     window.display();
 }
 
-void JeuDeLaVie::affichage(Grille *g) {
+void JeuDeLaVie::affichage(Grille *g, int iterations) {
     std::string txt;
-    std::cout << "Grille : " << std::endl;
+    std::cout << "Grille : " << iterations << std::endl;
     for (int x = 0; x < g->get_nbLigne(); ++x) {
         for (int y = 0; y < g->get_nbColonne(); ++y) {
             if (g->getValeur(y,x) == 0) {
