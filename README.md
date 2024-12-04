@@ -1,6 +1,6 @@
 # LeJeuDeLaVie
 
-Commande compilation : g++ main.cpp && ./a.out
+__Commande compilation__ : g++ main.cpp && ./a.out
 
 
 DotV4pe - lb_sioul : **Louis**
