@@ -26,7 +26,7 @@ void getChemin(string &c, int &t){
     } else if (c == "a") {
         t = 20;
     }
-    c = "./Matrices/" + c + ".txt";
+    c = "./Matrices/" + c;
 }
 
 int main() {

@@ -17,6 +17,8 @@ void JeuDeLaVie::affichage(Grille *g, sf::RenderWindow &window) {
                 cell.setFillColor(sf::Color(26,26,29)); 
             } else if (g->getValeur(x,y) == 2) {
                 cell.setFillColor(sf::Color(106,30,85)); 
+            } else if (g->getValeur(x,y) == 3) {
+                cell.setFillColor(sf::Color(228,177,240)); 
             }
             window.draw(cell);
         }
