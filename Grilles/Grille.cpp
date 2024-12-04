@@ -32,7 +32,7 @@ void Grille::calculGrille() {
                     int nx = (x + dx + nbColonne) % nbColonne;
                     int ny = (y + dy + nbLigne) % nbLigne;
 
-                    if (tgrille[nx][ny].estVivant() == true) {
+                    if (tgrille[nx][ny].estVivant() == 1) {
                         compteur++;
                     }
                 }

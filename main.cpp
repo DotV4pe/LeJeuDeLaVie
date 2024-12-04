@@ -9,6 +9,7 @@ int affichageMenu(){
     cout << "Choisissez le mode :\n";
     cout << "1. Terminal\n";
     cout << "2. Graphique\n";
+    cout << "0. Quitter\n";
     cout << "Votre choix : ";
     cin >> m;
     return m;
@@ -19,7 +20,6 @@ int main() {
     for (const auto& fichier : filesystem::directory_iterator(cheminDossier)) { // Parcours tout les éléments
         if (filesystem::is_regular_file(fichier.path())) { // .path() : Récupère le chemin complet || is_regular_file() : Vérifie si cet élément est un fichier.
             filesystem::remove(fichier.path()); // Supprime le fichier
-            cout << "Fichier supprimé : " << fichier.path() << endl;
         }
     }
     cout << "Tous les fichiers du dossier ont été supprimés." << endl;
@@ -33,6 +33,8 @@ int main() {
     } else if (mode==2)
     {
         g = new GrilleGraph();
+    } else if (mode == 0) {
+        exit(0);
     } else {
         cout << "Choix invalide. Mode par défaut : Terminal" << endl;
         g = new GrilleTerm();

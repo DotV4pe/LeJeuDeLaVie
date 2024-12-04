@@ -33,7 +33,7 @@ void GrilleTerm::initializegrille(std::string chemin) {
     set_nbLigne(hauteur);
     setTaille(taille);
 
-    std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(false)));
+    std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(0)));
     setGrille(gr);
     
     for (int y = 0; y < get_nbLigne(); ++y) {
@@ -43,7 +43,7 @@ void GrilleTerm::initializegrille(std::string chemin) {
                 return;
             }
             // Initialiser la cellule en fonction de la valeur lue
-            grille[x][y] = Cellule(temp == 1);
+            grille[x][y] = Cellule(temp);
         }
     }
     monFlux.close();
@@ -66,11 +66,18 @@ void GrilleTerm::imprimerFichier(const std::string& nom_fichier) const{
     }
 
     file << get_nbLigne() << " " << get_nbColonne() << std::endl;
-
-        for (int y = 0; y < get_nbLigne(); ++y) {
-            for (int x = 0; x < get_nbColonne(); ++x) {
-                file << (grille[x][y].estVivant() ? "1 " : "0 ");
+    std::string message;
+    for (int y = 0; y < get_nbLigne(); ++y) {
+        for (int x = 0; x < get_nbColonne(); ++x) {
+            if (grille[x][y].estVivant() == 0) {
+                message = "0 ";
+            } else if (grille[x][y].estVivant() == 1) {
+                message = "1 ";
+            } else if (grille[x][y].estVivant() == 2) {
+                message = "2 ";
             }
+            file << message;
+        }
         file << std::endl;
     }
 }

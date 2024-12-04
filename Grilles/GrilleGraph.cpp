@@ -9,12 +9,14 @@ void GrilleGraph::affichage(sf::RenderWindow &window) const {
     sf::RectangleShape cell(sf::Vector2f(getTaille() - 1.0f, getTaille() - 1.0f));
     for (int x = 0; x < get_nbColonne(); ++x) {
         for (int y = 0; y < get_nbLigne(); ++y) {
-            if (grille[x][y].estVivant() == true) {
+            if (grille[x][y].estVivant() == 1) {
                 cell.setPosition(x * getTaille(), y * getTaille());
-                if (grille[x][y].estVivant()) {
+                if (grille[x][y].estVivant() == 1) {
                     cell.setFillColor(sf::Color(255, 192, 203));
-                } else if (!grille[x][y].estVivant()) {
+                } else if (grille[x][y].estVivant() == 0) {
                     cell.setFillColor(sf::Color(200,200,200)); 
+                } else if (grille[x][y].estVivant() == 2) {
+                    cell.setFillColor(sf::Color(255,0,0)); 
                 }
                 window.draw(cell);
             }
@@ -40,8 +42,8 @@ void GrilleGraph::initializegrille(std::string chemin) {
     set_nbColonne(longueur);
     set_nbLigne(hauteur);
     setTaille(taille);
-    
-    std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(false)));
+
+    std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(0)));
     setGrille(gr);
 
     for (int y = 0; y < get_nbLigne(); ++y) {
@@ -51,7 +53,7 @@ void GrilleGraph::initializegrille(std::string chemin) {
                 return;
             }
             // Initialiser la cellule en fonction de la valeur lue
-            grille[x][y] = Cellule(temp == 1);
+            grille[x][y] = Cellule(temp);
         }
     }
     monFlux.close();
