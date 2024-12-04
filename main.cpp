@@ -25,6 +25,8 @@ void getChemin(string &c, int &t){
         t = 25;
     } else if (c == "a.txt") {
         t = 20;
+    } else if (c == "b.txt") {
+        t = 5;
     } else {
         cout << "Entrez la taille des pixels pour votre jeu de la vie : ";
         cin >> t;

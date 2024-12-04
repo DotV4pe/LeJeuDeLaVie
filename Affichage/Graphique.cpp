@@ -16,6 +16,6 @@ void Graphique::run(Grille *g) {
         affichage(g, window);
         g->calculGrille();
             
-        sf::sleep(sf::milliseconds(500));
+        sf::sleep(sf::milliseconds(10));
     }
 }
