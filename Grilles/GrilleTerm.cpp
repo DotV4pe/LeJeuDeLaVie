@@ -26,15 +26,15 @@ void GrilleTerm::initializegrille(std::string chemin) {
     std::ifstream monFlux(chemin);
     if (!monFlux) {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
-        return;
+        exit(0);
     }
     monFlux >> hauteur >> longueur;
     set_nbColonne(longueur);
     set_nbLigne(hauteur);
     setTaille(taille);
 
-    std::vector<std::vector<Cellule>> x(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(false)));
-    setGrille(x);
+    std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(false)));
+    setGrille(gr);
     
     for (int y = 0; y < get_nbLigne(); ++y) {
         for (int x = 0; x < get_nbColonne(); ++x) {
