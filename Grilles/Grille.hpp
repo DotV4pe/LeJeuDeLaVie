@@ -22,15 +22,13 @@ public:
     virtual int getTaille() const ;
     virtual int get_nbColonne() const ;
     virtual int get_nbLigne() const ;
+    virtual int getValeur(int x, int y) const;
     virtual void setGrille(std::vector<std::vector<Cellule>> g);
     virtual void setTaille(int t);
     virtual void set_nbColonne(int nbC);
     virtual void set_nbLigne(int nbL);
     virtual void calculGrille();
     virtual void initializegrille(std::string chemin) = 0;
-    virtual void affichage() const = 0;
-    virtual void affichage(sf::RenderWindow &window) const = 0;
-    virtual void run() = 0;
 };
 
 #endif

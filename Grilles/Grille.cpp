@@ -10,6 +10,8 @@ int Grille::get_nbColonne() const { return nbColonne; }
 
 int Grille::get_nbLigne() const { return nbLigne; }
 
+int Grille::getValeur(int x, int y) const { return grille[x][y].estVivant(); }
+
 void Grille::setGrille(std::vector<std::vector<Cellule>> g) { grille = g; }
 
 void Grille::setTaille(int t) { cellSize = t; }
@@ -32,7 +34,7 @@ void Grille::calculGrille() {
                     int nx = (x + dx + nbColonne) % nbColonne;
                     int ny = (y + dy + nbLigne) % nbLigne;
 
-                    if (tgrille[nx][ny].estVivant() == true) {
+                    if (tgrille[nx][ny].estVivant() == 1) {
                         compteur++;
                     }
                 }

@@ -4,27 +4,6 @@ GrilleGraph::GrilleGraph() {}
 
 GrilleGraph::~GrilleGraph() {}
 
-void GrilleGraph::affichage(sf::RenderWindow &window) const {
-    window.clear();
-    sf::RectangleShape cell(sf::Vector2f(getTaille() - 1.0f, getTaille() - 1.0f));
-    for (int x = 0; x < get_nbColonne(); ++x) {
-        for (int y = 0; y < get_nbLigne(); ++y) {
-            if (grille[x][y].estVivant() == true) {
-                cell.setPosition(x * getTaille(), y * getTaille());
-                if (grille[x][y].estVivant()) {
-                    cell.setFillColor(sf::Color(255, 192, 203));
-                } else if (!grille[x][y].estVivant()) {
-                    cell.setFillColor(sf::Color(200,200,200)); 
-                }
-                window.draw(cell);
-            }
-        }
-    }
-    window.display();
-}
-
-void GrilleGraph::affichage() const {}
-
 void GrilleGraph::initializegrille(std::string chemin) {    
     int temp, hauteur, longueur, taille = 20;
     
@@ -40,8 +19,8 @@ void GrilleGraph::initializegrille(std::string chemin) {
     set_nbColonne(longueur);
     set_nbLigne(hauteur);
     setTaille(taille);
-    
-    std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(false)));
+
+    std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(0)));
     setGrille(gr);
 
     for (int y = 0; y < get_nbLigne(); ++y) {
@@ -51,24 +30,8 @@ void GrilleGraph::initializegrille(std::string chemin) {
                 return;
             }
             // Initialiser la cellule en fonction de la valeur lue
-            grille[x][y] = Cellule(temp == 1);
+            grille[x][y] = Cellule(temp);
         }
     }
     monFlux.close();
-}
-
-void GrilleGraph::run() {
-    sf::RenderWindow window(sf::VideoMode(get_nbColonne() * getTaille(), get_nbLigne() * getTaille()), "Le Jeu de la Vie");
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-        
-        affichage(window);
-        calculGrille();
-            
-        sf::sleep(sf::milliseconds(500));
-    }
 }

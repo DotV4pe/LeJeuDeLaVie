@@ -5,11 +5,11 @@
 class Cellule
 {
 private:
-    bool vivant;
+    int vivant;
 public:
-    Cellule(bool viv);
+    Cellule(int viv);
     ~Cellule();
-    bool estVivant() const;
-    void setVie(bool viv);
+    int estVivant() const;
+    void setVie(int viv);
     void update(int voisinVivant);
 };
