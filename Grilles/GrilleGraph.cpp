@@ -4,8 +4,8 @@ GrilleGraph::GrilleGraph() {}
 
 GrilleGraph::~GrilleGraph() {}
 
-void GrilleGraph::initializegrille(std::string chemin) {    
-    int temp, hauteur, longueur, taille = 20;
+void GrilleGraph::initializegrille(std::string chemin,int taille) {    
+    int temp, hauteur, longueur;
     
     // ouverture du fichier initial
     

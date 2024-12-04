@@ -16,16 +16,22 @@ int affichageMenu(){
     return m;
 }
 
-string getChemin(){
-    string c;
+void getChemin(string &c, int &t){
     cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
     cin >> c;
-    return "./Matrices/" + c + ".txt";
+    if (c == "data") {
+        t = 190;
+    } else if (c == "test") {
+        t = 25;
+    } else if (c == "a") {
+        t = 20;
+    }
+    c = "./Matrices/" + c + ".txt";
 }
 
 int main() {
     string chemin;
-    int mode = affichageMenu();
+    int mode = affichageMenu(), t = 0;
 
     Grille *g;
     JeuDeLaVie *jeu;
@@ -45,9 +51,9 @@ int main() {
         jeu = new Console();
     }
 
-    chemin = getChemin();
+    getChemin(chemin,t);
 
-    g->initializegrille(chemin);
+    g->initializegrille(chemin,t);
     jeu->run(g);
     return 0;
 }

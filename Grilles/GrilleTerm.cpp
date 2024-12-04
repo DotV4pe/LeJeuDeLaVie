@@ -4,10 +4,10 @@ GrilleTerm::GrilleTerm() {}
 
 GrilleTerm::~GrilleTerm() {}
 
-void GrilleTerm::initializegrille(std::string chemin) {
+void GrilleTerm::initializegrille(std::string chemin,int taille) {
     iterations = 0;
 
-    int temp, hauteur, longueur, taille = 20;
+    int temp, hauteur, longueur;
     // ouverture du fichier initial
     std::ifstream monFlux(chemin);
     if (!monFlux) {
