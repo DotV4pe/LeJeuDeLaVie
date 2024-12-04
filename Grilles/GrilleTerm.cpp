@@ -5,10 +5,17 @@ GrilleTerm::GrilleTerm() {}
 GrilleTerm::~GrilleTerm() {}
 
 void GrilleTerm::affichage() const {
+    std::string txt;
     std::cout << "Grille : " << std::endl;
     for (int x = 0; x < get_nbLigne(); ++x) {
         for (int y = 0; y < get_nbColonne(); ++y) {
-            std::cout << (grille[y][x].estVivant() ? "1 " : "0 ");
+            if (grille[x][y].estVivant() == 0) {
+                txt = "0 ";
+            } else if (grille[x][y].estVivant() == 1) {
+                txt = "1 ";
+            } else if (grille[x][y].estVivant() == 2) {
+                txt = "2 ";
+            }
         }
         std::cout << std::endl;
     }
