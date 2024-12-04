@@ -39,17 +39,15 @@ int main() {
     Grille *g;
     JeuDeLaVie *jeu;
 
-    if (mode==1){
-        g = new GrilleTerm();
-        jeu = new Console();
-    } else if (mode==2)
-    {
+    if (mode == 0) {
+        exit(0); 
+    } else if (mode==2) {
         g = new GrilleGraph();
         jeu = new Graphique();
-    } else if (mode == 0) {
-        exit(0);
     } else {
-        cout << "Choix invalide. Mode par défaut : Terminal" << endl;
+        if (mode != 1) {
+            cout << "Choix invalide. Mode par défaut : Terminal" << endl;
+        }
         g = new GrilleTerm();
         jeu = new Console();
     }
