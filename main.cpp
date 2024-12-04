@@ -19,11 +19,11 @@ int affichageMenu(){
 void getChemin(string &c, int &t){
     cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
     cin >> c;
-    if (c == "data") {
+    if (c == "data.txt") {
         t = 190;
-    } else if (c == "test") {
+    } else if (c == "test.txt") {
         t = 25;
-    } else if (c == "a") {
+    } else if (c == "a.txt") {
         t = 20;
     } else {
         cout << "Entrez la taille des pixels pour votre jeu de la vie : ";
