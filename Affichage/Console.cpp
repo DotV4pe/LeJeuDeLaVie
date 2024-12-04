@@ -1,6 +1,6 @@
 #include "Console.hpp"
 
-Console::Console(/* args */) {}
+Console::Console() {}
 
 Console::~Console() {}
 
