@@ -16,6 +16,21 @@ int affichageMenu(){
     return m;
 }
 
+string getChemin(){
+    string c;
+    cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
+    cin >> c;
+
+    if (c == "data") {
+        c = "./Matrices/data.txt";
+    } else if (c == "a") {
+        c = "./Matrices/a.txt";
+    } else if (c == "t") {
+        c = "./Matrices/test.txt";
+    }
+    return c;
+}
+
 int main() {    
     string chemin;
     int mode = affichageMenu();
@@ -38,8 +53,7 @@ int main() {
         jeu = new Console();
     }
 
-    cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
-    cin >> chemin;
+    chemin = getChemin();
 
     g->initializegrille(chemin);
     jeu->run(g);
