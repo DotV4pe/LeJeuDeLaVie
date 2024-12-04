@@ -20,7 +20,7 @@ string getChemin(){
     string c;
     cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
     cin >> c;
-    return "./Matrices/" + c;
+    return "./Matrices/" + c + ".txt";
 }
 
 int main() {    
