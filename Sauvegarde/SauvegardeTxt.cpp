@@ -18,6 +18,8 @@ void SauvegardeFichierTxt::sauvegarder(const Grille* g, const std::string& nom_f
                 message = "1 ";
             } else if (g->getValeur(x,y) == 2) {
                 message = "2 ";
+            } else if (g->getValeur(x,y) == 3) {
+                message = "3 ";
             }
             file << message;
         }
