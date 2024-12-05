@@ -1,13 +1,11 @@
 #pragma once
 
-#include "../JeuDeLaVie.hpp"
-#include "../Sauvegarde/SauvegardeTxt.hpp"
-#include "../Fichier/FichierTxt.hpp"
+#include "Menu.hpp"
 
-class Console : public JeuDeLaVie
+class Console : public Menu
 {
 public:
     Console();
     ~Console();
-    virtual void run(Grille *g, Fichier *f) override;
+    void affichage(Grille g, int iterations);
 };

@@ -4,18 +4,24 @@ Graphique::Graphique() {}
 
 Graphique::~Graphique() {}
 
-void Graphique::run(Grille *g, Fichier *f) {
-    sf::RenderWindow window(sf::VideoMode(g->get_nbColonne() * g->getTaille(), g->get_nbLigne() * g->getTaille()), "Le Jeu de la Vie");
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
+void Graphique::affichage(Grille g, sf::RenderWindow &window) {
+    window.clear();
+    sf::RectangleShape cell(sf::Vector2f(g.getTaille(), g.getTaille()));
+    for (int x = 0; x < g.get_nbColonne(); ++x) {
+        for (int y = 0; y < g.get_nbLigne(); ++y) {
+            cell.setPosition(x * g.getTaille(), y * g.getTaille());
+            if (g.getValeur(x,y) == 1) {
+                cell.setFillColor(sf::Color(166,77,121));
+            }
+            else if (g.getValeur(x,y) == 0) {
+                cell.setFillColor(sf::Color(26,26,29)); 
+            } else if (g.getValeur(x,y) == 2) {
+                cell.setFillColor(sf::Color(106,30,85)); 
+            } else if (g.getValeur(x,y) == 3) {
+                cell.setFillColor(sf::Color(228,177,240)); 
+            }
+            window.draw(cell);
         }
-        
-        affichage(g, window);
-        g->calculGrille();
-            
-        sf::sleep(sf::milliseconds(10));
     }
+    window.display();
 }

@@ -4,42 +4,49 @@ JeuDeLaVie::JeuDeLaVie() {}
 
 JeuDeLaVie::~JeuDeLaVie() {}
 
-void JeuDeLaVie::affichage(Grille *g, sf::RenderWindow &window) {
-    window.clear();
-    sf::RectangleShape cell(sf::Vector2f(g->getTaille(), g->getTaille()));
-    for (int x = 0; x < g->get_nbColonne(); ++x) {
-        for (int y = 0; y < g->get_nbLigne(); ++y) {
-            cell.setPosition(x * g->getTaille(), y * g->getTaille());
-            if (g->getValeur(x,y) == 1) {
-                cell.setFillColor(sf::Color(166,77,121));
+void JeuDeLaVie::run(Grille g, Fichier *f, int mode) {
+    if (mode == 1) {
+        Console cons;
+        Sauvegarde *s = new SauvegardeFichierTxt();
+        std::string cheminDossier = f->getDossierSortie(); // Utiliser le chemin du dossier de sortie
+        std::cout << f->getDossierSortie() << std::endl;
+        if (!std::filesystem::is_empty(cheminDossier)) {
+            std::cout << "Done" << std::endl;
+            for (const auto& fichier : std::filesystem::directory_iterator(cheminDossier)) { // Parcours tout les éléments
+                if (std::filesystem::is_regular_file(fichier.path())) { // .path() : Récupère le chemin complet || is_regular_file() : Vérifie si cet élément est un fichier.
+                    std::filesystem::remove(fichier.path()); // Supprime le fichier
+                    std::cout << "Fichier supprimé" << std::endl;
+                } 
             }
-            else if (g->getValeur(x,y) == 0) {
-                cell.setFillColor(sf::Color(26,26,29)); 
-            } else if (g->getValeur(x,y) == 2) {
-                cell.setFillColor(sf::Color(106,30,85)); 
-            } else if (g->getValeur(x,y) == 3) {
-                cell.setFillColor(sf::Color(228,177,240)); 
-            }
-            window.draw(cell);
         }
-    }
-    window.display();
-}
 
-void JeuDeLaVie::affichage(Grille *g, int iterations) {
-    std::string txt;
-    std::cout << "Grille n°" << (iterations+1) << " : " << std::endl;
-    for (int x = 0; x < g->get_nbLigne(); ++x) {
-        for (int y = 0; y < g->get_nbColonne(); ++y) {
-            if (g->getValeur(y,x) == 0) {
-                txt = "0 ";
-            } else if (g->getValeur(y,x) == 1) {
-                txt = "1 ";
-            } else if (g->getValeur(y,x) == 2) {
-                txt = "2 ";
-            } std::cout << txt;
+        int iterations;
+        std::cout << "Nombre de cycles du jeu de la vie : ";
+        std::cin >> iterations;
+        for (int cycle = 0; cycle < iterations; cycle++) {
+            // Fichier de sortie pour chaque cycle
+            std::string nom_sortie = cheminDossier + "/cycle_" + std::to_string(cycle+1) + ".txt";
+            s->sauvegarder(g, nom_sortie);
+            cons.affichage(g, cycle);
+            g.calculGrille();
         }
-        std::cout << std::endl;
     }
-    std::cout << std::endl;
+    else if (mode == 2) {
+        Graphique graph;
+        sf::RenderWindow window(sf::VideoMode(g->get_nbColonne() * g->getTaille(), g->get_nbLigne() * g->getTaille()), "Le Jeu de la Vie");
+        while (window.isOpen()) {
+            sf::Event event;
+            while (window.pollEvent(event)) {
+                if (event.type == sf::Event::Closed)
+                    window.close();
+            }
+            
+            graph.affichage(g, window);
+            g.calculGrille();
+                
+            sf::sleep(sf::milliseconds(10));
+        }
+    } else {
+        std::cout << "Aucun mode demandé" << std::endl;
+    }
 }

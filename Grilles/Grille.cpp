@@ -43,3 +43,33 @@ void Grille::calculGrille() {
         }
     }
 }
+
+void Grille::initializegrille(Fichier *f) {
+    int temp, hauteur, longueur;
+
+    std::ifstream monFlux(f->getcheminFichier());
+    if (!monFlux) {
+        std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
+        exit(0);
+    } else {
+        std::cout << "Fichier ouvert avec succès !" << std::endl;
+    }
+
+    monFlux >> nbLigne >> nbColonne;
+    cellSize = f->getTaille();
+
+    std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(0)));
+    setGrille(gr);
+
+    for (int y = 0; y < get_nbLigne(); ++y) {
+        for (int x = 0; x < get_nbColonne(); ++x) {
+            if (!(monFlux >> temp)) {
+                std::cout << "Erreur: Lecture échouée à la position (" << x << ", " << y << ")." << std::endl;
+                return;
+            }
+            // Initialiser la cellule en fonction de la valeur lue
+            grille[x][y] = Cellule(temp);
+        }
+    }
+    monFlux.close();
+}

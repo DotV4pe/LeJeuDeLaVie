@@ -15,6 +15,7 @@ private:
     int cellSize;
     int nbColonne;
     int nbLigne;
+    int iterations;
 protected:
     std::vector<std::vector<Cellule>> grille;
 public:
@@ -29,7 +30,7 @@ public:
     virtual void set_nbColonne(int nbC);
     virtual void set_nbLigne(int nbL);
     virtual void calculGrille();
-    virtual void initializegrille(Fichier *f) = 0;
+    virtual void initializegrille(Fichier *f);
 };
 
 #endif

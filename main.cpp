@@ -1,44 +1,9 @@
-#include "./Grilles/GrilleTerm.hpp"
-#include "./Grilles/GrilleGraph.hpp"
-#include "./Affichage/Console.hpp"
-#include "./Affichage/Graphique.hpp"
+#include "Menu.hpp"
 
 using namespace std;
 
-int affichageMenu(){
-    int m; // voir si ce n'est pas mieux de faire une classe avec enum ?
-    cout << "Choisissez le mode :\n";
-    cout << "1. Terminal\n";
-    cout << "2. Graphique\n";
-    cout << "0. Quitter\n";
-    cout << "Votre choix : ";
-    cin >> m;
-    return m;
-}
-
 int main() {
-    int mode = affichageMenu();
-
-    Grille *g;
-    JeuDeLaVie *jeu;
-    Fichier *f = new FichierTxt;
-
-    if (mode == 0) {
-        exit(0); 
-    } else if (mode==2) {
-        g = new GrilleGraph();
-        jeu = new Graphique();
-    } else {
-        if (mode != 1) {
-            cout << "Choix invalide. Mode par défaut : Terminal" << endl;
-        }
-        g = new GrilleTerm();
-        jeu = new Console();
-    }
-
-    f->getChemin();
-
-    g->initializegrille(f);
-    jeu->run(g,f);
+    Menu m;
+    m.lancer();
     return 0;
 }

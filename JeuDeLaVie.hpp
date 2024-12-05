@@ -1,15 +1,15 @@
 #pragma once
 
-#include <iostream>
-#include <filesystem>
-#include "./Grilles/Grille.hpp"
+
+#include "./Sauvegarde/SauvegardeTxt.hpp"
+#include "./Fichier/FichierTxt.hpp"
+#include "./Affichage/Console.hpp"
+#include "./Affichage/Graphique.hpp"
 
 class JeuDeLaVie
 {
 public:
     JeuDeLaVie();
     ~JeuDeLaVie();
-    virtual void affichage(Grille *g, int iterations);
-    virtual void affichage(Grille *g, sf::RenderWindow &window);
-    virtual void run(Grille *g, Fichier *f) = 0;
+    virtual void run(Grille g, Fichier *f, int mode);
 };
