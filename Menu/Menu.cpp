@@ -9,7 +9,7 @@ void Menu::affichage(Grille g, int iterations) {}
 void Menu::affichage(Grille g, sf::RenderWindow &window) {}
 
 void Menu::affichageMenu(){
-    std::cout << "\nChoisissez le mode :\n";
+    std::cout << "\nVeuillez choisir le mode de visualisation :\n";
     std::cout << "1. Terminal\n";
     std::cout << "2. Graphique\n";
     std::cout << "0. Quitter\n";
