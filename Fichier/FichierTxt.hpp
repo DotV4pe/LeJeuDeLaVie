@@ -7,5 +7,5 @@ class FichierTxt : public Fichier
 public:
     FichierTxt();
     ~FichierTxt();
-    virtual void getChemin();
+    virtual void getChemin(int mode);
 };

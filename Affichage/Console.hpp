@@ -1,13 +1,12 @@
 #pragma once
 
-#include "../JeuDeLaVie.hpp"
-#include "../Sauvegarde/SauvegardeTxt.hpp"
-#include "../Fichier/FichierTxt.hpp"
+#include "Affichage.hpp"
 
-class Console : public JeuDeLaVie
+class Console : public Affichage
 {
 public:
     Console();
     ~Console();
-    virtual void run(Grille *g, Fichier *f) override;
+    virtual void affichage(Grille g, int iterations);
+    virtual void affichage(Grille g, sf::RenderWindow &window) {}
 };

@@ -1,11 +1,12 @@
 #pragma once
 
-#include "../JeuDeLaVie.hpp"
+#include "Affichage.hpp"
 
-class Graphique : public JeuDeLaVie
+class Graphique : public Affichage
 {
 public:
     Graphique();
     ~Graphique();
-    virtual void run(Grille *g, Fichier *f) override;
+    virtual void affichage(Grille g, sf::RenderWindow &window);
+    virtual void affichage(Grille g, int iterations) {}
 };

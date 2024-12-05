@@ -2,7 +2,6 @@
 #define GRILLE_H
 
 #include <vector>
-#include <string>
 #include <fstream>
 #include <SFML/Graphics.hpp>
 
@@ -19,17 +18,15 @@ protected:
     std::vector<std::vector<Cellule>> grille;
 public:
     Grille();
-    virtual ~Grille();
-    virtual int getTaille() const ;
-    virtual int get_nbColonne() const ;
-    virtual int get_nbLigne() const ;
-    virtual int getValeur(int x, int y) const;
-    virtual void setGrille(std::vector<std::vector<Cellule>> g);
-    virtual void setTaille(int t);
-    virtual void set_nbColonne(int nbC);
-    virtual void set_nbLigne(int nbL);
-    virtual void calculGrille();
-    virtual void initializegrille(Fichier *f) = 0;
+    ~Grille();
+    int getTaille() const ;
+    int get_nbColonne() const ;
+    int get_nbLigne() const ;
+    int getValeur(int x, int y) const;
+    std::vector<std::vector<Cellule>> getGrille();
+    void update(int x,int y, int compt);
+    void setGrille(std::vector<std::vector<Cellule>> g);
+    void initializegrille(Fichier *f);
 };
 
 #endif

@@ -1,15 +1,19 @@
 #pragma once
 
-#include <iostream>
-#include <filesystem>
-#include "./Grilles/Grille.hpp"
+#include "./Sauvegarde/SauvegardeTxt.hpp"
+#include "./Fichier/FichierTxt.hpp"
+#include "./Affichage/Console.hpp"
+#include "./Affichage/Graphique.hpp"
+#include "./Grilles/GrilleMaj.hpp"
 
 class JeuDeLaVie
 {
+private:
+    std::vector<std::vector<Cellule>> tgrille;
+    int torique;
 public:
     JeuDeLaVie();
-    ~JeuDeLaVie();
-    virtual void affichage(Grille *g, int iterations);
-    virtual void affichage(Grille *g, sf::RenderWindow &window);
-    virtual void run(Grille *g, Fichier *f) = 0;
+    virtual ~JeuDeLaVie();
+    void run(Grille grid, Fichier *f, int mode);
+    void updateGrille(Grille &grid);
 };

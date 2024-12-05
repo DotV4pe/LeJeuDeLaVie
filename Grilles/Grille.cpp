@@ -12,34 +12,40 @@ int Grille::get_nbLigne() const { return nbLigne; }
 
 int Grille::getValeur(int x, int y) const { return grille[x][y].estVivant(); }
 
+std::vector<std::vector<Cellule>> Grille::getGrille() { return grille; }
+
+void Grille::update(int x,int y, int compt) { grille[x][y].update(compt); }
+
 void Grille::setGrille(std::vector<std::vector<Cellule>> g) { grille = g; }
 
-void Grille::setTaille(int t) { cellSize = t; }
+void Grille::initializegrille(Fichier *f) {
+    int temp;
 
-void Grille::set_nbColonne(int nbC) { nbColonne = nbC; }
+    std::ifstream monFlux(f->getcheminFichier());
+    if (!monFlux) {
+        std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
+        exit(0);
+    } else {
+        std::cout << "Fichier " << f->getNomFichier() << ".txt ouvert avec succès !" << std::endl;
+    }
 
-void Grille::set_nbLigne(int nbL) { nbLigne = nbL; }
+    std::cout << std::endl;
 
-void Grille::calculGrille() {
-    std::vector<std::vector<Cellule>> tgrille = grille;
+    monFlux >> nbLigne >> nbColonne;
+    cellSize = f->getTaille();
 
-    for (int x = 0; x < nbColonne; ++x) {
-        for (int y = 0; y < nbLigne; ++y) {
-            int compteur = 0;
+    std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(0)));
+    setGrille(gr);
 
-            for (int dx = -1; dx <= 1; dx++) {
-                for (int dy = -1; dy <= 1; dy++) {
-                    if (dx == 0 && dy == 0) continue;
-                    
-                    int nx = (x + dx + nbColonne) % nbColonne;
-                    int ny = (y + dy + nbLigne) % nbLigne;
-
-                    if ((tgrille[nx][ny].estVivant() % 2) == 1) {
-                        compteur++;
-                    }
-                }
+    for (int y = 0; y < get_nbLigne(); ++y) {
+        for (int x = 0; x < get_nbColonne(); ++x) {
+            if (!(monFlux >> temp)) {
+                std::cout << "Erreur: Lecture échouée à la position (" << x << ", " << y << ")." << std::endl;
+                return;
             }
-            grille[x][y].update(compteur);
+            // Initialiser la cellule en fonction de la valeur lue
+            grille[x][y] = Cellule(temp);
         }
     }
+    monFlux.close();
 }
