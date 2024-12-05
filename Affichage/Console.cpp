@@ -15,6 +15,8 @@ void Console::affichage(Grille g, int iterations) {
                 txt = "1 ";
             } else if (g.getValeur(y,x) == 2) {
                 txt = "2 ";
+            } else if (g.getValeur(y,x) == 3) {
+                txt = "3 ";
             } std::cout << txt;
         }
         std::cout << std::endl;
