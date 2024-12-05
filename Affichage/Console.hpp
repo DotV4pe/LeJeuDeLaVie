@@ -2,7 +2,7 @@
 
 #include "Menu.hpp"
 
-class Console : public Menu
+class Console
 {
 public:
     Console();

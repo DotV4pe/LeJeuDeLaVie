@@ -2,7 +2,7 @@
 
 #include "Menu.hpp"
 
-class Graphique : public Menu
+class Graphique
 {
 public:
     Graphique();

@@ -1,6 +1,6 @@
 #include "Menu.hpp"
 
-Menu::Menu() { affichageMenu(); }
+Menu::Menu() {}
 
 Menu::~Menu() {}
 
@@ -17,14 +17,12 @@ void Menu::affichageMenu(){
     std::cin >> mode;
 }
 
-int Menu::getMode() { return mode; }
-
 void Menu::lancer() {
     JeuDeLaVie jeu;
     Grille g;
     Fichier *f = new FichierTxt;
     affichageMenu();
-    f->getChemin();
+    f->getChemin(mode);
     g.initializegrille(f);
     jeu.run(g,f,mode);
 }

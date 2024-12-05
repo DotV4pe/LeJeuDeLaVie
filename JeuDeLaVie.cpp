@@ -32,6 +32,9 @@ void JeuDeLaVie::run(Grille g, Fichier *f, int mode) {
         }
     }
     else if (mode == 2) {
+        int temps;
+        std::cout << "Entrez le temps de génération de chaque cycle (en ms) : ";
+        std::cin >> temps;
         Graphique graph;
         sf::RenderWindow window(sf::VideoMode(g.get_nbColonne() * g.getTaille(), g.get_nbLigne() * g.getTaille()), "Le Jeu de la Vie");
         while (window.isOpen()) {
@@ -44,7 +47,7 @@ void JeuDeLaVie::run(Grille g, Fichier *f, int mode) {
             graph.affichage(g, window);
             g.calculGrille();
                 
-            sf::sleep(sf::milliseconds(10));
+            sf::sleep(sf::milliseconds(temps));
         }
     } else {
         std::cout << "Aucun mode demandé" << std::endl;
