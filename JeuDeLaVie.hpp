@@ -4,6 +4,7 @@
 #include "./Fichier/FichierTxt.hpp"
 #include "./Affichage/Console.hpp"
 #include "./Affichage/Graphique.hpp"
+#include "./Grilles/GrilleMaj.hpp"
 
 class JeuDeLaVie
 {

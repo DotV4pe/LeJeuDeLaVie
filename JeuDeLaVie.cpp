@@ -5,6 +5,7 @@ JeuDeLaVie::JeuDeLaVie() {}
 JeuDeLaVie::~JeuDeLaVie() {}
 
 void JeuDeLaVie::run(Grille g, Fichier *f, int mode) {
+    GrilleMaj gm;
     int temps, iterations, torique;
     std::cout << "Voulez-vous une grille torique : " << std::endl;
     std::cout << "0. Oui" << std::endl;
@@ -29,9 +30,9 @@ void JeuDeLaVie::run(Grille g, Fichier *f, int mode) {
             s->sauvegarder(g, nom_sortie);
             cons.affichage(g, cycle);
             if (torique == 0){
-                g.calculGrilleTorique();
+                gm.calculGrilleTorique(g);
             } else {
-                g.calculGrilleNonTorique();
+                gm.calculGrilleNonTorique(g);
             }
         }
     }
@@ -50,9 +51,9 @@ void JeuDeLaVie::run(Grille g, Fichier *f, int mode) {
             
             graph.affichage(g, window);
             if (torique == 0){
-                g.calculGrilleTorique();
+                gm.calculGrilleTorique(g);
             } else {
-                g.calculGrilleNonTorique();
+                gm.calculGrilleNonTorique(g);
             }
                 
             sf::sleep(sf::milliseconds(temps));

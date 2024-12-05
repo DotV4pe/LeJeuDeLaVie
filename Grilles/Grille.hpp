@@ -24,12 +24,12 @@ public:
     int get_nbColonne() const ;
     int get_nbLigne() const ;
     int getValeur(int x, int y) const;
+    std::vector<std::vector<Cellule>> getGrille();
+    void update(int x,int y, int compt);
     void setGrille(std::vector<std::vector<Cellule>> g);
     void setTaille(int t);
     void set_nbColonne(int nbC);
     void set_nbLigne(int nbL);
-    void calculGrilleTorique();
-    void calculGrilleNonTorique();
     void initializegrille(Fichier *f);
 };
 
