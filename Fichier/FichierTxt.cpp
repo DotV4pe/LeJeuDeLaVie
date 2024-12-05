@@ -14,7 +14,7 @@ void FichierTxt::getChemin(int mode) {
     } else if (nomFichier == "a") {
         taille = 20;
     } else if (nomFichier == "b") {
-        taille = 10;
+        taille = 7;
     }
     cheminFichier = "./Matrices/" + nomFichier + ".txt";
 

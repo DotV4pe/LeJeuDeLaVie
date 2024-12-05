@@ -20,7 +20,7 @@ void Grille::set_nbColonne(int nbC) { nbColonne = nbC; }
 
 void Grille::set_nbLigne(int nbL) { nbLigne = nbL; }
 
-void Grille::calculGrille() {
+void Grille::calculGrilleTorique() {
     std::vector<std::vector<Cellule>> tgrille = grille;
 
     for (int x = 0; x < nbColonne; ++x) {
@@ -36,6 +36,37 @@ void Grille::calculGrille() {
 
                     if ((tgrille[nx][ny].estVivant() % 2) == 1) {
                         compteur++;
+                    }
+                }
+            }
+            grille[x][y].update(compteur);
+        }
+    }
+}
+
+void Grille::calculGrilleNonTorique() {
+    std::vector<std::vector<Cellule>> tgrille = grille;
+
+    for (int x = 0; x < nbColonne; ++x) {
+        for (int y = 0; y < nbLigne; ++y) {
+            int compteur = 0;
+
+            for (int dx = -1; dx <= 1; dx++) {
+                for (int dy = -1; dy <= 1; dy++) {
+                    int nx = x + dx;
+                    int ny = y + dy;
+                    if (dx != 0 || dy != 0) {
+                        if (nx < nbColonne) {
+                            if (nx > 0) {
+                                if (ny < nbLigne) {
+                                    if (ny > 0) {
+                                        if ((tgrille[nx][ny].estVivant() % 2) == 1) {
+                                            compteur++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

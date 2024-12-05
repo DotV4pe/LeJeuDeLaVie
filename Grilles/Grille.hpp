@@ -19,17 +19,18 @@ protected:
     std::vector<std::vector<Cellule>> grille;
 public:
     Grille();
-    virtual ~Grille();
-    virtual int getTaille() const ;
-    virtual int get_nbColonne() const ;
-    virtual int get_nbLigne() const ;
-    virtual int getValeur(int x, int y) const;
-    virtual void setGrille(std::vector<std::vector<Cellule>> g);
-    virtual void setTaille(int t);
-    virtual void set_nbColonne(int nbC);
-    virtual void set_nbLigne(int nbL);
-    virtual void calculGrille();
-    virtual void initializegrille(Fichier *f);
+    ~Grille();
+    int getTaille() const ;
+    int get_nbColonne() const ;
+    int get_nbLigne() const ;
+    int getValeur(int x, int y) const;
+    void setGrille(std::vector<std::vector<Cellule>> g);
+    void setTaille(int t);
+    void set_nbColonne(int nbC);
+    void set_nbLigne(int nbL);
+    void calculGrilleTorique();
+    void calculGrilleNonTorique();
+    void initializegrille(Fichier *f);
 };
 
 #endif

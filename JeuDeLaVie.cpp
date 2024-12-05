@@ -28,7 +28,7 @@ void JeuDeLaVie::run(Grille g, Fichier *f, int mode) {
             std::string nom_sortie = cheminDossier + "/cycle_" + std::to_string(cycle+1) + ".txt";
             s->sauvegarder(g, nom_sortie);
             cons.affichage(g, cycle);
-            g.calculGrille();
+            g.calculGrilleNonTorique();
         }
     }
     else if (mode == 2) {
@@ -45,7 +45,7 @@ void JeuDeLaVie::run(Grille g, Fichier *f, int mode) {
             }
             
             graph.affichage(g, window);
-            g.calculGrille();
+            g.calculGrilleNonTorique();
                 
             sf::sleep(sf::milliseconds(temps));
         }
