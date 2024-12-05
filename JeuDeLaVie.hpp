@@ -8,8 +8,12 @@
 
 class JeuDeLaVie
 {
+private:
+    std::vector<std::vector<Cellule>> tgrille;
+    int torique;
 public:
     JeuDeLaVie();
-    ~JeuDeLaVie();
-    virtual void run(Grille g, Fichier *f, int mode);
+    virtual ~JeuDeLaVie();
+    void run(Grille grid, Fichier *f, int mode);
+    void updateGrille(Grille &grid);
 };

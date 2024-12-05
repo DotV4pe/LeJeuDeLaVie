@@ -29,8 +29,7 @@ void GrilleMaj::calculGrilleTorique(Grille &g) {
     }
 }
 
-void GrilleMaj::calculGrilleNonTorique(Grille &g) {
-    std::vector<std::vector<Cellule>> tgrille = g.getGrille();
+void GrilleMaj::calculGrilleNonTorique(Grille &g) {std::vector<std::vector<Cellule>> tgrille = g.getGrille();
 
     for (int x = 0; x < g.get_nbColonne(); ++x) {
         for (int y = 0; y < g.get_nbLigne(); ++y) {
@@ -58,4 +57,5 @@ void GrilleMaj::calculGrilleNonTorique(Grille &g) {
             g.update(x,y,compteur);
         }
     }
+    
 }
