@@ -1,7 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <filesystem>
 #include "../Grilles/Grille.hpp"
 #include "../JeuDeLaVie.hpp"
 

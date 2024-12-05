@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include <fstream>
 #include "Sauvegarde.hpp"
 
 class SauvegardeFichierTxt : public Sauvegarde{

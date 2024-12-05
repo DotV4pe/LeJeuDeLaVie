@@ -18,12 +18,6 @@ void Grille::update(int x,int y, int compt) { grille[x][y].update(compt); }
 
 void Grille::setGrille(std::vector<std::vector<Cellule>> g) { grille = g; }
 
-void Grille::setTaille(int t) { cellSize = t; }
-
-void Grille::set_nbColonne(int nbC) { nbColonne = nbC; }
-
-void Grille::set_nbLigne(int nbL) { nbLigne = nbL; }
-
 void Grille::initializegrille(Fichier *f) {
     int temp;
 

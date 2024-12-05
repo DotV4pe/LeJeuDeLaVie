@@ -2,7 +2,6 @@
 #define GRILLE_H
 
 #include <vector>
-#include <string>
 #include <fstream>
 #include <SFML/Graphics.hpp>
 
@@ -27,9 +26,6 @@ public:
     std::vector<std::vector<Cellule>> getGrille();
     void update(int x,int y, int compt);
     void setGrille(std::vector<std::vector<Cellule>> g);
-    void setTaille(int t);
-    void set_nbColonne(int nbC);
-    void set_nbLigne(int nbL);
     void initializegrille(Fichier *f);
 };
 

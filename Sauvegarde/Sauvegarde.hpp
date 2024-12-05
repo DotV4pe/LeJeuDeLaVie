@@ -3,7 +3,7 @@
 #pragma once
 
 #include <vector>
-#include <string>
+#include <fstream>
 #include "../Cellule/Cellule.hpp"
 #include "../Grilles/Grille.hpp"
 
