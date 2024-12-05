@@ -4,20 +4,23 @@ GrilleTerm::GrilleTerm() {}
 
 GrilleTerm::~GrilleTerm() {}
 
-void GrilleTerm::initializegrille(std::string chemin,int taille) {
+void GrilleTerm::initializegrille(Fichier *f) {
     iterations = 0;
 
     int temp, hauteur, longueur;
     // ouverture du fichier initial
-    std::ifstream monFlux(chemin);
+    std::ifstream monFlux(f->getcheminFichier());
     if (!monFlux) {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
         exit(0);
+    } else {
+        std::cout << "Fichier ouvert avec succès !" << std::endl;
     }
+
     monFlux >> hauteur >> longueur;
     set_nbColonne(longueur);
     set_nbLigne(hauteur);
-    setTaille(taille);
+    setTaille(f->getTaille());
 
     std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(0)));
     setGrille(gr);

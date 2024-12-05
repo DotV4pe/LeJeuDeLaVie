@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "../Cellule/Cellule.hpp"
+#include "../Fichier/FichierTxt.hpp"
 
 class Grille
 {
@@ -28,7 +29,7 @@ public:
     virtual void set_nbColonne(int nbC);
     virtual void set_nbLigne(int nbL);
     virtual void calculGrille();
-    virtual void initializegrille(std::string chemin,int taille) = 0;
+    virtual void initializegrille(Fichier *f) = 0;
 };
 
 #endif

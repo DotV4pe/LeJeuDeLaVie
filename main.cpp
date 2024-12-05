@@ -16,30 +16,12 @@ int affichageMenu(){
     return m;
 }
 
-void getChemin(string &c, int &t){
-    cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
-    cin >> c;
-    if (c == "data.txt") {
-        t = 190;
-    } else if (c == "test.txt") {
-        t = 25;
-    } else if (c == "a.txt") {
-        t = 20;
-    } else if (c == "b.txt") {
-        t = 5;
-    } else {
-        cout << "Entrez la taille des pixels pour votre jeu de la vie : ";
-        cin >> t;
-    }
-    c = "./Matrices/" + c;
-}
-
 int main() {
-    string chemin;
-    int mode = affichageMenu(), t = 0;
+    int mode = affichageMenu();
 
     Grille *g;
     JeuDeLaVie *jeu;
+    Fichier *f = new FichierTxt;
 
     if (mode == 0) {
         exit(0); 
@@ -54,9 +36,9 @@ int main() {
         jeu = new Console();
     }
 
-    getChemin(chemin,t);
+    f->getChemin();
 
-    g->initializegrille(chemin,t);
-    jeu->run(g);
+    g->initializegrille(f);
+    jeu->run(g,f);
     return 0;
 }
