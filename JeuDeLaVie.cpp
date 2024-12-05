@@ -33,7 +33,7 @@ void JeuDeLaVie::run(Grille g, Fichier *f, int mode) {
     }
     else if (mode == 2) {
         Graphique graph;
-        sf::RenderWindow window(sf::VideoMode(g->get_nbColonne() * g->getTaille(), g->get_nbLigne() * g->getTaille()), "Le Jeu de la Vie");
+        sf::RenderWindow window(sf::VideoMode(g.get_nbColonne() * g.getTaille(), g.get_nbLigne() * g.getTaille()), "Le Jeu de la Vie");
         while (window.isOpen()) {
             sf::Event event;
             while (window.pollEvent(event)) {

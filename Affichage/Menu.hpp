@@ -12,8 +12,8 @@ private:
 public:
     Menu();
     ~Menu();
-    virtual void affichage(Grille *g, int iterations);
-    virtual void affichage(Grille *g, sf::RenderWindow &window);
+    virtual void affichage(Grille g, int iterations);
+    virtual void affichage(Grille g, sf::RenderWindow &window);
     void affichageMenu();
     int getMode();
     void lancer();

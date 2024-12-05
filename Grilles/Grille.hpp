@@ -15,7 +15,6 @@ private:
     int cellSize;
     int nbColonne;
     int nbLigne;
-    int iterations;
 protected:
     std::vector<std::vector<Cellule>> grille;
 public:

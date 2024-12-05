@@ -45,7 +45,7 @@ void Grille::calculGrille() {
 }
 
 void Grille::initializegrille(Fichier *f) {
-    int temp, hauteur, longueur;
+    int temp;
 
     std::ifstream monFlux(f->getcheminFichier());
     if (!monFlux) {
