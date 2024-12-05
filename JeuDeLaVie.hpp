@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "./Sauvegarde/SauvegardeTxt.hpp"
 #include "./Fichier/FichierTxt.hpp"
 #include "./Affichage/Console.hpp"

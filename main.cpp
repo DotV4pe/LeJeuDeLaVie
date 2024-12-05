@@ -1,4 +1,4 @@
-#include "./Affichage/Menu.hpp"
+#include "./Menu/Menu.hpp"
 
 using namespace std;
 

@@ -21,6 +21,7 @@ void Menu::lancer() {
     JeuDeLaVie jeu;
     Grille g;
     Fichier *f = new FichierTxt;
+    if (mode==0) { exit(0); }
     affichageMenu();
     f->getChemin(mode);
     g.initializegrille(f);

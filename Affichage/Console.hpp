@@ -1,11 +1,12 @@
 #pragma once
 
-#include "Menu.hpp"
+#include "Affichage.hpp"
 
-class Console
+class Console : public Affichage
 {
 public:
     Console();
     ~Console();
-    void affichage(Grille g, int iterations);
+    virtual void affichage(Grille g, int iterations);
+    virtual void affichage(Grille g, sf::RenderWindow &window) {}
 };
