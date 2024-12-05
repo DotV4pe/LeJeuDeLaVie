@@ -7,5 +7,5 @@ class Graphique : public JeuDeLaVie
 public:
     Graphique();
     ~Graphique();
-    virtual void run(Grille *g) override;
+    virtual void run(Grille *g, Fichier *f) override;
 };

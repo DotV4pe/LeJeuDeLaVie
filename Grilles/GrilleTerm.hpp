@@ -7,6 +7,5 @@ private:
 public:
     GrilleTerm();
     ~GrilleTerm();
-    virtual void initializegrille(std::string chemin,int taille) override;
-    void imprimerFichier(const std::string& nom_fichier) const;
+    virtual void initializegrille(Fichier *f) override;
 };

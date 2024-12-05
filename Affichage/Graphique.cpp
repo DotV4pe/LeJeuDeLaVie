@@ -4,7 +4,7 @@ Graphique::Graphique() {}
 
 Graphique::~Graphique() {}
 
-void Graphique::run(Grille *g) {
+void Graphique::run(Grille *g, Fichier *f) {
     sf::RenderWindow window(sf::VideoMode(g->get_nbColonne() * g->getTaille(), g->get_nbLigne() * g->getTaille()), "Le Jeu de la Vie");
     while (window.isOpen()) {
         sf::Event event;

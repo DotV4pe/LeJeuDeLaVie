@@ -7,7 +7,6 @@ void SauvegardeFichierTxt::sauvegarder(const Grille* g, const std::string& nom_f
     if (!file){
         std::cout << "Erreur - Impossible d'ouvrir le fichier en écriture : " + nom_fichier << std::endl;
     }
-
     file << g->get_nbLigne() << " " << g->get_nbColonne() << std::endl;
     std::string message;
     for (int y = 0; y < g->get_nbLigne(); ++y) {
@@ -20,9 +19,12 @@ void SauvegardeFichierTxt::sauvegarder(const Grille* g, const std::string& nom_f
                 message = "2 ";
             } else if (g->getValeur(x,y) == 3) {
                 message = "3 ";
+            } else if (g->getValeur(x,y) == 4) {
+                message = "4 ";
             }
             file << message;
         }
         file << std::endl;
     }
+    file.close();
 }

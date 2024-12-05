@@ -11,5 +11,5 @@ public:
     ~JeuDeLaVie();
     virtual void affichage(Grille *g, int iterations);
     virtual void affichage(Grille *g, sf::RenderWindow &window);
-    virtual void run(Grille *g) = 0;
+    virtual void run(Grille *g, Fichier *f) = 0;
 };

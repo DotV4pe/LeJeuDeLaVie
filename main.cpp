@@ -5,35 +5,6 @@
 
 using namespace std;
 
-string cheminDossierSortie; // Déclaration de la variable globale
-
-void getChemin(string &c, int &t) {
-    cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
-    cin >> c;
-    if (c == "data") {
-        t = 190;
-    } else if (c == "test") {
-        t = 25;
-    } else if (c == "a") {
-        t = 20;
-    }
-    c = "./Matrices/" + c + ".txt";
-
-    // Extraire le nom du fichier sans l'extension
-    size_t pos = c.find_last_of('/');
-    string nomFichier = c.substr(pos + 1);
-    pos = nomFichier.find_last_of('.');
-    nomFichier = nomFichier.substr(0, pos);
-
-    // Créer le dossier de sortie
-    string dossierSortie = "./" + nomFichier + "_out";
-    std::filesystem::create_directory(dossierSortie);
-
-    // Stocker le chemin du dossier de sortie dans une variable globale ou passer en paramètre
-    cheminDossierSortie = dossierSortie;
-}
-
-
 int affichageMenu(){
     int m; // voir si ce n'est pas mieux de faire une classe avec enum ?
     cout << "Choisissez le mode :\n";
@@ -49,10 +20,11 @@ void getChemin(string &c, int &t);
 
 int main() {
     string chemin;
-    int mode = affichageMenu(), t = 0;
+    int mode = affichageMenu();
 
     Grille *g;
     JeuDeLaVie *jeu;
+    Fichier *f = new FichierTxt;
 
     if (mode==1){
         g = new GrilleTerm();
@@ -69,9 +41,9 @@ int main() {
         jeu = new Console();
     }
 
-    getChemin(chemin,t);
+    f->getChemin();
 
-    g->initializegrille(chemin,t);
-    jeu->run(g);
+    g->initializegrille(f);
+    jeu->run(g,f);
     return 0;
 }

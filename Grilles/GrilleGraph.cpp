@@ -4,12 +4,12 @@ GrilleGraph::GrilleGraph() {}
 
 GrilleGraph::~GrilleGraph() {}
 
-void GrilleGraph::initializegrille(std::string chemin,int taille) {    
+void GrilleGraph::initializegrille(Fichier *f) {    
     int temp, hauteur, longueur;
     
     // ouverture du fichier initial
     
-    std::ifstream monFlux(chemin);
+    std::ifstream monFlux(f->getcheminFichier());
     if (!monFlux) {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
         exit(0);
@@ -18,7 +18,7 @@ void GrilleGraph::initializegrille(std::string chemin,int taille) {
     monFlux >> hauteur >> longueur;
     set_nbColonne(longueur);
     set_nbLigne(hauteur);
-    setTaille(taille);
+    setTaille(f->getTaille());
 
     std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(0)));
     setGrille(gr);
