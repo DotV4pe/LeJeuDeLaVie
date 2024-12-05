@@ -83,8 +83,10 @@ void Grille::initializegrille(Fichier *f) {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
         exit(0);
     } else {
-        std::cout << "Fichier ouvert avec succès !" << std::endl;
+        std::cout << "Fichier " << f->getNomFichier() << ".txt ouvert avec succès !" << std::endl;
     }
+
+    std::cout << std::endl;
 
     monFlux >> nbLigne >> nbColonne;
     cellSize = f->getTaille();
