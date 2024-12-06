@@ -1,6 +1,5 @@
 #include "./Test/Test.hpp"
-
-using namespace std;
+#include "./Menu/Menu.hpp"
 
 int main() {
     Test t;
