@@ -15,6 +15,6 @@ void FichierTest::getChemin(int mode) {
         
     file.close();
         
-    nomFichier = "test";
+    nomFichier = "test_grid";
     taille = 25;
 }

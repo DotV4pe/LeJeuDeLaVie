@@ -510,7 +510,7 @@ TEST PASSED ✅
 JeuDeLaVie - Mise à jour de la grille, [JeuDeLaVie]
 
 Mise à jour grille torique
-Fichier test.txt ouvert avec succès !
+Fichier test_grid.txt ouvert avec succès !
 TEST PASSED ✅
 
 Nombre de test échoué : 0 test(s).
