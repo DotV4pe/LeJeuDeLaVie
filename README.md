@@ -31,7 +31,6 @@ Le programme est une implémentation en C++ de l'automate cellulaire "Jeu de la 
     - [✨ Fonctionnalités générales](#-fonctionnalités-générales)
     - [🛠️ Extensions, conseils \& astuces](#️-extensions-conseils--astuces)
 - [DOCUMENTATION TECHNIQUE](#documentation-technique)
-  - [Sommaire](#sommaire-1)
   - [Introduction](#introduction)
     - [Objectif du projet](#objectif-du-projet)
     - [Structure du document](#structure-du-document)
@@ -211,71 +210,6 @@ Voulez-vous une grille torique :
 
 # DOCUMENTATION TECHNIQUE
 
-## Sommaire
-
-Bien sûr ! Voici le sommaire mis à jour avec une section UML ajoutée, incluant les diagrammes de cas d'utilisation, de classes, de séquence et d'activité :
-
-- [🌱 Jeu de la vie - Projet POO](#-jeu-de-la-vie---projet-poo)
-- [🎮 DOCUMENTATION UTILISATEUR](#-documentation-utilisateur)
-  - [Sommaire](#sommaire)
-    - [📋 Présentation du Jeu de la vie](#-présentation-du-jeu-de-la-vie)
-    - [📐 Règles du Jeu](#-règles-du-jeu)
-    - [🚀 Modes de lancement](#-modes-de-lancement)
-    - [🔧 Instructions d'utilisation](#-instructions-dutilisation)
-      - [Pré-requis](#pré-requis)
-      - [📁 Organisation des fichiers](#-organisation-des-fichiers)
-    - [📦 Utilisation du Makefile](#-utilisation-du-makefile)
-    - [🎮 Étapes pour Lancer le programme](#-étapes-pour-lancer-le-programme)
-      - [1. Choix du Mode](#1-choix-du-mode)
-      - [2. Sélection du fichier d'entrée](#2-sélection-du-fichier-dentrée)
-      - [3. Configuration de la grille](#3-configuration-de-la-grille)
-    - [🖥️ Mode Terminal](#️-mode-terminal)
-    - [🖼️ Mode Graphique](#️-mode-graphique)
-    - [✨ Fonctionnalités générales](#-fonctionnalités-générales)
-    - [🛠️ Extensions, conseils \& astuces](#️-extensions-conseils--astuces)
-- [DOCUMENTATION TECHNIQUE](#documentation-technique)
-  - [Sommaire](#sommaire-1)
-  - [Introduction](#introduction)
-    - [Objectif du projet](#objectif-du-projet)
-    - [Structure du document](#structure-du-document)
-  - [Architecture du Projet](#architecture-du-projet)
-    - [Vue d'ensemble](#vue-densemble)
-    - [Couches d'abstraction](#couches-dabstraction)
-      - [IHM (Interface Homme-Machine)](#ihm-interface-homme-machine)
-      - [Logique](#logique)
-      - [Données](#données)
-  - [UML](#uml)
-    - [Diagramme de cas d'utilisation](#diagramme-de-cas-dutilisation)
-    - [Diagramme de classes](#diagramme-de-classes)
-    - [Diagramme de séquence](#diagramme-de-séquence)
-    - [Diagramme d'activité](#diagramme-dactivité)
-  - [Détails de l'Implémentation](#détails-de-limplémentation)
-    - [IHM (Interface Homme-Machine)](#ihm-interface-homme-machine-1)
-      - [Classe `Affichage`](#classe-affichage)
-      - [Classe `Console`](#classe-console)
-      - [Classe `Graphique`](#classe-graphique)
-    - [Logique](#logique-1)
-      - [Classe `JeuDeLaVie`](#classe-jeudelavie)
-      - [Classe `Fichier`](#classe-fichier)
-      - [Classe `Sauvegarde`](#classe-sauvegarde)
-      - [Classe `SauvegardeFichierTxt`](#classe-sauvegardefichiertxt)
-    - [Données](#données-1)
-      - [Classe `Grille`](#classe-grille)
-      - [Classe `Cellule`](#classe-cellule)
-  - [Choix de Conception et Justification](#choix-de-conception-et-justification)
-    - [Héritage](#héritage)
-    - [Polymorphisme](#polymorphisme)
-    - [Généricité](#généricité)
-    - [Autres choix de conception](#autres-choix-de-conception)
-  - [Tests et Validation](#tests-et-validation)
-    - [Tests unitaires](#tests-unitaires)
-    - [Tests d'intégration](#tests-dintégration)
-    - [Validation des fonctionnalités](#validation-des-fonctionnalités)
-  - [Conclusion](#conclusion)
-    - [Résumé des points clés](#résumé-des-points-clés)
-    - [Perspectives d'amélioration](#perspectives-damélioration)
-  - [👥 Contributeurs](#-contributeurs)
-  - [Références](#références)
 
 ## Introduction
 
@@ -290,7 +224,7 @@ Ce document est structuré en plusieurs sections pour faciliter la compréhensio
 ### Vue d'ensemble
 Le projet est divisé en trois couches principales : l'IHM, la logique, et les données. Chaque couche a un rôle spécifique et est conçue pour minimiser les dépendances entre elles.
 
-![Couche_Abstraction](Couche.png "La représentation des couches d'abstractions")
+![Couche_Abstraction](Illustrations/visualisation_strates_code.svg "La représentation des couches d'abstractions")
 
 ### Couches d'abstraction
 
