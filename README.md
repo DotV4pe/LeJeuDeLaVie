@@ -448,16 +448,72 @@ public:
 ## Tests et Validation
 
 ### Tests unitaires
-Utilisez des frameworks de tests unitaires (par exemple, Google Test) pour tester chaque classe individuellement.
 Les tests unitaires visent à valider différents comportements de classe dans notre Jeu de la Vie.
 Dans un premier temps, des tests sur la classe `Cellule`, ils permettent de tester les règles de vie et de mort de celle-ci. Avec une vérification de l'initialisation, de la reproduction et des types de morts (mort par isolement et mort par surpeuplement).
-Ensuite, nous pouvons retrouver les tests sur la classe `Grille`, nous allons d'abord vérifier si la grille est correctement initialisé avec le nombre de colonne, de ligne et la taille des pixels qui seront lié. Puis nous mettrons à jour une valeur de la grille à l'aide de la méthode `udapte(1,1,3)` (integer x,integer y,integer compteurDeVoisin). Et pour finir nous faisons des tests sur notre classe `JeuDeLaVie`, nous vérifions la mise à jour de la grille en comparant la grille avant et après une update, si elle change alors le test est validé.
-
-### Tests d'intégration
-Testez l'intégration des différentes classes pour s'assurer que le programme fonctionne correctement dans son ensemble.
+```cpp
+std::cout << "Initialisation" << std::endl;
+Cellule cell;
+if (cell.estVivant() == 0) { std::cout << "TEST PASSED ✅" << std::endl; }
+else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
+```
+Ensuite, nous pouvons retrouver les tests sur la classe `Grille`, nous allons d'abord vérifier si la grille est correctement initialisé avec le nombre de colonne, de ligne et la taille des pixels qui seront lié.
+```cpp
+std::cout << "Test nombre colonne" << std::endl;
+if (grille.get_nbColonne() == 5) { std::cout << "TEST PASSED ✅" << std::endl; }
+else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
+```
+Puis nous mettrons à jour une valeur de la grille à l'aide de la méthode `udapte(1,1,3)` (integer x,integer y,integer compteurDeVoisin). Et pour finir nous faisons des tests sur notre classe `JeuDeLaVie`, nous vérifions la mise à jour de la grille en comparant la grille avant et après une update, si elle change alors le test est validé.
+```cpp
+bool changed = false;
+for (size_t x = 0; x < grilleAvant.size(); ++x) {
+  for (size_t y = 0; y < grilleAvant[x].size(); ++y) {
+    if (grilleAvant[x][y].estVivant() != grilleApres[x][y].estVivant()) {
+      changed = true;
+      break;
+    }
+  }
+  if (changed) break;
+}
+if (changed == true) { std::cout << "TEST PASSED ✅" << std::endl; }
+else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
+```
 
 ### Validation des fonctionnalités
 Vérifiez que toutes les fonctionnalités du programme (modes de visualisation, sauvegarde, grille torique, etc.) fonctionnent comme prévu.
+__Affichage de la validation des tests :__
+```
+Cellule - Règles de vie et de mort, [Cellule]
+
+Initialisation
+TEST PASSED ✅
+Reproduction
+TEST PASSED ✅
+Mort par isolement
+TEST PASSED ✅
+Mort par surpeuplement
+TEST PASSED ✅
+
+Grille - Initialisation et manipulation, [Grille]
+
+Initialisation
+Fichier test.txt ouvert avec succès !
+Test nombre colonne
+TEST PASSED ✅
+Test nombre ligne
+TEST PASSED ✅
+Test taille grille
+TEST PASSED ✅
+Mise à jour des valeurs
+TEST PASSED ✅
+
+JeuDeLaVie - Mise à jour de la grille, [JeuDeLaVie]
+
+Mise à jour grille torique
+Fichier test.txt ouvert avec succès !
+TEST PASSED ✅
+
+Nombre de test échoué : 0 test(s).
+```
 
 ## Conclusion
 
