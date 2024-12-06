@@ -82,6 +82,7 @@ Le programme est une implémentation en C++ de l'automate cellulaire "Jeu de la 
   - [Tests et Validation](#tests-et-validation)
     - [Tests unitaires](#tests-unitaires)
     - [Vidéo d'exemple et validation des fonctionnalités](#vidéo-dexemple-et-validation-des-fonctionnalités)
+    - [Vidéo d'exemple et validation des fonctionnalités](#vidéo-dexemple-et-validation-des-fonctionnalités-1)
     - [Affichage de la validation des tests :](#affichage-de-la-validation-des-tests-)
   - [Conclusion](#conclusion)
     - [Résumé des points clés](#résumé-des-points-clés)
@@ -1024,9 +1025,12 @@ else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
 
 ### Vidéo d'exemple et validation des fonctionnalités
 
-<video controls="" width="800" height="500" muted="" loop="" autoplay="" style="display:block; margin-left:auto; margin-right:auto;">
-<source src="[Vidéo de démonstration](https://files.catbox.moe/jr7gsd.mp4)" type="video/mp4">
-</video>
+Voici une vidéo d'exemple pour notre programme :
+### Vidéo d'exemple et validation des fonctionnalités
+
+![Capture d'écran de la vidéo](Illustrations/Screenshot.png)
+
+[Voir la vidéo](https://files.catbox.moe/jr7gsd.mp4)
 
 
 --- 
