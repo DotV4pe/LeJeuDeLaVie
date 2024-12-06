@@ -480,6 +480,7 @@ else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
 
 ### Validation des fonctionnalités
 Vérifiez que toutes les fonctionnalités du programme (modes de visualisation, sauvegarde, grille torique, etc.) fonctionnent comme prévu.
+
 __Affichage de la validation des tests :__
 ```
 Cellule - Règles de vie et de mort, [Cellule]
