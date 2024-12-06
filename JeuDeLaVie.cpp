@@ -1,6 +1,6 @@
 #include "JeuDeLaVie.hpp"
 
-JeuDeLaVie::JeuDeLaVie() {}
+JeuDeLaVie::JeuDeLaVie() : torique(0) {}
 
 JeuDeLaVie::~JeuDeLaVie() {}
 
