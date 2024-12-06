@@ -1,11 +1,12 @@
 #include "Fichier.hpp"
+using namespace std;
 
-std::string Fichier::getNomFichier() { return nomFichier; }
+string Fichier::getNomFichier() { return nomFichier; }
 
-void Fichier::setDossierSortie(std::string ds) { dossierSortie = ds; }
+void Fichier::setDossierSortie(string ds) { dossierSortie = ds; }
 
 int Fichier::getTailleFichier() { return taille; }
 
-std::string Fichier::getDossierSortie() { return dossierSortie; }
+string Fichier::getDossierSortie() { return dossierSortie; }
 
-std::string Fichier::getcheminFichier() { return cheminFichier; }
+string Fichier::getcheminFichier() { return cheminFichier; }

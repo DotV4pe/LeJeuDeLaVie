@@ -1,4 +1,5 @@
 #include "JeuDeLaVie.hpp"
+using namespace std;
 
 JeuDeLaVie::JeuDeLaVie() : torique(0) {}
 
@@ -8,31 +9,31 @@ void JeuDeLaVie::run(Grille& grid, Fichier *f, int mode) {
     int temps, iterations, cycle = 0;
     bool continuer = true;
 
-    std::cout << "Voulez-vous une grille torique : " << std::endl;
-    std::cout << "0. Oui" << std::endl;
-    std::cout << "1. Non" << std::endl;
-    std::cout << "Votre choix : ";
-    std::cin >> torique;
+    cout << "Voulez-vous une grille torique : " << endl;
+    cout << "0. Oui" << endl;
+    cout << "1. Non" << endl;
+    cout << "Votre choix : ";
+    cin >> torique;
     if (torique == 0){
-        std::cout << "Grille torique initialisée \n" << std::endl;
+        cout << "Grille torique initialisée \n" << endl;
     } else {
-        std::cout << "Grille non torique initialisée \n" << std::endl;
+        cout << "Grille non torique initialisée \n" << endl;
     }
 
     Grille grillePrecedente;
-    std::vector<std::vector<Cellule>> donneeGriPre = grid.getGrille();
+    vector<vector<Cellule>> donneeGriPre = grid.getGrille();
     grillePrecedente.setGrille(donneeGriPre);
 
     if (mode == 1) {
         Console cons;
         Sauvegarde *s = new SauvegardeFichierTxt();
-        std::string cheminDossier = f->getDossierSortie(); // Utiliser le chemin du dossier de sortie
+        string cheminDossier = f->getDossierSortie(); // Utiliser le chemin du dossier de sortie
 
-        std::cout << "Nombre de cycles du jeu de la vie : ";
-        std::cin >> iterations;
+        cout << "Nombre de cycles du jeu de la vie : ";
+        cin >> iterations;
         while (continuer && cycle < iterations) {
             // Fichier de sortie pour chaque cycle
-            std::string nom_sortie = cheminDossier + "/cycle_" + std::to_string(cycle+1) + ".txt";
+            string nom_sortie = cheminDossier + "/cycle_" + to_string(cycle+1) + ".txt";
             s->sauvegarder(grid, nom_sortie);
             cons.affichage(grid, cycle);
             updateGrille(grid);
@@ -48,7 +49,7 @@ void JeuDeLaVie::run(Grille& grid, Fichier *f, int mode) {
             }
             
             if (!gridChanged) {
-                std::cout << "Grille stabilisée après " << cycle + 1 << " cycles." << std::endl;
+                cout << "Grille stabilisée après " << cycle + 1 << " cycles." << endl;
                 continuer = false;
             }
             
@@ -56,17 +57,17 @@ void JeuDeLaVie::run(Grille& grid, Fichier *f, int mode) {
             cycle++;
         }
         if (cycle == iterations) {
-            std::cout << "Nombre maximum de cycles atteint." << std::endl;
+            cout << "Nombre maximum de cycles atteint." << endl;
         }
         
         delete s;
     }
     else if (mode == 2) {
-        std::cout << "Entrez le temps de génération de chaque cycle (en ms) : ";
-        std::cin >> temps;
-        std::cout << "Temps initialisé à " << temps << "ms\n" << std::endl;
+        cout << "Entrez le temps de génération de chaque cycle (en ms) : ";
+        cin >> temps;
+        cout << "Temps initialisé à " << temps << "ms\n" << endl;
         Graphique graph;
-        std::cout << grid.get_nbColonne() << ", " << grid.get_nbLigne() << std::endl;
+        cout << grid.get_nbColonne() << ", " << grid.get_nbLigne() << endl;
         sf::RenderWindow window(sf::VideoMode(grid.get_nbColonne() * grid.getTaille(), grid.get_nbLigne() * grid.getTaille()), "Le Jeu de la Vie");
         while (window.isOpen()) {
             sf::Event event;
@@ -90,7 +91,7 @@ void JeuDeLaVie::run(Grille& grid, Fichier *f, int mode) {
             }
             
             if (!gridChanged) {
-                std::cout << "Grille stabilisée." << std::endl;
+                cout << "Grille stabilisée." << endl;
                 window.close();
             }
             
@@ -103,7 +104,7 @@ void JeuDeLaVie::run(Grille& grid, Fichier *f, int mode) {
 
 void JeuDeLaVie::updateGrille(Grille &grid) {
     if (torique == 0) {
-        std::vector<std::vector<Cellule>> tgrille = grid.getGrille();
+        vector<vector<Cellule>> tgrille = grid.getGrille();
         for (int x = 0; x < grid.get_nbColonne(); ++x) {
             for (int y = 0; y < grid.get_nbLigne(); ++y) {
                 int compteur = 0;
@@ -124,7 +125,7 @@ void JeuDeLaVie::updateGrille(Grille &grid) {
             }
         }
     } else if (torique == 1) {
-        std::vector<std::vector<Cellule>> tgrille = grid.getGrille();
+        vector<vector<Cellule>> tgrille = grid.getGrille();
 
         for (int x = 0; x < grid.get_nbColonne(); ++x) {
             for (int y = 0; y < grid.get_nbLigne(); ++y) {

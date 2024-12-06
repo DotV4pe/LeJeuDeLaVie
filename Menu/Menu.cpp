@@ -1,17 +1,18 @@
 #include "Menu.hpp"
+using namespace std;
 
 Menu::Menu() {}
 
 Menu::~Menu() {}
 
 void Menu::affichageMenu(){
-    std::cout << "\nVeuillez choisir le mode de visualisation :\n";
-    std::cout << "1. Terminal\n";
-    std::cout << "2. Graphique\n";
-    std::cout << "0. Quitter\n";
-    std::cout << "Votre choix : ";
-    std::cin >> mode;
-    std::cout << std::endl;
+    cout << "Veuillez choisir le mode de visualisation :" << endl;
+    cout << "1. Terminal"<< endl;
+    cout << "2. Graphique"<< endl;
+    cout << "0. Quitter"<< endl;
+    cout << "Votre choix : ";
+    cin >> mode;
+    cout << endl;
 }
 
 void Menu::lancer() {
@@ -21,7 +22,7 @@ void Menu::lancer() {
     affichageMenu();
     if (mode==0) { exit(0); }
     else if (mode != 1 && mode != 2) {
-        std::cout << "Mode incorrect ! Mode terminal choisi par défaut." << std::endl;
+        cout << "Mode incorrect ! Mode terminal choisi par défaut." << endl;
         mode = 1;
     }
     f->getChemin(mode);

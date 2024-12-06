@@ -1,4 +1,5 @@
 #include "Test.hpp"
+using namespace std;
 
 Test::Test() {}
 
@@ -7,76 +8,76 @@ Test::~Test() {}
 void Test::test() {
     int fail = 0;
 
-    std::cout << std::endl;
-    std::cout << "Cellule - Règles de vie et de mort, [Cellule]" << std::endl;
-    std::cout << std::endl;
+    cout << endl;
+    cout << "Cellule - Règles de vie et de mort, [Cellule]" << endl;
+    cout << endl;
 
-    std::cout << "Initialisation" << std::endl;
+    cout << "Initialisation" << endl;
     Cellule cell;
-    if (cell.estVivant() == 0) { std::cout << "TEST PASSED ✅" << std::endl; }
-    else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
+    if (cell.estVivant() == 0) { cout << "TEST PASSED ✅" << endl; }
+    else { cout << "TEST FAILED ❌" << endl; fail++; }
 
-    std::cout << "Reproduction" << std::endl;
+    cout << "Reproduction" << endl;
     cell.updateCellule(3);
-    if (cell.estVivant() == 1) { std::cout << "TEST PASSED ✅" << std::endl; }
-    else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
+    if (cell.estVivant() == 1) { cout << "TEST PASSED ✅" << endl; }
+    else { cout << "TEST FAILED ❌" << endl; fail++; }
 
     cell.setVie(1);
-    std::cout << "Mort par isolement" << std::endl;
+    cout << "Mort par isolement" << endl;
     cell.updateCellule(1);
-    if (cell.estVivant() == 0) { std::cout << "TEST PASSED ✅" << std::endl; }
-    else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
+    if (cell.estVivant() == 0) { cout << "TEST PASSED ✅" << endl; }
+    else { cout << "TEST FAILED ❌" << endl; fail++; }
 
     cell.setVie(1);
-    std::cout << "Mort par surpeuplement" << std::endl;
+    cout << "Mort par surpeuplement" << endl;
     cell.updateCellule(4);
-    if (cell.estVivant() == 0) { std::cout << "TEST PASSED ✅" << std::endl; }
-    else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
+    if (cell.estVivant() == 0) { cout << "TEST PASSED ✅" << endl; }
+    else { cout << "TEST FAILED ❌" << endl; fail++; }
 
-    std::cout << std::endl;
-    std::cout << "Grille - Initialisation et manipulation, [Grille]" << std::endl;
-    std::cout << std::endl;
+    cout << endl;
+    cout << "Grille - Initialisation et manipulation, [Grille]" << endl;
+    cout << endl;
     Grille grille;
     Fichier *fichier = new FichierTest;
 
     fichier->getChemin(1);
 
-    std::cout << "Initialisation" << std::endl;
+    cout << "Initialisation" << endl;
     grille.initializegrille(fichier);
 
-    std::cout << "Test nombre colonne" << std::endl;
-    if (grille.get_nbColonne() > 0) { std::cout << "TEST PASSED ✅" << std::endl; }
-    else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
+    cout << "Test nombre colonne" << endl;
+    if (grille.get_nbColonne() > 0) { cout << "TEST PASSED ✅" << endl; }
+    else { cout << "TEST FAILED ❌" << endl; fail++; }
 
-    std::cout << "Test nombre ligne" << std::endl;
-    if (grille.get_nbLigne() > 0) { std::cout << "TEST PASSED ✅" << std::endl; }
-    else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
+    cout << "Test nombre ligne" << endl;
+    if (grille.get_nbLigne() > 0) { cout << "TEST PASSED ✅" << endl; }
+    else { cout << "TEST FAILED ❌" << endl; fail++; }
     
-    std::cout << "Test taille grille" << std::endl;
-    if (grille.getTaille() > 0) { std::cout << "TEST PASSED ✅" << std::endl; }
-    else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
+    cout << "Test taille grille" << endl;
+    if (grille.getTaille() > 0) { cout << "TEST PASSED ✅" << endl; }
+    else { cout << "TEST FAILED ❌" << endl; fail++; }
 
-    std::cout << "Mise à jour des valeurs" << std::endl;
+    cout << "Mise à jour des valeurs" << endl;
     grille.update(1, 1, 3);
-    if (grille.getValeur(1, 1) == 1) { std::cout << "TEST PASSED ✅" << std::endl; }
-    else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
+    if (grille.getValeur(1, 1) == 1) { cout << "TEST PASSED ✅" << endl; }
+    else { cout << "TEST FAILED ❌" << endl; fail++; }
 
-    std::cout << std::endl;
-    std::cout << "JeuDeLaVie - Mise à jour de la grille, [JeuDeLaVie]" << std::endl;
-    std::cout << std::endl;
+    cout << endl;
+    cout << "JeuDeLaVie - Mise à jour de la grille, [JeuDeLaVie]" << endl;
+    cout << endl;
     JeuDeLaVie jeu;
     
-    std::cout << "Mise à jour grille torique" << std::endl;
+    cout << "Mise à jour grille torique" << endl;
     grille.initializegrille(fichier);
         
     // Sauvegarde de l'état initial
-    std::vector<std::vector<Cellule>> grilleAvant = grille.getGrille();
+    vector<vector<Cellule>> grilleAvant = grille.getGrille();
         
     // Mettre à jour la grille
     jeu.updateGrille(grille);
         
     // Vérifier que la grille a changé
-    std::vector<std::vector<Cellule>> grilleApres = grille.getGrille();
+    vector<vector<Cellule>> grilleApres = grille.getGrille();
         
     bool changed = false;
     for (size_t x = 0; x < grilleAvant.size(); ++x) {
@@ -88,9 +89,9 @@ void Test::test() {
         }
         if (changed) break;
     }
-    if (changed == true) { std::cout << "TEST PASSED ✅" << std::endl; }
-    else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
-    std::cout << std::endl;
+    if (changed == true) { cout << "TEST PASSED ✅" << endl; }
+    else { cout << "TEST FAILED ❌" << endl; fail++; }
+    cout << endl;
 
-    std::cout << "Nombre de test échoué : " << fail << " test(s)." << std::endl;
+    cout << "Nombre de test échoué : " << fail << " test(s)." << endl;
 }

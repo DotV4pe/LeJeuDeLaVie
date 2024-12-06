@@ -65,7 +65,6 @@ Le programme est une implémentation en C++ de l'automate cellulaire "Jeu de la 
     - [Autres choix de conception](#autres-choix-de-conception)
   - [Tests et Validation](#tests-et-validation)
     - [Tests unitaires](#tests-unitaires)
-    - [Tests d'intégration](#tests-dintégration)
     - [Validation des fonctionnalités](#validation-des-fonctionnalités)
   - [Conclusion](#conclusion)
     - [Résumé des points clés](#résumé-des-points-clés)
@@ -196,7 +195,7 @@ Voulez-vous une grille torique :
 
 - **Gestion automatique des dossiers** : Le programme crée et nettoie automatiquement les dossiers/fichiers nécessaires. En utilisant le mode terminal, vous pourrez retrouver vos fichiers dans un dossier nommé de la forme suivante : `<nom_du_fichier_dentree>_out`.
 - **Fichiers générés** : Chaque cycle est enregistré dans un fichier texte nommé de la forme `cycle_<n°_révision>.txt`, ce qui permet d'analyser ou de rejouer les simulations.
-- **Extensions des obstacles** : Le programme intègre une extension où vous pouvez choisir un obstacle (statique) qui peut agir comme une cellule vivante (`2`) ou comme une cellule morte (`3`).
+- **Extensions des obstacles** : Le programme intègre une extension où vous pouvez choisir un obstacle (statique) qui peut agir comme une cellule morte (`2`) ou comme une cellule vivante (`3`).
 
 ---
 
@@ -687,9 +686,10 @@ Nombre de test échoué : 0 test(s).
 - Les diagrammes UML et les détails d'implémentation fournissent une compréhension claire du code.
 
 ### Perspectives d'amélioration
-- Ajouter des fonctionnalités supplémentaires (par exemple, sauvegarde dans une base de données).
-- Optimiser les performances pour des grilles plus grandes.
-- Améliorer l'interface graphique.
+- Ajout d'une sauvegarde supplémentaire (par exemple, sauvegarde dans une base de données (d'où l'utilisation d'une classe abstraite pour la sauvegarde)).
+- Ajout d'un affichage supplémentaire (par exemple, un affichage web).
+- Optimiser les performances pour des grilles plus grandes (parrallélisation).
+- Améliorer l'interface graphique (choix du délais en direct, belle interface, etc.).
 
 ## 👥 Contributeurs
 

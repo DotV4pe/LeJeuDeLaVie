@@ -1,12 +1,13 @@
 #include "FichierTxt.hpp"
+using namespace std;
 
 FichierTxt::FichierTxt() : Fichier() {}
 
 FichierTxt::~FichierTxt() {}
 
 void FichierTxt::getChemin(int mode) {
-    std::cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
-    std::cin >> nomFichier;
+    cout << "Entrez le chemin du fichier de l'état initial des cellules : ";
+    cin >> nomFichier;
     if (nomFichier == "data") {
         taille = 190;
     } else if (nomFichier == "test") {
@@ -21,19 +22,19 @@ void FichierTxt::getChemin(int mode) {
     if (mode == 1) {
         // Créer le dossier de sortie
         setDossierSortie("./" + nomFichier + "_out/");
-        if (std::filesystem::exists(dossierSortie)) {
-            for (const auto& fichier : std::filesystem::directory_iterator(dossierSortie)) { // Parcours tout les éléments
-                if (std::filesystem::is_regular_file(fichier.path())) { // .path() : Récupère le chemin complet || is_regular_file() : Vérifie si cet élément est un fichier.
-                    std::filesystem::remove(fichier.path()); // Supprime le fichier
-                    std::cout << "Fichier supprimé" << std::endl;
+        if (filesystem::exists(dossierSortie)) {
+            for (const auto& fichier : filesystem::directory_iterator(dossierSortie)) { // Parcours tout les éléments
+                if (filesystem::is_regular_file(fichier.path())) { // .path() : Récupère le chemin complet || is_regular_file() : Vérifie si cet élément est un fichier.
+                    filesystem::remove(fichier.path()); // Supprime le fichier
+                    cout << "Fichier supprimé" << endl;
                 } 
             }
-            std::filesystem::remove(dossierSortie);
-            std::cout << "Le dossier a correctement était supprimé" << std::endl;
+            filesystem::remove(dossierSortie);
+            cout << "Le dossier a correctement été supprimé" << endl;
         }
-        std::filesystem::create_directory(dossierSortie);
-        if (std::filesystem::exists(dossierSortie)) {
-            std::cout << "Le dossier a correctement était créé" << std::endl;
+        filesystem::create_directory(dossierSortie);
+        if (filesystem::exists(dossierSortie)) {
+            cout << "Le dossier a correctement été créé" << endl;
         }
     }
 }

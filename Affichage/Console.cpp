@@ -1,12 +1,13 @@
 #include "Console.hpp"
+using namespace std;
 
 Console::Console() {}
 
 Console::~Console() {}
 
 void Console::affichage(Grille g, int iterations) {
-    std::string txt;
-    std::cout << "Grille n°" << (iterations+1) << " : " << std::endl;
+    string txt;
+    cout << "Grille n°" << (iterations+1) << " : " << endl;
     for (int x = 0; x < g.get_nbLigne(); ++x) {
         for (int y = 0; y < g.get_nbColonne(); ++y) {
             if (g.getValeur(y,x) == 0) {
@@ -17,9 +18,9 @@ void Console::affichage(Grille g, int iterations) {
                 txt = "2 ";
             } else if (g.getValeur(y,x) == 3) {
                 txt = "3 ";
-            } std::cout << txt;
+            } cout << txt;
         }
-        std::cout << std::endl;
+        cout << endl;
     }
-    std::cout << std::endl;
+    cout << endl;
 }
