@@ -476,6 +476,7 @@ public:
 ```
 
 Rôle : Implémentation de l'affichage graphique.
+
 Caractéristiques :
 - Dérive de la classe ``Affichage``.
 - Implemente la méthode ``affichage(Grille g, sf::RenderWindow &window)`` pour afficher l'état de la grille dans une fenêtre graphique.
@@ -500,6 +501,7 @@ public:
 ```
 
 Rôle : Gestion de la simulation du jeu de la vie.
+
 Caractéristiques :
 - Utilise une structure de grille (``Grille``), des fichiers (``Fichier``), et la sauvegarde (``Sauvegarde``).
 - Attributs :
@@ -532,6 +534,7 @@ public:
 ```
 
 Rôle : Classe mère pour la gestion des fichiers.
+
 Caractéristiques :
 - Définit une interface pour manipuler les fichiers, avec des méthodes virtuelles comme `getChemin`.
 - Attributs :
