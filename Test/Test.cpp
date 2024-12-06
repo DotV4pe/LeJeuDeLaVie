@@ -15,25 +15,28 @@ void Test::test() {
 
     cout << "Initialisation" << endl;
     Cellule cell;
+
     assert(cell.estVivant() == 0);
-    cout << "TEST PASSED ✅" << endl;
+    cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl;
 
     cout << "Reproduction" << endl;
     cell.updateCellule(1);
     assert(cell.estVivant() == 1);
-    cout << "TEST PASSED ✅" << endl;
+    cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl;
 
     cell.setVie(1);
     cout << "Mort par isolement" << endl;
     cell.updateCellule(1);
+
     assert(cell.estVivant() == 0);
-    cout << "TEST PASSED ✅" << endl;
+    cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl;
 
     cell.setVie(1);
     cout << "Mort par surpeuplement" << endl;
     cell.updateCellule(4);
+
     assert(cell.estVivant() == 0);
-    cout << "TEST PASSED ✅" << endl;
+    cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl;
 
     cout << endl;
     cout << "Grille - Initialisation et manipulation, [Grille]" << endl;
@@ -47,21 +50,22 @@ void Test::test() {
     grille.initializegrille(fichier);
 
     cout << "Test nombre colonne" << endl;
+
     assert(grille.get_nbColonne() > 0);
-    cout << "TEST PASSED ✅" << endl;
+    cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl;
 
     cout << "Test nombre ligne" << endl;
     assert(grille.get_nbLigne() > 0);
-    cout << "TEST PASSED ✅" << endl;
+    cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl;
     
     cout << "Test taille grille" << endl;
     assert(grille.getTaille() > 0);
-    cout << "TEST PASSED ✅" << endl;
+    cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl;
 
     cout << "Mise à jour des valeurs" << endl;
     grille.update(1, 1, 3);
     assert(grille.getValeur(1, 1) == 1);
-    cout << "TEST PASSED ✅" << endl;
+    cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl;
 
     cout << endl;
     cout << "JeuDeLaVie - Mise à jour de la grille, [JeuDeLaVie]" << endl;
@@ -90,7 +94,8 @@ void Test::test() {
         }
         if (changed) break;
     }
+
     assert(changed == true);
-    cout << "TEST PASSED ✅" << endl;
+    cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl;
     cout << endl;
 }
