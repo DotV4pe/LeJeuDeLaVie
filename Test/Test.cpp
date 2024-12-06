@@ -20,7 +20,7 @@ void Test::test() {
     cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl;
 
     cout << "Reproduction" << endl;
-    cell.updateCellule(1);
+    cell.updateCellule(3);
     assert(cell.estVivant() == 1);
     cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl;
 
