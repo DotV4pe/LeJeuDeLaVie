@@ -93,5 +93,5 @@ void Test::test() {
     else { cout << "\033[1;31mTEST FAILED ❌\033[0m" << endl; fail++; }
     cout << endl;
 
-    cout << "Nombre de test échoué : " << fail << " test(s)." << endl;
+    cout << "Nombre de test échoué : " << fail << " test(s).\n" << endl;
 }
