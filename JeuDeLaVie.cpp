@@ -1,11 +1,13 @@
 #include "JeuDeLaVie.hpp"
 
-JeuDeLaVie::JeuDeLaVie() {}
+JeuDeLaVie::JeuDeLaVie() : torique(0) {}
 
 JeuDeLaVie::~JeuDeLaVie() {}
 
-void JeuDeLaVie::run(Grille grid, Fichier *f, int mode) {
-    int temps, iterations;
+void JeuDeLaVie::run(Grille& grid, Fichier *f, int mode) {
+    int temps, iterations, cycle = 0;
+    bool continuer = true;
+
     std::cout << "Voulez-vous une grille torique : " << std::endl;
     std::cout << "0. Oui" << std::endl;
     std::cout << "1. Non" << std::endl;
@@ -16,6 +18,11 @@ void JeuDeLaVie::run(Grille grid, Fichier *f, int mode) {
     } else {
         std::cout << "Grille non torique initialisée \n" << std::endl;
     }
+
+    Grille grillePrecedente;
+    std::vector<std::vector<Cellule>> donneeGriPre = grid.getGrille();
+    grillePrecedente.setGrille(donneeGriPre);
+
     if (mode == 1) {
         Console cons;
         Sauvegarde *s = new SauvegardeFichierTxt();
@@ -23,13 +30,36 @@ void JeuDeLaVie::run(Grille grid, Fichier *f, int mode) {
 
         std::cout << "Nombre de cycles du jeu de la vie : ";
         std::cin >> iterations;
-        for (int cycle = 0; cycle < iterations; cycle++) {
+        while (continuer && cycle < iterations) {
             // Fichier de sortie pour chaque cycle
             std::string nom_sortie = cheminDossier + "/cycle_" + std::to_string(cycle+1) + ".txt";
             s->sauvegarder(grid, nom_sortie);
             cons.affichage(grid, cycle);
             updateGrille(grid);
+            bool gridChanged = false;
+            for (int x = 0; x < grid.get_nbColonne(); ++x) {
+                for (int y = 0; y < grid.get_nbLigne(); ++y) {
+                    if (grid.getValeur(x,y) != grillePrecedente.getValeur(x,y)) {
+                        gridChanged = true;
+                        break;
+                    }
+                }
+                if (gridChanged) break;
+            }
+            
+            if (!gridChanged) {
+                std::cout << "Grille stabilisée après " << cycle + 1 << " cycles." << std::endl;
+                continuer = false;
+            }
+            
+            grillePrecedente = grid;
+            cycle++;
         }
+        if (cycle == iterations) {
+            std::cout << "Nombre maximum de cycles atteint." << std::endl;
+        }
+        
+        delete s;
     }
     else if (mode == 2) {
         std::cout << "Entrez le temps de génération de chaque cycle (en ms) : ";
@@ -47,6 +77,24 @@ void JeuDeLaVie::run(Grille grid, Fichier *f, int mode) {
             
             graph.affichage(grid, window);
             updateGrille(grid);
+
+            bool gridChanged = false;
+            for (int x = 0; x < grid.get_nbColonne(); ++x) {
+                for (int y = 0; y < grid.get_nbLigne(); ++y) {
+                    if (grid.getValeur(x,y) != grillePrecedente.getValeur(x,y)) {
+                        gridChanged = true;
+                        break;
+                    }
+                }
+                if (gridChanged) break;
+            }
+            
+            if (!gridChanged) {
+                std::cout << "Grille stabilisée." << std::endl;
+                window.close();
+            }
+            
+            grillePrecedente = grid;
                 
             sf::sleep(sf::milliseconds(temps));
         }

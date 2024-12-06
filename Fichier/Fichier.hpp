@@ -16,7 +16,7 @@ public:
     virtual void getChemin(int mode) = 0;
     virtual void setDossierSortie(std::string ds);
     virtual std::string getNomFichier();
-    virtual int getTaille();
+    virtual int getTailleFichier();
     virtual std::string getDossierSortie();
     virtual std::string getcheminFichier();
 };

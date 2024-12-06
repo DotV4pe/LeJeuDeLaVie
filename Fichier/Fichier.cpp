@@ -4,7 +4,7 @@ std::string Fichier::getNomFichier() { return nomFichier; }
 
 void Fichier::setDossierSortie(std::string ds) { dossierSortie = ds; }
 
-int Fichier::getTaille() { return taille; }
+int Fichier::getTailleFichier() { return taille; }
 
 std::string Fichier::getDossierSortie() { return dossierSortie; }
 

@@ -14,13 +14,12 @@ int Grille::getValeur(int x, int y) const { return grille[x][y].estVivant(); }
 
 std::vector<std::vector<Cellule>> Grille::getGrille() { return grille; }
 
-void Grille::update(int x,int y, int compt) { grille[x][y].update(compt); }
+void Grille::update(int x,int y, int compt) { grille[x][y].updateCellule(compt); }
 
 void Grille::setGrille(std::vector<std::vector<Cellule>> g) { grille = g; }
 
 void Grille::initializegrille(Fichier *f) {
     int temp;
-
     std::ifstream monFlux(f->getcheminFichier());
     if (!monFlux) {
         std::cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << std::endl;
@@ -29,12 +28,10 @@ void Grille::initializegrille(Fichier *f) {
         std::cout << "Fichier " << f->getNomFichier() << ".txt ouvert avec succès !" << std::endl;
     }
 
-    std::cout << std::endl;
-
     monFlux >> nbLigne >> nbColonne;
-    cellSize = f->getTaille();
+    cellSize = f->getTailleFichier();
 
-    std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule(0)));
+    std::vector<std::vector<Cellule>> gr(get_nbColonne(), std::vector<Cellule>(get_nbLigne(), Cellule()));
     setGrille(gr);
 
     for (int y = 0; y < get_nbLigne(); ++y) {
