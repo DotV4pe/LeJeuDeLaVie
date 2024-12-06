@@ -1,5 +1,4 @@
-#ifndef GRILLE_H
-#define GRILLE_H
+#pragma once
 
 #include <vector>
 #include <fstream>
@@ -28,5 +27,3 @@ public:
     void setGrille(std::vector<std::vector<Cellule>> g);
     void initializegrille(Fichier *f);
 };
-
-#endif
