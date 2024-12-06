@@ -641,7 +641,7 @@ else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
 ```
 
 ### Validation des fonctionnalités
-Vérifiez que toutes les fonctionnalités du programme (modes de visualisation, sauvegarde, grille torique, etc.) fonctionnent comme prévu.
+A compléter
 
 __Affichage de la validation des tests :__
 ```
