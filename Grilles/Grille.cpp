@@ -19,33 +19,37 @@ void Grille::update(int x,int y, int compt) { grille[x][y].updateCellule(compt);
 
 void Grille::setGrille(vector<vector<Cellule>> g) { grille = g; } // Mets à jour la grille
 
+// Méthode pour initialiser la grille à partir d'un fichier
 void Grille::initializegrille(Fichier *f) {
     int temp;
     // Ouverture du fichier en mode lecture
     ifstream monFlux(f->getcheminFichier());
+
+    // Vérifie si le fichier a été ouvert avec succès
     if (!monFlux) {
         cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << endl;
-        exit(0);
+        exit(0); // Termine le programme en cas d'erreur
     } else {
         cout << "Fichier " << f->getNomFichier() << ".txt ouvert avec succès !" << endl;
     }
-     
-    
-    monFlux >> nbLigne >> nbColonne;
-    cellSize = f->getTailleFichier();
+  
+    monFlux >> nbLigne >> nbColonne;  // Lit le nombre de lignes et de colonnes à partir du fichier
+    cellSize = f->getTailleFichier(); // Lis la taille des cellules à partir du fichier
 
+    // Créé une nouvelle grille avec les dimensions lues
     vector<vector<Cellule>> gr(get_nbColonne(), vector<Cellule>(get_nbLigne(), Cellule()));
-    setGrille(gr);
+    setGrille(gr); // Définit la grille de la classe avec la nouvelle grille
 
+    // Lis les valeurs de chaque cellule à partir du fichier
     for (int y = 0; y < get_nbLigne(); ++y) {
         for (int x = 0; x < get_nbColonne(); ++x) {
             if (!(monFlux >> temp)) {
                 cout << "Erreur: Lecture échouée à la position (" << x << ", " << y << ")." << endl;
-                return;
+                return; // Termine la méthode en cas d'erreur de lecture
             }
-            // Initialiser la cellule en fonction de la valeur lue
+            // Initialise la cellule en fonction de la valeur lue
             grille[x][y] = Cellule(temp);
         }
     }
-    monFlux.close();
+    monFlux.close(); // Ferme le fichier après la lecture
 }
