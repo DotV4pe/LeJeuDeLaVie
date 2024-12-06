@@ -1023,9 +1023,11 @@ else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
 --- 
 
 ### Vidéo d'exemple et validation des fonctionnalités
-<video controls style="display:block; margin-left:auto; margin-right:auto;">
-  <source src="Illustrations/video_demo.mp4" type="video/mp4">
+
+<video controls="" width="800" height="500" muted="" loop="" autoplay="" style="display:block; margin-left:auto; margin-right:auto;">
+<source src="Illustrations/video_demo.mp4" type="video/mp4">
 </video>
+
 
 --- 
 ### Affichage de la validation des tests :
