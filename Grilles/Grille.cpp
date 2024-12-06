@@ -5,23 +5,24 @@ Grille::Grille() {}
 
 Grille::~Grille() {}
 
-int Grille::getTaille() const { return cellSize; }
+int Grille::getTaille() const { return cellSize; } // Retourne la taille des pixels
 
-int Grille::get_nbColonne() const { return nbColonne; }
+int Grille::get_nbColonne() const { return nbColonne; } // Retourne le nombre de colonne
 
-int Grille::get_nbLigne() const { return nbLigne; }
+int Grille::get_nbLigne() const { return nbLigne; } // Retourne le nombre de ligne
 
-int Grille::getValeur(int x, int y) const { return grille[x][y].estVivant(); }
+int Grille::getValeur(int x, int y) const { return grille[x][y].estVivant(); } // Retourne la valeur de la Cellule à la position (x, y)
 
-vector<vector<Cellule>> Grille::getGrille() { return grille; }
+vector<vector<Cellule>> Grille::getGrille() { return grille; } // Renvoie la grille
 
-void Grille::update(int x,int y, int compt) { grille[x][y].updateCellule(compt); }
+void Grille::update(int x,int y, int compt) { grille[x][y].updateCellule(compt); } // Mets à jour la Cellule à la position (x, y)
 
-void Grille::setGrille(vector<vector<Cellule>> g) { grille = g; }
+void Grille::setGrille(vector<vector<Cellule>> g) { grille = g; } // Mets à jour la grille
 
 // Méthode pour initialiser la grille à partir d'un fichier
 void Grille::initializegrille(Fichier *f) {
     int temp;
+    // Ouverture du fichier en mode lecture
     ifstream monFlux(f->getcheminFichier());
 
     // Vérifie si le fichier a été ouvert avec succès
@@ -31,9 +32,8 @@ void Grille::initializegrille(Fichier *f) {
     } else {
         cout << "Fichier " << f->getNomFichier() << ".txt ouvert avec succès !" << endl;
     }
-
-    // Lit le nombre de lignes et de colonnes à partir du fichier
-    monFlux >> nbLigne >> nbColonne;
+  
+    monFlux >> nbLigne >> nbColonne;  // Lit le nombre de lignes et de colonnes à partir du fichier
     cellSize = f->getTailleFichier(); // Lis la taille des cellules à partir du fichier
 
     // Créé une nouvelle grille avec les dimensions lues

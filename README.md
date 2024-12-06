@@ -20,8 +20,12 @@ Le programme est une implémentation en C++ de l'automate cellulaire "Jeu de la 
     - [🚀 Modes de lancement](#-modes-de-lancement)
     - [🔧 Instructions d'utilisation](#-instructions-dutilisation)
       - [Pré-requis](#pré-requis)
-      - [📁 Organisation des fichiers](#-organisation-des-fichiers)
+    - [🚀 Installation](#-installation)
+      - [Environnement de développement](#environnement-de-développement)
+      - [Dépendances](#dépendances)
+      - [Clonage et compilation](#clonage-et-compilation)
     - [📦 Utilisation du Makefile](#-utilisation-du-makefile)
+      - [📁 Organisation des fichiers](#-organisation-des-fichiers)
     - [🎮 Étapes pour Lancer le programme](#-étapes-pour-lancer-le-programme)
       - [1. Choix du Mode](#1-choix-du-mode)
       - [2. Sélection du fichier d'entrée](#2-sélection-du-fichier-dentrée)
@@ -32,7 +36,6 @@ Le programme est une implémentation en C++ de l'automate cellulaire "Jeu de la 
     - [🛠️ Extensions, conseils \& astuces](#️-extensions-conseils--astuces)
 - [DOCUMENTATION TECHNIQUE](#documentation-technique)
   - [Introduction](#introduction)
-    - [Objectif du projet](#objectif-du-projet)
     - [Structure du document](#structure-du-document)
   - [Architecture du Projet](#architecture-du-projet)
     - [Vue d'ensemble](#vue-densemble)
@@ -40,6 +43,7 @@ Le programme est une implémentation en C++ de l'automate cellulaire "Jeu de la 
       - [IHM (Interface Homme-Machine)](#ihm-interface-homme-machine)
       - [Logique](#logique)
       - [Données](#données)
+      - [Les Tests Unitaires (optionnel)](#les-tests-unitaires-optionnel)
   - [UML](#uml)
     - [Diagramme de cas d'utilisation](#diagramme-de-cas-dutilisation)
     - [Diagramme de classes](#diagramme-de-classes)
@@ -103,21 +107,37 @@ Assurez-vous d'avoir les dépendances nécessaires :
 - **Compilateur C++ (gcc/g++)**
 - **SFML** (pour le mode graphique)
 
-#### 📁 Organisation des fichiers
+### 🚀 Installation
 
-Votre programme utilise des fichiers pour initialiser l'état des cellules. Vous devrez fournir un fichier texte contenant une grille de cellules (vivantes (`1`) ou mortes(`0`)). La première ligne permettra de spécifier la taille de la grille (hauteur & largeur) comme suit :
+#### Environnement de développement
+
+Pour compiler et exécuter le programme, vous aurez besoin des éléments cités précédemment.
+
+#### Dépendances
+
+Sous Ubuntu, les dépendances nécessaires peuvent être installées avec les commandes suivantes :
+
+```bash
+sudo apt-get update
+sudo apt-get install g++ libsfml-dev make
 ```
-5 10
-0 0 1 0 0 0 0 0 0 0
-0 0 0 1 0 0 0 0 0 0
-0 1 1 1 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0
-```
-Ici, `1` représente une cellule vivante, et `0` une cellule morte.
 
----
 
+#### Clonage et compilation
+
+1. **Clonez le dépôt Git du projet** :
+
+   ```bash
+   git clone https://github.com/DotV4pe/LeJeuDeLaVie.git
+   ```
+
+2. **Naviguez jusqu'au répertoire du projet** :
+
+   ```bash
+   cd LeJeuDeLaVie
+   ```
+
+  
 ### 📦 Utilisation du Makefile
 
 Le **Makefile** simplifie la compilation et l'exécution du programme. Voici les commandes disponibles :
@@ -142,6 +162,23 @@ Le **Makefile** simplifie la compilation et l'exécution du programme. Voici les
 
 ---
 
+#### 📁 Organisation des fichiers
+
+Votre programme utilise des fichiers pour initialiser l'état des cellules. Vous devrez fournir un fichier texte contenant une grille de cellules (vivantes `1` ou mortes `0`). La première ligne permettra de spécifier la taille de la grille (hauteur & largeur) comme suit :
+```
+5 10
+0 0 1 0 0 0 0 0 0 0
+0 0 0 1 0 0 0 0 0 0
+0 1 1 1 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+```
+Ici, `1` représente une cellule vivante, et `0` une cellule morte.
+
+⚠ Lorsque vous voulez importer un fichier comportant une matrice et sa taille, veuillez l'intégrer dans le dossiers `Matrices`. Sinon, le fichier d'entrée ne pourra pas être lu. ⚠
+
+---
+
 ### 🎮 Étapes pour Lancer le programme
 
 #### 1. Choix du Mode
@@ -151,7 +188,7 @@ Au lancement, choisissez le mode de visualisation :
 - **0** : Quitter
 
 #### 2. Sélection du fichier d'entrée
-Indiquez le fichier d'état initial des cellules sans son extension. Exemple :
+Indiquez le fichier d'état initial des cellules **sans son extension**. Exemple :
 ```
 Veuillez renseigner votre fichier : data
 ```
@@ -207,13 +244,12 @@ Voulez-vous une grille torique :
 ---
 
 
+
+
 # DOCUMENTATION TECHNIQUE
 
 
 ## Introduction
-
-### Objectif du projet
-Le projet "Jeu de la Vie" vise à implémenter un automate cellulaire en C++ en utilisant les principes de la programmation orientée objet (POO). Le programme permet de simuler l'évolution de cellules sur une grille bidimensionnelle selon les règles définies par John Conway.
 
 ### Structure du document
 Ce document est structuré en plusieurs sections pour faciliter la compréhension et l'utilisation du code. Il inclut une vue d'ensemble de l'architecture, des détails d'implémentation, des choix de conception, et des informations sur la compilation et l'exécution.
@@ -223,7 +259,11 @@ Ce document est structuré en plusieurs sections pour faciliter la compréhensio
 ### Vue d'ensemble
 Le projet est divisé en trois couches principales : l'IHM, la logique, et les données. Chaque couche a un rôle spécifique et est conçue pour minimiser les dépendances entre elles.
 
-![Couche_Abstraction](Illustrations/visualisation_strates_code.svg "La représentation des couches d'abstractions")
+
+<p align="center">
+    <img src="Illustrations/visualisation_strates_code.svg" alt="Couche_Abstraction" width="700">
+</p>
+
 
 ### Couches d'abstraction
 
@@ -231,22 +271,49 @@ Le projet est divisé en trois couches principales : l'IHM, la logique, et les d
 - **Classe `Affichage`** : Classe mère pour les affichages.
 - **Classe `Console`** : Affichage textuel.
 - **Classe `Graphique`** : Affichage graphique.
+- **Classe `Menu`** : Permet de créer le Jeu de la Vie.
 
 #### Logique
 - **Classe `JeuDeLaVie`** : Gestion de la simulation.
 - **Classe `Fichier`** : Gestion des fichiers.
+- **Classe `FichierTxt`** : Gestion des fichiers textes.
 - **Classe `Sauvegarde`** : Sauvegarde des états.
 - **Classe `SauvegardeFichierTxt`** : Sauvegarde dans des fichiers texte.
-- **Classe `GrilleMaj`** : Mise à jour de la grille.
 
 #### Données
 - **Classe `Grille`** : Représentation de la grille.
 - **Classe `Cellule`** : Représentation des cellules.
 
+#### Les Tests Unitaires (optionnel)
+- **Classe `FichierTest`** : Comporte des méthodes testant la classe
+- **Classe `Test`** : Permet de lancer et valider ou non les tests unitaires.
+
+
 ## UML
 
 ### Diagramme de cas d'utilisation
-![Diagramme de cas d'utilisation](Couche.png "Diagramme de cas d'utilisation")
+![Diagramme de cas d'utilisation](Illustrations/Diagramme_de_cas_dutilisation.svg "Diagramme de cas d'utilisation")
+
+Le diagramme de cas d'utilisation nous aide à observer les principaux cas d'utilisation de notre Jeu. Les principales fonctionnalités sont les suivantes
+
+- Démarrer un nouveau jeu
+- Choix du fichier d'entrée
+- Lancement du mode graphique
+- Lancement du mode terminal
+- Intégrer de nouveaux modèles à l'aide de raccourcis clavier
+- Visualiser les cellules vivantes, les cellules mortes et les obstacles
+- Choisir le nombre d'itérations
+- Sauvegarder le jeu en générant des fichiers de sortie
+
+Les principaux choix de conception sont les suivants :
+
+- Séparer les modes graphique et terminal pour prendre en charge les différentes préférences des utilisateurs et les différents cas d'utilisation.
+- Permettre aux utilisateurs de personnaliser le jeu en intégrant de nouveaux modèles
+- Fournir des fonctions de visualisation pour suivre l'évolution du jeu
+-Permettre aux utilisateurs de contrôler la durée de la simulation en définissant le nombre d'itérations.
+- Sauvegarder l'état du jeu pour le retrouver plus tard
+
+
 ### Diagramme de classes
 ```mermaid
 classDiagram
@@ -434,6 +501,14 @@ public:
 };
 ```
 
+Rôle : Classe mère pour les systèmes d'affichage.
+
+Fonctionnalités : Définit deux méthodes ``affichage`` qui doivent être implémentées par les classes dérivées :
+- **Affichage textuel** : Utilise une grille et un nombre d'itérations.
+- **Affichage graphique** : Utilise une grille et une fenêtre ``sf::RenderWindow`` pour une représentation visuelle.
+
+C'est une classe abstraite (avec des méthodes virtuelles pures ``= 0``).
+
 #### Classe `Console`
 Dérive de `Affichage` et implémente l'affichage textuel.
 
@@ -447,6 +522,13 @@ public:
 };
 ```
 
+Rôle : Implémentation de l'affichage textuel.
+
+Caractéristiques : 
+- Dérive de la classe ``Affichage``.
+- Implemente la méthode ``affichage(Grille g, int iterations)`` pour afficher l'état de la grille dans la console.
+- Ne fait rien pour ``affichage(Grille g, sf::RenderWindow &window)`` (méthode vide).
+
 #### Classe `Graphique`
 Dérive de `Affichage` et implémente l'affichage graphique.
 
@@ -459,6 +541,13 @@ public:
     virtual void affichage(Grille g, int iterations) {}
 };
 ```
+
+Rôle : Implémentation de l'affichage graphique.
+
+Caractéristiques :
+- Dérive de la classe ``Affichage``.
+- Implemente la méthode ``affichage(Grille g, sf::RenderWindow &window)`` pour afficher l'état de la grille dans une fenêtre graphique.
+- Ne fait rien pour ``affichage(Grille g, int iterations)`` (méthode vide).
 
 ### Logique
 
@@ -477,6 +566,17 @@ public:
     void updateGrille(Grille &grid);
 };
 ```
+
+Rôle : Gestion de la simulation du jeu de la vie.
+
+Caractéristiques :
+- Utilise une structure de grille (``Grille``), des fichiers (``Fichier``), et la sauvegarde (``Sauvegarde``).
+- Attributs :
+   - ``tgrille`` : Une matrice de cellules représentant l'état courant.
+   - ``torique`` : Spécifie si les bords de la grille sont connectés de manière torique.
+- Méthodes principales :
+   - ``run`` : Lance la simulation à l'aide des paramètres fournis.
+   - ``updateGrille`` : Met à jour l'état de la grille selon les règles du jeu.
 
 #### Classe `Fichier`
 Classe mère pour la gestion des fichiers. Elle définit une interface commune pour la gestion des fichiers.
@@ -500,6 +600,19 @@ public:
 };
 ```
 
+Rôle : Classe mère pour la gestion des fichiers.
+
+Caractéristiques :
+- Définit une interface pour manipuler les fichiers, avec des méthodes virtuelles comme `getChemin`.
+- Attributs :
+   - ``nomFichier`` : Nom du fichier.
+   - `taille` : Taille du fichier.
+   - `dossierSortie` : Dossier où les fichiers sont sauvegardés.
+   - `cheminFichier` : Chemin complet du fichier.
+- Méthodes principales :
+   - ``getChemin`` : Récupère le chemin complet (méthode virtuelle pure).
+   - ``setDossierSortie`` : Définit le dossier de sortie.
+
 #### Classe `Sauvegarde`
 Classe mère pour la sauvegarde des états. Elle définit une interface commune pour la sauvegarde des états.
 
@@ -511,6 +624,11 @@ public:
 };
 ```
 
+Rôle : Classe mère pour la sauvegarde des états de la grille.
+
+Caractéristiques :
+- Définit une interface commune pour la sauvegarde (méthode virtuelle pure ``sauvegarder``).
+
 #### Classe `SauvegardeFichierTxt`
 Dérive de `Sauvegarde` et implémente la sauvegarde dans des fichiers texte.
 
@@ -521,6 +639,12 @@ public:
     void sauvegarder(const Grille g, const std::string& nomFichier) override;
 };
 ```
+
+Rôle : Implémente la sauvegarde des états dans des fichiers texte.
+
+Caractéristiques :
+- Dérive de ``Sauvegarde``.
+- Implemente la méthode ``sauvegarder`` pour enregistrer une grille dans un fichier texte avec un nom donné.
 
 ### Données
 
@@ -549,6 +673,19 @@ public:
 };
 ```
 
+Rôle : Représente la grille de cellules.
+
+Caractéristiques :
+- Attributs :
+   - ``cellSize`` : Taille des cellules.
+   - ``nbColonne`` et ``nbLigne`` : Dimensions de la grille.
+   - ``grille`` : Matrice de cellules (std::vector<std::vector<Cellule>>).
+- Méthodes principales :
+   - ``getTaille`` : Retourne la taille de la grille.
+   - ``getValeur`` : Retourne la valeur d'une cellule à une position donnée.
+   - ``update`` : Met à jour une cellule en fonction du comptage de voisins.
+   - ``initializegrille`` : Initialise la grille à partir d'un fichier.
+
 #### Classe `Cellule`
 Représente une cellule. Elle contient des méthodes pour manipuler l'état de la cellule.
 
@@ -564,6 +701,16 @@ public:
     void update(int voisinVivant);
 };
 ```
+
+Rôle : Représente une cellule individuelle.
+
+Caractéristiques :
+- Attributs :
+   - ``vivant`` : État de la cellule (1 pour vivant, 0 pour mort).
+- Méthodes principales :
+   - ``estVivant`` : Retourne si la cellule est vivante.
+   - ``setVie`` : Définit l'état de la cellule.
+   - ``update`` : Met à jour l'état de la cellule en fonction du nombre de voisins vivants.
 
 ## Choix de Conception et Justification
 
