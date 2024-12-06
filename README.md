@@ -70,6 +70,7 @@ Le programme est une implémentation en C++ de l'automate cellulaire "Jeu de la 
   - [Tests et Validation](#tests-et-validation)
     - [Tests unitaires](#tests-unitaires)
     - [Validation des fonctionnalités](#validation-des-fonctionnalités)
+    - [Affichage de la validation des tests :](#affichage-de-la-validation-des-tests-)
   - [Conclusion](#conclusion)
     - [Résumé des points clés](#résumé-des-points-clés)
     - [Perspectives d'amélioration](#perspectives-damélioration)
@@ -788,9 +789,11 @@ else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
 ```
 
 ### Validation des fonctionnalités
-A compléter
+<video controls style="display:block; margin-left:auto; margin-right:auto;">
+  <source src="Illustrations/video_demo.mp4" type="video/mp4">
+</video>
 
-__Affichage de la validation des tests :__
+### Affichage de la validation des tests :
 ```
 Cellule - Règles de vie et de mort, [Cellule]
 
