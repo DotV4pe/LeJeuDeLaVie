@@ -531,6 +531,18 @@ public:
 };
 ```
 
+Rôle : Classe mère pour la gestion des fichiers.
+Caractéristiques :
+- Définit une interface pour manipuler les fichiers, avec des méthodes virtuelles comme `getChemin`.
+- Attributs :
+   - ``nomFichier`` : Nom du fichier.
+   - `taille` : Taille du fichier.
+   - `dossierSortie` : Dossier où les fichiers sont sauvegardés.
+   - `cheminFichier` : Chemin complet du fichier.
+- Méthodes principales :
+   - getChemin : Récupère le chemin complet (méthode virtuelle pure).
+   - setDossierSortie : Définit le dossier de sortie.
+
 #### Classe `Sauvegarde`
 Classe mère pour la sauvegarde des états. Elle définit une interface commune pour la sauvegarde des états.
 
