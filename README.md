@@ -48,6 +48,7 @@ Le programme est une implémentation en C++ de l'automate cellulaire "Jeu de la 
     - [Diagramme de cas d'utilisation](#diagramme-de-cas-dutilisation)
     - [Diagramme de classes](#diagramme-de-classes)
     - [Diagramme de séquence](#diagramme-de-séquence)
+      - [Remarques](#remarques)
     - [Diagramme d'activité](#diagramme-dactivité)
   - [Détails de l'Implémentation](#détails-de-limplémentation)
     - [IHM (Interface Homme-Machine)](#ihm-interface-homme-machine-1)
@@ -481,9 +482,119 @@ sequenceDiagram
     end
 ```
 
+1. **Initialisation et Choix du Mode**
+   - **Menu** : `affichageMenu()`
+     - Affiche le menu et récupère le choix de l'utilisateur.
+   - **Menu** : `lancer()`
+     - Crée une instance de `JeuDeLaVie`.
+     - Crée une instance de `Grille`.
+     - Crée une instance de `FichierTxt`.
+     - Appelle `affichageMenu()` pour obtenir le mode.
+     - Si le mode est 0, quitte le programme.
+     - Si le mode est incorrect, défaut sur le mode 1 (Console).
+     - Appelle `getChemin(mode)` sur l'instance de `FichierTxt` pour obtenir le chemin du fichier.
+     - Appelle `initializegrille(f)` sur l'instance de `Grille` pour initialiser la grille.
+     - Appelle `run(g, f, mode)` sur l'instance de `JeuDeLaVie`.
+
+2. **Exécution du Jeu**
+   - **JeuDeLaVie** : `run(Grille &grid, Fichier *f, int mode)`
+     - Demande à l'utilisateur si la grille doit être torique.
+     - Initialise une copie de la grille précédente.
+     - Si le mode est 1 (Console):
+       - Crée une instance de `Console`.
+       - Crée une instance de `SauvegardeFichierTxt`.
+       - Demande le nombre d'itérations.
+       - Pour chaque itération:
+         - Sauvegarde la grille dans un fichier.
+         - Affiche la grille dans la console.
+         - Met à jour la grille.
+         - Vérifie si la grille a changé.
+         - Si la grille est stabilisée, arrête le jeu.
+     - Si le mode est 2 (Graphique):
+       - Demande le temps de génération de chaque cycle.
+       - Crée une instance de `Graphique`.
+       - Initialise une fenêtre SFML.
+       - Pour chaque cycle:
+         - Affiche la grille dans la fenêtre SFML.
+         - Met à jour la grille.
+         - Vérifie si la grille a changé.
+         - Si la grille est stabilisée, ferme la fenêtre.
+
+3. **Mise à Jour de la Grille**
+   - **JeuDeLaVie** : `updateGrille(Grille &grid)`
+     - Pour chaque cellule de la grille:
+       - Compte le nombre de voisins vivants.
+       - Met à jour l'état de la cellule en fonction des règles du jeu.
+
+4. **Sauvegarde de la Grille**
+   - **SauvegardeFichierTxt** : `sauvegarder(const Grille g, const std::string& nomFichier)`
+     - Ouvre un fichier en écriture.
+     - Écrit les dimensions de la grille.
+     - Écrit l'état de chaque cellule dans le fichier.
+     - Ferme le fichier.
+
+5. **Affichage de la Grille**
+   - **Console** : `affichage(Grille g, int iterations)`
+     - Affiche le numéro de la grille.
+     - Pour chaque cellule de la grille:
+       - Affiche l'état de la cellule.
+   - **Graphique** : `affichage(Grille g, sf::RenderWindow &window)`
+     - Efface la fenêtre.
+     - Pour chaque cellule de la grille:
+       - Dessine la cellule avec la couleur appropriée.
+     - Affiche la fenêtre.
+
+#### Remarques
+
+- **Initialisation** : Le menu initialise le jeu, la grille, et le fichier.
+- **Choix du Mode** : Le mode est choisi par l'utilisateur, et le programme se comporte différemment selon le mode (Console ou Graphique).
+- **Sauvegarde** : La sauvegarde est effectuée uniquement en mode Console.
+- **Affichage** : L'affichage est géré par `Console` en mode Console et par `Graphique` en mode Graphique.
+- **Mise à Jour** : La grille est mise à jour à chaque itération/cycle.
+
 
 ### Diagramme d'activité
-![Diagramme d'activité](Couche.png "Diagramme d'activité")
+```mermaid 
+flowchart TD
+    start([Début]) --> deleteFile[Supprimer fichier antérieur]
+    deleteFile --> modeChoice{Choisir le mode d'affichage}
+    modeChoice -->|Terminal| createTerminal[Création d'un objet GrilleTerm]
+    modeChoice -->|Graphique| createGraph[Création d'un objet GrilleGraph]
+
+    createTerminal --> loadFileTerminal[Charger le fichier]
+    loadFileTerminal --> initIterations[Initialiser le nombre d'itérations]
+    initIterations --> validateFileTerminal{Valider le fichier}
+    validateFileTerminal -->|Invalide| showError[Afficher un message d'erreur]
+    showError --> endError1([Fin])
+    validateFileTerminal -->|Valide| initGridTerminal[Initialiser la grille]
+    initGridTerminal --> showInitialStateTerminal[Afficher l'état initial de la grille]
+    showInitialStateTerminal --> executeSimulation[Exécuter la boucle de simulation]
+    
+    executeSimulation --> iterationDone{Itérations terminées ?}
+    iterationDone -->|Oui| endSimulation[Fin de la simulation]
+    endSimulation --> closeApp[Fermer l'application]
+    closeApp --> endFinal1([Fin])
+    iterationDone -->|Non| computeNextState[Calculer l'état de la grille suivante]
+    computeNextState --> updateGrid[Mettre à jour la grille]
+    updateGrid --> showUpdatedGrid[Afficher la grille mise à jour]
+    showUpdatedGrid --> executeSimulation
+
+    createGraph --> loadFileGraph[Charger le fichier]
+    loadFileGraph --> validateFileGraph{Valider le fichier}
+    validateFileGraph -->|Invalide| showErrorGraph[Afficher un message d'erreur]
+    showErrorGraph --> endError2([Fin])
+    validateFileGraph -->|Valide| initGridGraph[Initialiser la grille]
+    initGridGraph --> showInitialStateGraph[Afficher l'état initial de la grille]
+    showInitialStateGraph --> executeSimulationGraph[Exécuter la boucle de simulation]
+    
+    executeSimulationGraph --> computeNextStateGraph[Calculer l'état de la grille suivante]
+    computeNextStateGraph --> updateGridGraph[Mettre à jour la grille]
+    updateGridGraph --> showUpdatedGridGraph[Afficher la grille mise à jour]
+    showUpdatedGridGraph --> windowOpen{Fenêtre Graphique ouverte ?}
+    windowOpen -->|Non| endFinal2([Fin])
+    windowOpen -->|Oui| executeSimulationGraph
+
+```
 
 
 ## Détails de l'Implémentation
