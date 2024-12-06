@@ -449,6 +449,9 @@ public:
 
 ### Tests unitaires
 Utilisez des frameworks de tests unitaires (par exemple, Google Test) pour tester chaque classe individuellement.
+Les tests unitaires visent à valider différents comportements de classe dans notre Jeu de la Vie.
+Dans un premier temps, des tests sur la classe `Cellule`, ils permettent de tester les règles de vie et de mort de celle-ci. Avec une vérification de l'initialisation, de la reproduction et des types de morts (mort par isolement et mort par surpeuplement).
+Ensuite, nous pouvons retrouver les tests sur la classe `Grille`, nous allons d'abord vérifier si la grille est correctement initialisé avec le nombre de colonne, de ligne et la taille des pixels qui seront lié. Puis nous mettrons à jour une valeur de la grille à l'aide de la méthode `udapte(1,1,3)` (integer x,integer y,integer compteurDeVoisin). Et pour finir nous faisons des tests sur notre classe `JeuDeLaVie`, nous vérifions la mise à jour de la grille en comparant la grille avant et après une update, si elle change alors le test est validé.
 
 ### Tests d'intégration
 Testez l'intégration des différentes classes pour s'assurer que le programme fonctionne correctement dans son ensemble.

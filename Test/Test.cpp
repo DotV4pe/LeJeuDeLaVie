@@ -45,15 +45,15 @@ void Test::test() {
     grille.initializegrille(fichier);
 
     std::cout << "Test nombre colonne" << std::endl;
-    if (grille.get_nbColonne() > 0) { std::cout << "TEST PASSED ✅" << std::endl; }
+    if (grille.get_nbColonne() == 5) { std::cout << "TEST PASSED ✅" << std::endl; }
     else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
 
     std::cout << "Test nombre ligne" << std::endl;
-    if (grille.get_nbLigne() > 0) { std::cout << "TEST PASSED ✅" << std::endl; }
+    if (grille.get_nbLigne() == 5) { std::cout << "TEST PASSED ✅" << std::endl; }
     else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
     
     std::cout << "Test taille grille" << std::endl;
-    if (grille.getTaille() > 0) { std::cout << "TEST PASSED ✅" << std::endl; }
+    if (grille.getTaille() == 25) { std::cout << "TEST PASSED ✅" << std::endl; }
     else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
 
     std::cout << "Mise à jour des valeurs" << std::endl;
