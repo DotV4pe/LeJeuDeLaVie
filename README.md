@@ -501,6 +501,14 @@ public:
 };
 ```
 
+Rôle : Classe mère pour les systèmes d'affichage.
+
+Fonctionnalités : Définit deux méthodes ``affichage`` qui doivent être implémentées par les classes dérivées :
+- **Affichage textuel** : Utilise une grille et un nombre d'itérations.
+- **Affichage graphique** : Utilise une grille et une fenêtre ``sf::RenderWindow`` pour une représentation visuelle.
+
+C'est une classe abstraite (avec des méthodes virtuelles pures ``= 0``).
+
 #### Classe `Console`
 Dérive de `Affichage` et implémente l'affichage textuel.
 
@@ -514,6 +522,13 @@ public:
 };
 ```
 
+Rôle : Implémentation de l'affichage textuel.
+
+Caractéristiques : 
+- Dérive de la classe ``Affichage``.
+- Implemente la méthode ``affichage(Grille g, int iterations)`` pour afficher l'état de la grille dans la console.
+- Ne fait rien pour ``affichage(Grille g, sf::RenderWindow &window)`` (méthode vide).
+
 #### Classe `Graphique`
 Dérive de `Affichage` et implémente l'affichage graphique.
 
@@ -526,6 +541,13 @@ public:
     virtual void affichage(Grille g, int iterations) {}
 };
 ```
+
+Rôle : Implémentation de l'affichage graphique.
+
+Caractéristiques :
+- Dérive de la classe ``Affichage``.
+- Implemente la méthode ``affichage(Grille g, sf::RenderWindow &window)`` pour afficher l'état de la grille dans une fenêtre graphique.
+- Ne fait rien pour ``affichage(Grille g, int iterations)`` (méthode vide).
 
 ### Logique
 
@@ -544,6 +566,17 @@ public:
     void updateGrille(Grille &grid);
 };
 ```
+
+Rôle : Gestion de la simulation du jeu de la vie.
+
+Caractéristiques :
+- Utilise une structure de grille (``Grille``), des fichiers (``Fichier``), et la sauvegarde (``Sauvegarde``).
+- Attributs :
+   - ``tgrille`` : Une matrice de cellules représentant l'état courant.
+   - ``torique`` : Spécifie si les bords de la grille sont connectés de manière torique.
+- Méthodes principales :
+   - ``run`` : Lance la simulation à l'aide des paramètres fournis.
+   - ``updateGrille`` : Met à jour l'état de la grille selon les règles du jeu.
 
 #### Classe `Fichier`
 Classe mère pour la gestion des fichiers. Elle définit une interface commune pour la gestion des fichiers.
@@ -567,6 +600,19 @@ public:
 };
 ```
 
+Rôle : Classe mère pour la gestion des fichiers.
+
+Caractéristiques :
+- Définit une interface pour manipuler les fichiers, avec des méthodes virtuelles comme `getChemin`.
+- Attributs :
+   - ``nomFichier`` : Nom du fichier.
+   - `taille` : Taille du fichier.
+   - `dossierSortie` : Dossier où les fichiers sont sauvegardés.
+   - `cheminFichier` : Chemin complet du fichier.
+- Méthodes principales :
+   - ``getChemin`` : Récupère le chemin complet (méthode virtuelle pure).
+   - ``setDossierSortie`` : Définit le dossier de sortie.
+
 #### Classe `Sauvegarde`
 Classe mère pour la sauvegarde des états. Elle définit une interface commune pour la sauvegarde des états.
 
@@ -578,6 +624,11 @@ public:
 };
 ```
 
+Rôle : Classe mère pour la sauvegarde des états de la grille.
+
+Caractéristiques :
+- Définit une interface commune pour la sauvegarde (méthode virtuelle pure ``sauvegarder``).
+
 #### Classe `SauvegardeFichierTxt`
 Dérive de `Sauvegarde` et implémente la sauvegarde dans des fichiers texte.
 
@@ -588,6 +639,12 @@ public:
     void sauvegarder(const Grille g, const std::string& nomFichier) override;
 };
 ```
+
+Rôle : Implémente la sauvegarde des états dans des fichiers texte.
+
+Caractéristiques :
+- Dérive de ``Sauvegarde``.
+- Implemente la méthode ``sauvegarder`` pour enregistrer une grille dans un fichier texte avec un nom donné.
 
 ### Données
 
@@ -616,6 +673,19 @@ public:
 };
 ```
 
+Rôle : Représente la grille de cellules.
+
+Caractéristiques :
+- Attributs :
+   - ``cellSize`` : Taille des cellules.
+   - ``nbColonne`` et ``nbLigne`` : Dimensions de la grille.
+   - ``grille`` : Matrice de cellules (std::vector<std::vector<Cellule>>).
+- Méthodes principales :
+   - ``getTaille`` : Retourne la taille de la grille.
+   - ``getValeur`` : Retourne la valeur d'une cellule à une position donnée.
+   - ``update`` : Met à jour une cellule en fonction du comptage de voisins.
+   - ``initializegrille`` : Initialise la grille à partir d'un fichier.
+
 #### Classe `Cellule`
 Représente une cellule. Elle contient des méthodes pour manipuler l'état de la cellule.
 
@@ -631,6 +701,16 @@ public:
     void update(int voisinVivant);
 };
 ```
+
+Rôle : Représente une cellule individuelle.
+
+Caractéristiques :
+- Attributs :
+   - ``vivant`` : État de la cellule (1 pour vivant, 0 pour mort).
+- Méthodes principales :
+   - ``estVivant`` : Retourne si la cellule est vivante.
+   - ``setVie`` : Définit l'état de la cellule.
+   - ``update`` : Met à jour l'état de la cellule en fonction du nombre de voisins vivants.
 
 ## Choix de Conception et Justification
 
