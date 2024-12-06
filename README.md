@@ -249,7 +249,112 @@ Le projet est divisé en trois couches principales : l'IHM, la logique, et les d
 ### Diagramme de cas d'utilisation
 ![Diagramme de cas d'utilisation](Couche.png "Diagramme de cas d'utilisation")
 ### Diagramme de classes
-![Diagramme de classes](Couche.png "Diagramme de classes")
+```mermaid
+classDiagram
+    direction TB
+    
+    class Cellule {
+        -int vivant
+        +Cellule()
+        +Cellule(int viv)
+        +int estVivant()
+        +void setVie(int viv)
+        +void updateCellule(int voisinVivant)
+    }
+    
+    class Grille {
+        -int cellSize
+        -int nbColonne
+        -int nbLigne
+        #vector~vector~Cellule~~ grille
+        +int getTaille()
+        +int get_nbColonne()
+        +int get_nbLigne()
+        +int getValeur(int x, int y)
+        +vector~vector~Cellule~~ getGrille()
+        +void update(int x, int y, int compt)
+        +void setGrille(vector~vector~Cellule~~ g)
+        +void initializegrille(Fichier *f)
+    }
+    
+    class Affichage {
+        <<abstract>>
+        +virtual void affichage(Grille g, int iterations)
+        +virtual void affichage(Grille g, sf::RenderWindow &window)
+        +virtual ~Affichage()
+    }
+    
+    class Console {
+        +Console()
+        +void affichage(Grille g, int iterations)
+        +void affichage(Grille g, sf::RenderWindow &window)
+    }
+    
+    class Graphique {
+        +Graphique()
+        +void affichage(Grille g, sf::RenderWindow &window)
+        +void affichage(Grille g, int iterations)
+    }
+    
+    class Fichier {
+        <<abstract>>
+        #string nomFichier
+        #int taille
+        #string dossierSortie
+        #string cheminFichier
+        +virtual void getChemin(int mode)
+        +string getNomFichier()
+        +void setDossierSortie(string ds)
+        +int getTailleFichier()
+        +string getDossierSortie()
+        +string getcheminFichier()
+    }
+    
+    class FichierTxt {
+        +FichierTxt()
+        +void getChemin(int mode)
+    }
+    
+    class Sauvegarde {
+        <<abstract>>
+        +virtual void sauvegarder(const Grille g, const string& nomFichier)
+        +virtual ~Sauvegarde()
+    }
+    
+    class SauvegardeFichierTxt {
+        +void sauvegarder(const Grille g, const string& nomFichier)
+    }
+    
+    class JeuDeLaVie {
+        -vector~vector~Cellule~~ tgrille
+        -int torique
+        +JeuDeLaVie()
+        +void run(Grille &grid, Fichier *f, int mode)
+        +void updateGrille(Grille &grid)
+    }
+
+    class Menu {
+        - int mode
+        + affichageMenu()
+        + lancer()
+    }
+    
+    Affichage <|-- Console : Héritage
+    Affichage <|-- Graphique : Héritage
+    Fichier <|-- FichierTxt : Héritage
+    Sauvegarde <|-- SauvegardeFichierTxt : Héritage
+    
+    Menu ..> JeuDeLaVie : Dépendance
+
+    JeuDeLaVie "1" *-- "1" Grille : Composition
+    Grille "1" *-- "*" Cellule : Composition
+    
+    JeuDeLaVie "1" <-- "1" Fichier : Association
+    JeuDeLaVie "1" <-- "1" Affichage : Association
+    JeuDeLaVie "1" <-- "1" Sauvegarde : Association
+```
+
+
 ### Diagramme de séquence
 ![Diagramme de séquence](Couche.png "Diagramme de séquence")
 ### Diagramme d'activité
