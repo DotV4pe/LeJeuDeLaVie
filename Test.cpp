@@ -72,7 +72,7 @@ void Test::test() {
     // Sauvegarde de l'état initial
     std::vector<std::vector<Cellule>> grilleAvant = grille.getGrille();
         
-    // Mettre à jour avec mode torique
+    // Mettre à jour la grille
     jeu.updateGrille(grille);
         
     // Vérifier que la grille a changé
