@@ -6,22 +6,23 @@ Graphique::~Graphique() {}
 
 void Graphique::affichage(Grille g, sf::RenderWindow &window) {
     window.clear(); 
-    sf::RectangleShape cell(sf::Vector2f(g.getTaille(), g.getTaille()));
-    for (int x = 0; x < g.get_nbColonne(); ++x) {
+    sf::RectangleShape cell(sf::Vector2f(g.getTaille(), g.getTaille())); // Création de rectangle (pixel) de taille x taille
+    // Boucle pour parcourir la grille
+    for (int x = 0; x < g.get_nbColonne(); ++x) { 
         for (int y = 0; y < g.get_nbLigne(); ++y) {
-            cell.setPosition(x * g.getTaille(), y * g.getTaille());
-            if (g.getValeur(x,y) == 1) {
-                cell.setFillColor(sf::Color(166,77,121));
+            cell.setPosition(x * g.getTaille(), y * g.getTaille()); // Position du rectangle en fonction de x et y
+            if (g.getValeur(x,y) == 1) { // Changement de la couleur en fonction du type de Cellule que l'on a (Vivante)
+                cell.setFillColor(sf::Color(166,77,121)); 
             }
-            else if (g.getValeur(x,y) == 0) {
+            else if (g.getValeur(x,y) == 0) { // Changement de la couleur en fonction du type de Cellule que l'on a (Morte)
                 cell.setFillColor(sf::Color(26,26,29)); 
-            } else if (g.getValeur(x,y) == 2) {
+            } else if (g.getValeur(x,y) == 2) { // Changement de la couleur en fonction du type de Cellule que l'on a (Obstacle Mort)
                 cell.setFillColor(sf::Color(106,30,85)); 
-            } else if (g.getValeur(x,y) == 3) {
+            } else if (g.getValeur(x,y) == 3) { // Changement de la couleur en fonction du type de Cellule que l'on a (Obstacle Vivant)
                 cell.setFillColor(sf::Color(228,177,240)); 
             }
-            window.draw(cell);
+            window.draw(cell); // Dessine le pixel dans la fenêtre
         }
     }
-    window.display();
+    window.display(); // Affichage de la fenêtre sur SFML
 }
