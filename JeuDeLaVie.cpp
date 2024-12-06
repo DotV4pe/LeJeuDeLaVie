@@ -4,7 +4,7 @@ JeuDeLaVie::JeuDeLaVie() {}
 
 JeuDeLaVie::~JeuDeLaVie() {}
 
-void JeuDeLaVie::run(Grille grid, Fichier *f, int mode) {
+void JeuDeLaVie::run(Grille& grid, Fichier *f, int mode) {
     int temps, iterations, cycle = 0;
     bool continuer = true;
 

@@ -10,7 +10,7 @@ int Cellule::estVivant() const { return vivant; }
 
 void Cellule::setVie(int viv) { vivant = viv; }
 
-void Cellule::update(int voisinVivant){
+void Cellule::updateCellule(int voisinVivant){
     if (estVivant() == 0 && voisinVivant == 3){
         vivant = 1;
     }

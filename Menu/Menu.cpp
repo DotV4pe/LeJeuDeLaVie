@@ -4,10 +4,6 @@ Menu::Menu() {}
 
 Menu::~Menu() {}
 
-void Menu::affichage(Grille g, int iterations) {}
-
-void Menu::affichage(Grille g, sf::RenderWindow &window) {}
-
 void Menu::affichageMenu(){
     std::cout << "\nVeuillez choisir le mode de visualisation :\n";
     std::cout << "1. Terminal\n";
@@ -24,7 +20,7 @@ void Menu::lancer() {
     Fichier *f = new FichierTxt;
     affichageMenu();
     if (mode==0) { exit(0); }
-    if (mode != 1 && mode != 2) {
+    else if (mode != 1 && mode != 2) {
         std::cout << "Mode incorrect ! Mode terminal choisi par défaut." << std::endl;
         mode = 1;
     }

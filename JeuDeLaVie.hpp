@@ -14,6 +14,6 @@ private:
 public:
     JeuDeLaVie();
     virtual ~JeuDeLaVie();
-    void run(Grille grid, Fichier *f, int mode);
+    void run(Grille &grid, Fichier *f, int mode);
     void updateGrille(Grille &grid);
 };
