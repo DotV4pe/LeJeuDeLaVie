@@ -59,7 +59,7 @@ Le programme est une implémentation en C++ de l'automate cellulaire "Jeu de la 
       - [Abstraction](#abstraction)
       - [Avantages de l'architecture](#avantages-de-larchitecture)
     - [Diagramme de séquence](#diagramme-de-séquence)
-      - [Remarques](#remarques)
+      - [Grands axes](#grands-axes)
     - [Diagramme d'activité](#diagramme-dactivité)
   - [Détails de l'Implémentation](#détails-de-limplémentation)
     - [IHM (Interface Homme-Machine)](#ihm-interface-homme-machine-1)
@@ -81,7 +81,7 @@ Le programme est une implémentation en C++ de l'automate cellulaire "Jeu de la 
     - [Autres choix de conception](#autres-choix-de-conception)
   - [Tests et Validation](#tests-et-validation)
     - [Tests unitaires](#tests-unitaires)
-    - [Validation des fonctionnalités](#validation-des-fonctionnalités)
+    - [Vidéo d'exemple et validation des fonctionnalités](#vidéo-dexemple-et-validation-des-fonctionnalités)
     - [Affichage de la validation des tests :](#affichage-de-la-validation-des-tests-)
   - [Conclusion](#conclusion)
     - [Résumé des points clés](#résumé-des-points-clés)
@@ -277,6 +277,7 @@ Le projet est divisé en trois couches principales : l'IHM, la logique, et les d
     <img src="Illustrations/visualisation_strates_code.svg" alt="Couche_Abstraction" width="700">
 </p>
 
+---
 
 ### Couches d'abstraction
 
@@ -301,7 +302,7 @@ Le projet est divisé en trois couches principales : l'IHM, la logique, et les d
 - **Classe `FichierTest`** : Comporte des méthodes testant la classe
 - **Classe `Test`** : Permet de lancer et valider ou non les tests unitaires.
 
-
+---
 ## UML
 
 ### Diagramme de cas d'utilisation
@@ -326,6 +327,7 @@ Les principaux choix de conception sont les suivants :
 -Permettre aux utilisateurs de contrôler la durée de la simulation en définissant le nombre d'itérations.
 - Sauvegarder l'état du jeu pour le retrouver plus tard
 
+---
 
 ### Diagramme de classes
 ```mermaid
@@ -498,9 +500,11 @@ Grâce à ce choix d'architecture, le diagramme de classe est défini en fonctio
 
 #### Avantages de l'architecture
 
-**Extensibilité** : Ajout facile de nouveaux types d'affichage, de sauvegarde ou de fichiers
-**Séparation** des **Responsabilités** : Chaque classe a un rôle clairement défini
-**Flexibilité** : Modification ou remplacement de composants sans impact global
+- **Extensibilité** : Ajout facile de nouveaux types d'affichage, de sauvegarde ou de fichiers
+- **Séparation** des **Responsabilités** : Chaque classe a un rôle clairement défini
+- **Flexibilité** : Modification ou remplacement de composants sans impact global
+
+---
 
 ### Diagramme de séquence
 ```mermaid
@@ -623,7 +627,7 @@ sequenceDiagram
        - Dessine la cellule avec la couleur appropriée.
      - Affiche la fenêtre.
 
-#### Remarques
+#### Grands axes
 
 - **Initialisation** : Le menu initialise le jeu, la grille, et le fichier.
 - **Choix du Mode** : Le mode est choisi par l'utilisateur, et le programme se comporte différemment selon le mode (Console ou Graphique).
@@ -631,6 +635,7 @@ sequenceDiagram
 - **Affichage** : L'affichage est géré par `Console` en mode Console et par `Graphique` en mode Graphique.
 - **Mise à Jour** : La grille est mise à jour à chaque itération/cycle.
 
+---
 
 ### Diagramme d'activité
 ```mermaid 
@@ -674,7 +679,43 @@ flowchart TD
     windowOpen -->|Oui| executeSimulationGraph
 
 ```
+1. Initialisation 
+- Suppression des éventuels fichiers précédents
+- Choix du mode d'affichage (terminal ou graphique)
 
+
+2. Mode Terminal
+
+- Création d'un objet GrilleTerm
+- Chargement du fichier
+- Initialisation du nombre d'itérations
+- Validation du fichier
+
+- Si invalide : affichage d'une erreur et fin
+- Si valide : initialisation et affichage de la grille initiale
+
+
+3. Mode Graphique
+
+- Création d'un objet GrilleGraph
+- Chargement et validation du fichier
+- Initialisation et affichage de la grille initiale
+
+
+4. Boucle de Simulation
+
+Pour chaque itération :
+- Calcul de l'état suivant de la grille
+- Mise à jour de la grille
+- Affichage de la grille mise à jour
+
+
+5. Conditions de Fin
+- Terminal : fin après le nombre d'itérations prédéfini (ou cellule stagnante)
+- Graphique : fin si la fenêtre est fermée (ou cellule stagnante)
+
+
+--- 
 
 ## Détails de l'Implémentation
 
@@ -945,6 +986,7 @@ Caractéristiques :
   - **Justification :** Les classes sont conçues pour être réutilisées dans d'autres projets similaires.
   - **Implémentation :** Les classes sont indépendantes et peuvent être facilement intégrées dans d'autres projets.
 
+--- 
 ## Tests et Validation
 
 ### Tests unitaires
@@ -978,11 +1020,14 @@ if (changed == true) { std::cout << "TEST PASSED ✅" << std::endl; }
 else { std::cout << "TEST FAILED ❌" << std::endl; fail++; }
 ```
 
-### Validation des fonctionnalités
+--- 
+
+### Vidéo d'exemple et validation des fonctionnalités
 <video controls style="display:block; margin-left:auto; margin-right:auto;">
   <source src="Illustrations/video_demo.mp4" type="video/mp4">
 </video>
 
+--- 
 ### Affichage de la validation des tests :
 ```
 Cellule - Règles de vie et de mort, [Cellule]
@@ -1018,12 +1063,13 @@ TEST PASSED ✅
 Nombre de test échoué : 0 test(s).
 ```
 
+--- 
 ## Conclusion
 
 ### Résumé des points clés
 - Le projet "Jeu de la Vie" est une implémentation en C++ de l'automate cellulaire de John Conway.
-- L'architecture est modulaire et respecte les principes de la POO.
-- Les diagrammes UML et les détails d'implémentation fournissent une compréhension claire du code.
+- L'architecture essaye d'être le plus modulaire possible afin de respecter les principes de la POO et penser à d'enventuelles futures extensions.
+- Les diagrammes UML et les détails d'implémentation fournissent une compréhension plus facile du code.
 
 ### Perspectives d'amélioration
 - Ajout d'une sauvegarde supplémentaire (par exemple, sauvegarde dans une base de données (d'où l'utilisation d'une classe abstraite pour la sauvegarde)).
@@ -1041,4 +1087,5 @@ Nombre de test échoué : 0 test(s).
 ## Références
 - [Profil et Histoire de John Horton Conway](https://fr.wikipedia.org/wiki/John_Horton_Conway)
 - [Documentation SFML](https://www.sfml-dev.org/documentation/2.6.2/)
+- [Wiki - Conwaylife](https://conwaylife.com/wiki)
 
