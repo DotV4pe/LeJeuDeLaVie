@@ -14,25 +14,25 @@ void Test::test() {
 
     cout << "Initialisation" << endl;
     Cellule cell;
-    if (cell.estVivant() == 0) { cout << "TEST PASSED ✅" << endl; }
-    else { cout << "TEST FAILED ❌" << endl; fail++; }
+    if (cell.estVivant() == 0) { cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl; }
+    else { cout << "\033[1;31mTEST FAILED ❌\033[0m" << endl; fail++; }
 
     cout << "Reproduction" << endl;
     cell.updateCellule(3);
-    if (cell.estVivant() == 1) { cout << "TEST PASSED ✅" << endl; }
-    else { cout << "TEST FAILED ❌" << endl; fail++; }
+    if (cell.estVivant() == 1) { cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl; }
+    else { cout << "\033[1;31mTEST FAILED ❌\033[0m" << endl; fail++; }
 
     cell.setVie(1);
     cout << "Mort par isolement" << endl;
     cell.updateCellule(1);
-    if (cell.estVivant() == 0) { cout << "TEST PASSED ✅" << endl; }
-    else { cout << "TEST FAILED ❌" << endl; fail++; }
+    if (cell.estVivant() == 0) { cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl; }
+    else { cout << "\033[1;31mTEST FAILED ❌\033[0m" << endl; fail++; }
 
     cell.setVie(1);
     cout << "Mort par surpeuplement" << endl;
     cell.updateCellule(4);
-    if (cell.estVivant() == 0) { cout << "TEST PASSED ✅" << endl; }
-    else { cout << "TEST FAILED ❌" << endl; fail++; }
+    if (cell.estVivant() == 0) { cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl; }
+    else { cout << "\033[1;31mTEST FAILED ❌\033[0m" << endl; fail++; }
 
     cout << endl;
     cout << "Grille - Initialisation et manipulation, [Grille]" << endl;
@@ -46,21 +46,21 @@ void Test::test() {
     grille.initializegrille(fichier);
 
     cout << "Test nombre colonne" << endl;
-    if (grille.get_nbColonne() > 0) { cout << "TEST PASSED ✅" << endl; }
-    else { cout << "TEST FAILED ❌" << endl; fail++; }
+    if (grille.get_nbColonne() > 0) { cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl; }
+    else { cout << "\033[1;31mTEST FAILED ❌\033[0m" << endl; fail++; }
 
     cout << "Test nombre ligne" << endl;
-    if (grille.get_nbLigne() > 0) { cout << "TEST PASSED ✅" << endl; }
-    else { cout << "TEST FAILED ❌" << endl; fail++; }
+    if (grille.get_nbLigne() > 0) { cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl; }
+    else { cout << "\033[1;31mTEST FAILED ❌\033[0m" << endl; fail++; }
     
     cout << "Test taille grille" << endl;
-    if (grille.getTaille() > 0) { cout << "TEST PASSED ✅" << endl; }
-    else { cout << "TEST FAILED ❌" << endl; fail++; }
+    if (grille.getTaille() > 0) { cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl; }
+    else { cout << "\033[1;31mTEST FAILED ❌\033[0m" << endl; fail++; }
 
     cout << "Mise à jour des valeurs" << endl;
     grille.update(1, 1, 3);
-    if (grille.getValeur(1, 1) == 1) { cout << "TEST PASSED ✅" << endl; }
-    else { cout << "TEST FAILED ❌" << endl; fail++; }
+    if (grille.getValeur(1, 1) == 1) { cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl; }
+    else { cout << "\033[1;31mTEST FAILED ❌\033[0m" << endl; fail++; }
 
     cout << endl;
     cout << "JeuDeLaVie - Mise à jour de la grille, [JeuDeLaVie]" << endl;
@@ -89,8 +89,8 @@ void Test::test() {
         }
         if (changed) break;
     }
-    if (changed == true) { cout << "TEST PASSED ✅" << endl; }
-    else { cout << "TEST FAILED ❌" << endl; fail++; }
+    if (changed == true) { cout << "\033[1;32mTEST PASSED ✅\033[0m" << endl; }
+    else { cout << "\033[1;31mTEST FAILED ❌\033[0m" << endl; fail++; }
     cout << endl;
 
     cout << "Nombre de test échoué : " << fail << " test(s)." << endl;
