@@ -7,6 +7,7 @@ class Cellule
 private:
     int vivant;
 public:
+    Cellule();
     Cellule(int viv);
     ~Cellule();
     int estVivant() const;

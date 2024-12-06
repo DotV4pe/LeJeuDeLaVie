@@ -1,5 +1,7 @@
 #include "Cellule.hpp"
 
+Cellule::Cellule() : vivant(0) {}
+
 Cellule::Cellule(int viv) : vivant(viv) {}
 
 Cellule::~Cellule() {}
