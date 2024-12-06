@@ -434,6 +434,12 @@ public:
 };
 ```
 
+Rôle : Classe mère pour les systèmes d'affichage.
+Fonctionnalités : Définit deux méthodes affichage qui doivent être implémentées par les classes dérivées :
+   Affichage textuel : Utilise une grille et un nombre d'itérations.
+   Affichage graphique : Utilise une grille et une fenêtre sf::RenderWindow pour une représentation visuelle.
+C'est une classe abstraite (avec des méthodes virtuelles pures = 0).
+
 #### Classe `Console`
 Dérive de `Affichage` et implémente l'affichage textuel.
 
@@ -447,6 +453,12 @@ public:
 };
 ```
 
+Rôle : Implémentation de l'affichage textuel.
+Caractéristiques : 
+   Dérive de la classe Affichage.
+   Implemente la méthode affichage(Grille g, int iterations) pour afficher l'état de la grille dans la console.
+   Ne fait rien pour affichage(Grille g, sf::RenderWindow &window) (méthode vide).
+
 #### Classe `Graphique`
 Dérive de `Affichage` et implémente l'affichage graphique.
 
@@ -459,6 +471,12 @@ public:
     virtual void affichage(Grille g, int iterations) {}
 };
 ```
+
+Rôle : Implémentation de l'affichage graphique.
+Caractéristiques :
+   Dérive de la classe Affichage.
+   Implemente la méthode affichage(Grille g, sf::RenderWindow &window) pour afficher l'état de la grille dans une fenêtre graphique.
+   Ne fait rien pour affichage(Grille g, int iterations) (méthode vide).
 
 ### Logique
 
@@ -477,6 +495,16 @@ public:
     void updateGrille(Grille &grid);
 };
 ```
+
+Rôle : Gestion de la simulation du jeu de la vie.
+Caractéristiques :
+   Utilise une structure de grille (Grille), des fichiers (Fichier), et la sauvegarde (Sauvegarde).
+   Attributs :
+      tgrille : Une matrice de cellules représentant l'état courant.
+      torique : Spécifie si les bords de la grille sont connectés de manière torique.
+   Méthodes principales :
+      run : Lance la simulation à l'aide des paramètres fournis.
+      updateGrille : Met à jour l'état de la grille selon les règles du jeu.
 
 #### Classe `Fichier`
 Classe mère pour la gestion des fichiers. Elle définit une interface commune pour la gestion des fichiers.
