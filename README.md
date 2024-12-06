@@ -47,6 +47,17 @@ Le programme est une implémentation en C++ de l'automate cellulaire "Jeu de la 
   - [UML](#uml)
     - [Diagramme de cas d'utilisation](#diagramme-de-cas-dutilisation)
     - [Diagramme de classes](#diagramme-de-classes)
+      - [1. Cellule](#1-cellule)
+      - [2. Grille](#2-grille)
+      - [3. Affichage (Classe Abstraite)](#3-affichage-classe-abstraite)
+      - [4. Fichier (Classe Abstraite)](#4-fichier-classe-abstraite)
+      - [5. Sauvegarde (Classe Abstraite)](#5-sauvegarde-classe-abstraite)
+      - [6. JeuDeLaVie](#6-jeudelavie)
+      - [7. Menu](#7-menu)
+      - [Polymorphisme par héritage](#polymorphisme-par-héritage)
+      - [Composition](#composition)
+      - [Abstraction](#abstraction)
+      - [Avantages de l'architecture](#avantages-de-larchitecture)
     - [Diagramme de séquence](#diagramme-de-séquence)
       - [Remarques](#remarques)
     - [Diagramme d'activité](#diagramme-dactivité)
@@ -421,7 +432,75 @@ classDiagram
     JeuDeLaVie "1" <-- "1" Affichage : Association
     JeuDeLaVie "1" <-- "1" Sauvegarde : Association
 ```
+Le diagramme de classe suivant modélise le programme implémenté. 
 
+
+#### 1. Cellule
+- **Rôle** : Représente l'unité de base du jeu
+- **Attributs** : État (vivant/mort + obstacles pour l'extension)
+- **Méthodes** : 
+  - Vérifier l'état
+  - Mettre à jour l'état selon les voisins
+
+#### 2. Grille
+- **Rôle** : Conteneur et gestionnaire des cellules
+- **Caractéristiques** :
+  - Stockage des cellules
+  - Gestion des dimensions
+  - Initialisation et mise à jour des cellules
+
+#### 3. Affichage (Classe Abstraite)
+- **Concept** : Polymorphisme d'affichage
+- **Implémentations** : 
+  - Console : Affichage texte
+  - Graphique : Affichage graphique SFML
+
+#### 4. Fichier (Classe Abstraite)
+- **Rôle** : Gestion générique des fichiers
+- **Fonctionnalités** :
+  - Définition de chemins
+  - Gestion des fichiers de sortie
+
+#### 5. Sauvegarde (Classe Abstraite)
+- **Rôle** : Abstraction de la sauvegarde
+- **Implémentation** : 
+  - Sauvegarde en fichier texte
+
+#### 6. JeuDeLaVie
+- **Rôle** : Coordinateur principal
+- **Responsabilités** :
+  - Évolution de la grille
+  - Interaction entre composants
+
+#### 7. Menu
+- **Rôle** : Interface utilisateur
+- **Fonctions** : 
+  - Lancement du jeu
+  - Gestion des modes
+
+Grâce à ce choix d'architecture, le diagramme de classe est défini en fonction des bonnes pratiques suivantes :
+
+#### Polymorphisme par héritage
+
+- Utilisé dans `Affichage`, `Fichier`, et `Sauvegarde`
+- Permet d'implémenter différents comportements sans modifier le code existant
+
+#### Composition
+
+- `JeuDeLaVie` contient une `Grille`
+- `Grille` contient des `Cellule`
+- Permet une **modularité** et une **réutilisabilité** plus importante
+
+#### Abstraction
+
+- Notre architecture essaye au maximum d'user de l'abstraction.
+- Utilisation des classes abstraites qui définissent des interfaces
+
+#### Avantages de l'architecture
+
+**Extensibilité** : Ajout facile de nouveaux types d'affichage, de sauvegarde ou de fichiers
+**Séparation** des **Responsabilités** : Chaque classe a un rôle clairement défini
+**Flexibilité** : Modification ou remplacement de composants sans impact global
 
 ### Diagramme de séquence
 ```mermaid
