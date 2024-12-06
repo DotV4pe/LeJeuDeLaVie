@@ -356,7 +356,65 @@ classDiagram
 
 
 ### Diagramme de séquence
-![Diagramme de séquence](Couche.png "Diagramme de séquence")
+```mermaid
+sequenceDiagram
+    participant Menu
+    participant JeuDeLaVie
+    participant Fichier
+    participant Grille
+    participant Console
+    participant Graphique
+    participant Sauvegarde
+
+    Menu->>Menu: affichageMenu()
+    Menu->>Menu: lancer()
+    Menu->>JeuDeLaVie: new JeuDeLaVie()
+    Menu->>Grille: new Grille()
+    Menu->>Fichier: new FichierTxt()
+
+    Menu->>Fichier: getChemin(mode)
+    Menu->>Grille: initializegrille(Fichier)
+    Menu->>JeuDeLaVie: run(Grille, Fichier, mode)
+
+    JeuDeLaVie->>JeuDeLaVie: Demande torique (0/1)
+    JeuDeLaVie->>Grille: Copie grille précédente
+    alt mode == 1 (Console)
+        JeuDeLaVie->>Console: new Console()
+        JeuDeLaVie->>Sauvegarde: new SauvegardeFichierTxt()
+        JeuDeLaVie->>JeuDeLaVie: Demande nombre d'itérations
+        loop Pour chaque iterations
+            JeuDeLaVie->>Sauvegarde: sauvegarder(Grille, nomFichier)
+            JeuDeLaVie->>Console: affichage(Grille, iteration)
+            JeuDeLaVie->>Grille: updateGrille(Grille)
+            JeuDeLaVie->>JeuDeLaVie: Regarde si la grille change
+            alt Grille Change
+                JeuDeLaVie->>JeuDeLaVie: Continue
+            else
+                JeuDeLaVie->>JeuDeLaVie: Grille stabilisée, stop
+            end
+        end
+    else mode == 2 (Graphique)
+        JeuDeLaVie->>JeuDeLaVie: Demande temps de génération
+        JeuDeLaVie->>Graphique: new Graphique()
+        JeuDeLaVie->>Graphique: Initialize sf::RenderWindow
+        loop pour chaque cycles
+            JeuDeLaVie->>Graphique: affichage(Grille, window)
+            JeuDeLaVie->>Grille: updateGrille(Grille)
+            JeuDeLaVie->>JeuDeLaVie: Regarde si la grille change
+            alt Grille Change
+                JeuDeLaVie->>JeuDeLaVie: Continue
+            else
+                JeuDeLaVie->>JeuDeLaVie: Grille stabilisée, fermer fenêtre
+            end
+        end
+    Grille->>Grille: update(int x, int y, int compt)*
+    Console->>Console: affichage(Grille g, int iterations)
+    Graphique->>Graphique: affichage(Grille g, sf::RenderWindow &window)
+    Sauvegarde->>Sauvegarde: sauvegarder(const Grille g, const std::string& nomFichier)
+    end
+```
+
+
 ### Diagramme d'activité
 ![Diagramme d'activité](Couche.png "Diagramme d'activité")
 
@@ -553,13 +611,13 @@ public:
 ## Tests et Validation
 
 ### Tests unitaires
-Utilisez des frameworks de tests unitaires (par exemple, Google Test) pour tester chaque classe individuellement.
+
 
 ### Tests d'intégration
-Testez l'intégration des différentes classes pour s'assurer que le programme fonctionne correctement dans son ensemble.
+
 
 ### Validation des fonctionnalités
-Vérifiez que toutes les fonctionnalités du programme (modes de visualisation, sauvegarde, grille torique, etc.) fonctionnent comme prévu.
+
 
 ## Conclusion
 
